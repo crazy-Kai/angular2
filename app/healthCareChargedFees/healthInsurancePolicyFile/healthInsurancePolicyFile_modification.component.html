@@ -1,0 +1,73 @@
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">	
+	<div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);padding-left: 15px;padding-right: 15px;padding-top: 15px;">
+		<div class="HealthRulesVersionHeader">
+			<span (click)=return() style="cursor: pointer;">< 返回</span>
+		</div>
+		<div class='bigBox fn-clear' style="background: #fff;">
+			    <div class="search-bar" fole="form" >
+			    	<div>
+			    		 <div style="width: 100%;">
+					    	<table id="noBorders" class="fn-table fn-table-input" style="width: 100%;">
+					    		<tr>
+									<td width="90" align="right" class="fn-LH30">
+										<span style="color: red;">*</span>
+										文件标题：
+									</td>
+									<td width="940">
+										<input class="fn-input ipts" type="text" placeholder="长度1-30.不区分中英文.不支持特殊字符" style="width: 72%;" [(ngModel)]="modificationsummary" (blur)="testInsuranceName(modificationsummary)" maxlength="30" (input)="testName()"/>
+									</td>
+								</tr>	
+								<tr>
+									<td width="80" align="right" class="fn-LH30">
+										<span style="color: red;">*</span>
+										生效时间：
+									</td>
+									<td width="180px">
+										<span (click)="$event.stopPropagation();">	
+											<input class="fn-input ipttime" placeholder="{{nowDay}}" (click)="toggleEnd(endDateforSearch);" style="width: 72%;" (ngModelChange)="setStrartInterval($event)"  [(ngModel)]="currentTime"  [maxDate]="maxEndDate" [minDate]="minEndDate" name="endDateforSearch"  tabIndex="-1" ngbDatepicker #endDateforSearch="ngbDatepicker" readonly="readonly">
+									    </span>
+									</td>
+						        </tr>
+								<tr>
+									<td width="80" align="right" class="fn-LH30">文件描述：</td>
+									<td width="180px">
+										<div style="width: 85%;">
+								            <textarea row="3" id="ueInstructions" #UEditor style="width: 85%;height: 400px;"></textarea>
+								        </div>
+									</td>
+								</tr>
+								<tr>
+									<td width="80" align="right" class="fn-LH30">
+										<span style="color: red;">*</span>
+										来源：
+									</td>
+									<td width="180px">
+										<input class="fn-input" type="text" placeholder="长度1-30,不区分中英文,不支持特殊字符" style="width: 72%;" [(ngModel)]="modificationsource" (blur)="testInsuranceSourceName(modificationsource)" maxlength="30"/>
+									</td>
+								</tr>	
+					    </table>
+			    	</div>
+			    </div>
+			</div>
+		</div> 
+        <div class="addcatalog-button fn-MT20" style="padding-left: 400px;">
+	        <span class="btn-cancel fn-MR10">
+				<button class="btn btn-primary fn-W80 fn-H30" (click)=return()>取消</button>
+	        </span>
+	        <span class="btn-save">
+				<button class="publicSureBtn fn-W80 fn-H30"  (click)="save()">保存</button>
+	        </span>
+	    </div>
+	</div>		 
+</div>
+<my-dialog class="show-dialog">
+ 	 <template #dialogTemplate let-dialogModel>
+        <div class="datatype-choosing">
+              <div class="chooseVersion">确认取消编辑信息并返回</div>
+              <div class="chooseVersionButtom">
+              	    <span (click)="dialogModel.customModule = false;" style="margin-right: 20px;">再想想</span>
+              	    <span routerLink='/healthCareChargedFees/healthInsurancePolicyFile'>返回</span>
+              </div>
+        </div>
+    </template>
+</my-dialog>

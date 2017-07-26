@@ -1,0 +1,43 @@
+<div class="container-content" style="height: calc(100vh - 80px);">	
+	<div [hidden]="isHiddenDom == true">
+
+		<div class='bigBox form-inline'>
+			<div class="form-group">
+				<label class="control-label fn-W64 fn-MT5">选择机构：</label>
+				<select-comp [option]="organizationOption" (select)="chooseOrganization($event)"></select-comp>
+			</div>
+		</div>
+
+	    <div class="InterventionTableBox" style="min-height: calc(100vh - 164px);background: #fff;overflow: auto;">
+	     	<div>
+	     	  	<div style="padding-left:20px;padding-right: 20px;">
+				       <table class="table">
+				            <thead>
+				                <tr style="height: 45px;">
+				                    <th width="25%">目录</th>
+				                    <th width="25%">已比对</th>
+				                    <th width="25%">未比对</th> 
+				                    <th width="25%">操作</th>
+				                </tr>
+				            </thead>
+				            <tbody *ngIf = "compareListInfoArray && compareListInfoArray.length">
+				            	<tr style="height: 45px;" *ngFor = "let item of compareListInfoArray let i=index">
+				            		<td width="25%" *ngIf="item.type ==3">科室</td>
+				            		<td width="25%" *ngIf="item.type ==2">材料</td>
+				            		<td width="25%" *ngIf="item.type ==1">项目</td>
+				            		<td width="25%" *ngIf="item.type ==4">人员类别</td>
+				                    <td width="25%">{{item.comparisonTrue}}</td>
+				                    <td width="25%">{{item.comparisonFalse}}</td> 
+				                    <td width="25%"(click)="goToPage(item.type)"><a>比对</a></td>
+				            	</tr>
+				            </tbody>
+				            <tbody *ngIf = "compareListInfoArray && compareListInfoArray.length==0">
+				            	<tr><td colspan="4">没有比对数据</td></tr>
+				            </tbody>
+				        </table>
+	     	  	</div>
+	     	</div>
+		</div>   
+	</div>	
+</div>
+<my-dialog></my-dialog>

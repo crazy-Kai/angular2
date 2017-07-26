@@ -1,0 +1,118 @@
+    <div id="drgusPage" [hidden]="!userService.isLogin">
+      <div class="drgus-navbar">
+        <div  id="navbar"  class="fn-clear">
+             <div class="fn-left">
+                <span class="nav-product-name">逸曜医保控费系统</span>
+             </div>
+       		   <ul>
+                <li ><a [class.checked]="currentType == 'healthCare'" (click)="getFirstUrl()">医保控费</a></li>
+              <!--   <li><a class="heliyongyao" >合理用药系统</a></li> -->
+             </ul>
+            
+             <div id="loginBtn" class="fn-right fn-PosRel fn-H50" [class.loginCheck]="isLoginOutBtn == true" (mouseenter)="onMouseenter($event)" (mouseleave)="onMoseleave($event)" >
+                <span class="fn-right caret fn-disInBl fn-MT23 fn-ML5 fn-MR12" [class.triangle] = "isLoginOutBtn == true"></span>
+                <span class="fn-right fn-LH50 fn-ML12 fn-color-FFF fn-FS14" [innerHtml]="adminName"></span>
+                <span class="fn-right user-icon fn-MT10 fn-ML12"></span>
+                <div id="loginOutBtn"  [hidden]="!isLoginOutBtn"  class="fn-ps" (click)="loginOutFn($event)" ><a>退出登录</a></div>
+             </div>
+
+        
+        </div>
+      </div>
+      <div class="main-content " style="min-height: calc(100vh - 50px);">
+     
+        <div class="content-left" style="height: calc(100vh - 50px);">
+             <!--  <div class="menu-button">
+                <span class="menu-button-bar"></span>
+                <span class="menu-button-bar" style="margin: 3px 0;"></span>
+                <span class="menu-button-bar"></span>
+              </div> -->
+             <ul *ngFor="let menu of menuService.menus" class="fn-CuPo" [class.checked]="selectMenu == menu">
+                <li *ngIf="menu.resource"  [class.firstChecked]="selectMenu == menu" routerLink={{menu.resource}}  (click)="selectMenu = menu;currentTitle = menu.title;selectedThrMenu=null" style="height:50px;" >
+                    <div class="sec-nav" >
+                          <span class="icon-{{menu.id}} slide-icon"></span>
+                          <span>{{menu.title}}</span>
+                          <i class="icon-rightArrow arrow-icon" *ngIf="menu.subMenus.length > 0" [class.opened]="menu==selectMenu"></i>
+                    </div>
+                 
+                </li>
+                <li *ngIf="!menu.resource"  [class.firstChecked]="selectMenu == menu" (click)="isItemShow(menu)"  style="height:50px;">
+                    <div class="sec-nav" > 
+                          <span class="slide-icon icon-{{menu.id}}"></span>
+                          <span>{{menu.title}}</span>
+                          <i class="icon-rightArrow arrow-icon" *ngIf="menu.subMenus.length > 0" [class.opened]="menu==selectMenu"></i>
+                    </div>
+                 
+                </li>
+                <ul *ngIf="selectMenu == menu" class="nav" >
+                    <li *ngFor="let submenu of menu.subMenus">
+                        <div  class="thr-nav" routerLink={{submenu.resource}} (click)="selectedThrMenu=submenu;currentTitle = submenu.title;" [class.checked-thr]="submenu == selectedThrMenu||currentTitle == submenu.title">
+                          <span class="list-icon"  *ngIf="submenu == selectedThrMenu||currentTitle == submenu.title" [class.openner]="submenu == selectedThrMenu||currentTitle == submenu.title"></span>
+                           <span class="nolist-icon"  *ngIf="submenu != selectedThrMenu && currentTitle != submenu.title"></span>
+                          {{submenu.title}}
+                        </div>
+                    </li>
+                </ul>
+              </ul>
+        </div>
+        <div class="content-right" style="min-height: calc(100vh - 50px);width:calc(100vw - 160px - (100vw - 100%));" >
+             <div id="page" style="min-height: calc(100vh - 50px);" >
+                <div class=" top-single-padding">
+                当前所在页面：<span>{{currentTitle}}</span>
+                
+                </div>
+                <div class="component-container">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div [hidden]="userService.isLogin">
+    <div id="body-content">
+        <div class="header fn-980">
+           <div class="header_title">
+              逸曜医保控费系统
+           </div>
+        </div>
+        <div class="content fn-980 f-white">
+          <h2 class="con-name">iPHARMACARE</h2>
+          <div class="login a-white">
+                <dl class="login-tit">
+                    <dt class="f-16 fb">登录平台</dt>
+                   
+                </dl>
+                <div class="login-con">
+                    <dl>
+                        <dt>
+                        <i style="display:block">{{innerHtml}}</i>
+                           用户名</dt>
+                        <dd><input id="username" type="text" [(ngModel)]="registerMessage.username"  maxlength="20" class="login_input" (ngModelChange)="updateUsername($event)" style="box-sizing:content-box;"></dd>
+                    </dl>
+                    <dl>
+                        <dt>密&nbsp;&nbsp;码</dt>
+                        <dd><input type="password" name="password" (keyup.enter)="onEnterPressed($event)" (ngModelChange)="updatePassword($event)" [(ngModel)]="registerMessage.password" maxlength="20" class="login_input" style="box-sizing:content-box;"></dd>
+                    </dl>
+                    
+                    <a id="btnLoggin"  class="f-16 fb" (click)="onSubmit()">登　　录</a>
+                </div>
+                <dl class="login-rem">
+                  
+                </dl>
+            </div>
+        </div>
+        <div class="footer">
+          
+            <div class="footer-con fn-980">
+               
+                <p class="f-14" style="width:500px;"><!-- jsp:include page="/page/footer.jsp" /-->
+                  <span class="help">Copyright © 2012-2017 杭州逸曜信息技术有限公司 版权所有</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+		
+
+

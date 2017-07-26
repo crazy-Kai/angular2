@@ -1,0 +1,206 @@
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">	
+    <div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);">
+	   <div style="height: calc(100vh - 158px);width: 100%;overflow-y: auto;">
+	        <div class="ReturnBox">
+	             <div (click)="return()">
+	             	<span>< 返回</span>
+	             </div>
+	        </div>
+       	    <div class="insuranceContentBox init-project-directory fn-MT30 fn-PB50">
+        		 <div class="insuranceNameBox">
+	        	 	<span style="color: red;width: 10px;padding-top: 3px;">*</span>
+	        	 	<span>险种名称：</span>
+	        	 	<input type="text" [(ngModel)]="modificationName" placeholder="2~10个汉字" maxlength = "10" ngRequired (blur)="testInsuranceName(modificationName)" class="fn-input" style="width: 378px;padding-left: 5px !important;" (input)="testName()"/>
+        		</div>
+        	 	<div class="insuranceExanplainBox">
+	        	 	<span>险种简介：</span>
+	        	 	<textarea placeholder="选填，支持不超过1000个汉字的文本内容" [(ngModel)]="modificationDescription" class="form-control fn-W378" maxlength="1000" style="font-size:13px;border-radius: 0;padding-left: 5px !important;height:100px;width: 378px;max-height: 100px;max-width: 378px;"></textarea>
+        	 	</div>
+        	 	<div class="applyClassifyBox">
+	        	    <div style="display: inline-block;width: 100%;height: 50px;">
+	        	 		<span>报销分类：</span>
+	        	 		<div style="height: 28px;float: left;">
+	        	 			<div class="applyClassifyContentBox" *ngFor="let obj of reimbursementsContent; let i = index;">
+	        	 			    <div class="addInsuranceContentBox">
+			        				<span class="spaceSummary">{{obj.summary}}——</span>
+			        				<span class="sapceRate">{{obj.rate}}%,</span>
+			        				<span class="spaceDescript" title="{{obj.description}}">{{obj.description==""?"暂无":obj.description}}</span>
+			        			</div>
+	        	 			</div>	
+	        	 		</div>
+	        	 	</div>
+	        	    <div style="display: inline-block;padding-left: 73px;width: 100%;">
+		        	    <div style="display: inline-block;width: 100%;">
+				        	<div class="applyClassifyContentBox" *ngFor="let obj of reimbursementsArray; let i = index;">		        	
+					        		<div class="addInsuranceContent" *ngIf="!obj.isTextShow">
+					        			<img (click)="isButtonShow();isTextContentShow(obj)" src="../../../../app/images/编辑甲_u6947.svg" style="cursor: pointer;" *ngIf="isImgShow"/>
+					        			<img src="../../../../app/images/编辑甲_u6947.svg" *ngIf="!isImgShow"/>
+					        			<div class="addInsuranceContentBox">
+					        				<span class="spaceSummary">{{obj.summary}}——</span>
+					        				<span class="sapceRate">{{obj.rate}}%,</span>
+					        				<span class="spaceDescript" title="{{obj.description}}">{{obj.description==""?"暂无":obj.description}}</span>
+					        			</div>
+					        		</div>		        		
+					        		
+					        		<div class="addInsuranceContent nameContentBox addcontent" style="margin-top: 10px;margin-bottom: 10px;" *ngIf="obj.isTextShow">
+					        			<img src="../../../../app/images/forbid.svg" (click) = "deleateClassifyShow(i,obj)" style="cursor: pointer;"/>
+					        			<div class="nameBox">
+					        				<span>分类名称：</span>
+					        				<input type="text" placeholder="支持中英文，数字，字母，长度不超过10" maxlength = "10" [(ngModel)]="obj.summary" (blur)="testClassifyName(obj.summary)" (input)="checkSameName(obj.summary)" class="fn-input" title="支持中英文，数字，字母，长度不超过10"/>
+					        			</div>
+					        			<div class="nameBox APPlyScaleBox">
+					        				<span>报销比例：</span>
+					        				<input type="text" placeholder="不包含小数点的百分比" [(ngModel)]="obj.rate" (input)="testScale(obj.rate)" class="fn-input" title="不包含小数点的百分比"/>
+					        			</div>
+					        			<div class="nameBox classifyExplainBox">
+					        				<span>分类说明：</span>
+					        				<input type="text" placeholder="超过1000个汉字的文本内容" [(ngModel)]="obj.description" class="fn-input" title="超过1000个汉字的文本内容"/>
+					        			</div>
+					        			<!--<div class="completeButtom" (click)="renderData2(obj,i);testClassifyName(obj.summary)">
+					        				<span>完成</span>
+					        			</div>-->
+					        			<button class="publicSureBtn fn-W80 fn-H30" (click)="renderData2(obj,i);testClassifyName(obj.summary)" style="margin-left: 10px;padding-top: 0px;">完成</button>
+					        	    </div>
+					        </div> 
+					    </div>    
+			        	<div class="applyClassifyContentBox" *ngFor="let obj of reimbursements; let i = index;">
+				        		<div class="addInsuranceContent" *ngIf="!obj.isShow">
+				        			<img (click)="isButtonShow();isNewShow(obj)" src="../../../../app/images/编辑甲_u6947.svg" style="cursor: pointer;" *ngIf="isOthenImgShow"/>
+				        			<img src="../../../../app/images/编辑甲_u6947.svg" *ngIf="!isOthenImgShow"/>
+				        			<div class="addInsuranceContentBox">
+				        				<span class="spaceSummary">{{obj.summary}}——</span>
+				        				<span class="sapceRate">{{obj.rate}}%,</span>
+				        				<span class="spaceDescript" title="{{obj.description}}">{{obj.description==""?"暂无":obj.description}}</span>
+				        			</div>
+				        		</div>
+				        		<div class="addInsuranceContent nameContentBox addcontent" style="margin-top: 10px;margin-bottom: 10px;" *ngIf="obj.isShow">
+				        			<img src="../../../../app/images/forbid.svg" (click) = "deleateClassify(i,obj)" style="cursor: pointer;"/>
+				        			<div class="nameBox">
+				        				<span>分类名称：</span>
+				        				<input type="text" (input)="checkSameName(obj.summary)" placeholder="支持中英文，数字，字母，长度不超过10" maxlength = "10" [(ngModel)]="obj.summary" (blur)="testClassifyName(obj.summary)" class="fn-input" title="支持中英文，数字，字母，长度不超过10"/>
+				        			</div>
+				        			<div class="nameBox APPlyScaleBox">
+				        				<span>报销比例：</span>
+				        				<input type="text" placeholder="不包含小数点的百分比" [(ngModel)]="obj.rate" (input)="testScale(obj.rate)" class="fn-input" title="不包含小数点的百分比"/>
+				        			</div>
+				        			<div class="nameBox classifyExplainBox">
+				        				<span>分类说明：</span>
+				        				<input type="text" placeholder="超过1000个汉字的文本内容" [(ngModel)]="obj.description" class="fn-input" title="超过1000个汉字的文本内容"/>
+				        			</div>
+				        			<!--<div class="completeButtom" (click)="renderData(obj,i);testClassifyName(obj.summary)">
+				        				<span>完成</span>
+				        			</div>-->
+				        			<button class="publicSureBtn fn-W80 fn-H30" (click)="renderData(obj,i);testClassifyName(obj.summary)" style="margin-left: 10px;padding-top: 0px;">完成</button>
+				        		</div>
+			        	</div>
+			        </div>	
+	        		<!--<div *ngIf="isShowBtn" class="addInsuranceContentTypeButtom" (click)="addDetails()">
+	        			<span >添加</span>
+	        		</div>
+	        		<div *ngIf="!isShowBtn" class="addInsuranceContentTypeButtom" style="background: #ddd;color: #fff;">
+						<span >添加</span>
+	        		</div>-->
+	        		<div style="display: inline-block;padding-left: 70px;width: 100%;">
+		        		<button *ngIf="isShowBtn" class="publicSureBtn fn-W80 fn-H30"  (click)="addDetails()" style="margin-bottom: 15px;margin-top: 15px;">添加</button>
+			        	<button *ngIf="!isShowBtn" class="publicSureBtn fn-W80 fn-H30" style="background: #ddd;color: #fff;margin-bottom: 15px;margin-top: 15px;">添加</button>
+		        	</div>
+	           </div>	
+	        	<div class="personnerClassesBox">
+		        	<span>投保人员类别：</span>
+                    <div class="bigcontent"> 
+			        	<div class="personnerClassesContentBox">
+			        		<div class="addContentBox" *ngFor="let value of personClassifiesArray; let i = index;">			        		
+				        		<div class="retire">	
+					        		<input type="text" value="{{value.classify}}" placeholder="不能超过10个汉字" maxlength = "10" (input)="checkPersonName($event.target.value)" (change)="personClassifiesArray[i].classify= $event.target.value;" (blur) = 'testPeople($event.target.value)' class="fn-input"/>
+					        		<img src="../../../../app/images/forbid.svg" (click) = "deleatePersonOld(i,value)" style="cursor: pointer;"/>
+					        	</div>
+					        </div>
+				        	<div class="addContentBox" *ngFor="let value of personClassifies; let i = index;">			        		
+				        		<div class="retire">	
+					        		<input type="text" value="{{value.classify}}" placeholder="不能超过10个汉字" maxlength = "10" (input)="checkPersonName($event.target.value)" (change)="personClassifies[i].classify= $event.target.value;" (blur) = 'testPeople($event.target.value)' class="fn-input"/>
+					        		<img src="../../../../app/images/forbid.svg" (click) = "deleatePerson(i)" style="cursor: pointer;"/>
+					        	</div>
+					        </div>
+			        	</div>
+			        	<!--<div class="addPersonnerButtom" (click)=addPersonCategory()>
+					        <span >添加</span>
+					    </div>-->
+					    <button class="publicSureBtn fn-W80 fn-H30" (click)=addPersonCategory()>添加</button>
+				    </div>
+       			</div>
+       			<div class="compoundCountBox">
+        	            <span>复方的味数：</span>
+        	            <select [(ngModel)]="modificationativeDrugNumbers" class="fn-input" style="width: 150px;float: left;">
+        	            	<!--<option value="">5</option>-->
+        	            	<option>1</option>
+        	            	<option>2</option>
+        	            	<option>3</option>
+        	            	<option>4</option>
+        	            	<option>5</option>
+        	            	<option>6</option>
+        	            	<option>7</option>
+        	            	<option>8</option>
+        	            	<option>9</option>
+        	            	<option>10</option>
+        	            </select>
+        	            <span>&nbsp;&nbsp;味</span>
+                </div>
+                <div class="compoundCountBox" style="padding-left: 0px;">
+                	<span style="color: red;width: 10px;padding-top: 3px;">*</span>
+					<span>医院关联的险种ID：</span>
+                	<select [(ngModel)]="modificationgpayType" (change)="optionClick($event.target.value)" class="fn-input" style="width: 150px;">
+                		<option *ngFor ="let item of resourceID let i=index" value="{{item.id}}" [disabled] = "item.disabled">{{item.name}}</option>
+                	</select>
+                </div>
+        </div>
+	    <!--<div class="bottomContentBox">
+	     	<div class="cancelButtom" routerLink='/healthCareChargedFees/typeOfInsuranceCatalog'>
+			   <span>取消</span>
+			</div>
+				<div class="saveButtom" (click)="submitHosp()">
+			   <span>保存</span>
+			</div>
+	    </div>-->
+	 </div>    
+	 <div class="addcatalog-button" style="display: inline-block;width: 100%;text-align: center;border: 1px solid #ccc;box-shadow: 0px 0px 1px #999;padding-top: 15px;padding-bottom: 15px;">
+	        <span class="btn-cancel fn-MR10">
+				<button class="btn btn-primary fn-W80 fn-H30" routerLink="/healthCareChargedFees/typeOfInsuranceCatalog">取消</button>
+	        </span>
+	        <span class="btn-save">
+				<button class="publicSureBtn fn-W80 fn-H30"  (click)="submitHosp()">保存</button>
+	        </span>
+      </div>
+  </div>
+</div>
+ <my-dialog class="show-dialog" id="insuranceDialog">
+ 	 <template #dialogTemplate let-dialogModel>
+        <div class="datatype-choosing" *ngIf="isAddShow">
+        	<h1>确定删除改条数据?</h1>
+        	<div class="versionTrue">
+	            <a class="mt10" (click)="dialogModel.customModule = false;" (click)="cancael()">取消</a>
+	            <a class="mt10 true" (click)=daleateList()>删除</a>
+            </div>
+        </div>
+         <div class="datatype-choosing" *ngIf="isOldShow">
+        	<h1>确定删除改条数据?</h1>
+        	<div class="versionTrue">
+	            <a class="mt10" (click)="dialogModel.customModule = false;" (click)="cancael()">取消</a>
+	            <a class="mt10 true" (click)=daleateListShow()>删除</a>
+            </div>
+        </div>
+        <div class="datatype-choosing" *ngIf="isPersonShow">
+        	<h1>确定删除改条数据?</h1>
+        	<div class="versionTrue">
+	            <a class="mt10" (click)="dialogModel.customModule = false;" (click)="cancaelperson()">取消</a>
+	            <a class="mt10 true" (click)=daleatePersonShow()>删除</a>
+            </div>
+        </div>
+        <div class="datatype-choosing" *ngIf="isOldPersonShow">
+        	<h1>确定删除改条数据?</h1>
+        	<div class="versionTrue">
+	            <a class="mt10" (click)="dialogModel.customModule = false;" (click)="cancaelperson()">取消</a>
+	            <a class="mt10 true" (click)=daleateOldPersonShow()>删除</a>
+            </div>
+        </div>
+    </template>
+ </my-dialog>

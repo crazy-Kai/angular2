@@ -1,0 +1,56 @@
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">	
+    <div class="catalogObject-content versionManagementBigNigBoxtable" style="min-width:1000px;min-height: calc(100vh - 95px);">
+        <div class="versionManagementBox">
+	        <div class="versionManagementAddBox">
+	             <div>
+	             	 <img src="../../../app/images/u6735.png" (click)=addInsurance()/>
+	             </div>
+	         	 <div (click)=addInsurance()>
+	         	     <span>添加险种</span>
+	             </div>
+	        </div>
+        </div> 
+	    <div>
+			<table class="table table-bordered tableTitle" style="margin-bottom: 0px;">
+				<tbody>
+				    <tr class="trHeader">
+				    	<td width="13%">险种名称</td>
+				    	<td width="14%">当前应用规则版本</td>
+				    	<td width="16%">规则版本对应疾病目录</td>
+				    	<td width="16%">规则版本对应药品目录</td>
+				    	<td width="16%">规则版本对应项目目录</td>
+				    	<td width="16%">规则版本对应材料目录</td>
+				    	<td width="9%">操作</td>
+				    </tr>    
+					<tr *ngFor="let optRecipe of optRecipeList;let i = index;" style="text-align: center;">
+						<td width="13%" class="fn-ellipsis">{{optRecipe.insuranceName}}</td>
+						<td width="14%" class="fn-ellipsis">{{optRecipe.rvName==''?'暂无':optRecipe.rvName}}</td>
+						<td width="16%">{{optRecipe.diseaseName==''?'暂无':optRecipe.diseaseName}}</td>
+						<td width="16%">{{optRecipe.drugName==''?'暂无':optRecipe.drugName}}</td>
+						<td width="16%">{{optRecipe.itemName==''?'暂无':optRecipe.itemName}}</td>
+						<td width="16%">{{optRecipe.materialName==''?'暂无':optRecipe.materialName}}</td>	
+						<td width="9%" style="cursor: pointer;color: blue;vertical-align: middle;">
+						    <a routerLink='/healthCareChargedFees/typeOfInsuranceCatalog/typeOfInsuranceCatalog/typeOfInsuranceCatalog_lookInsurance/{{optRecipe.insuranceId}}'>
+						    	<img src="../../../app/images/查看.svg" style="vertical-align: middle;"/>
+						    </a>
+							<span>|</span>
+							<a (click)="goToEditPage(optRecipe.insuranceId)">
+								<img src="../../../app/images/修改.svg" style="vertical-align: middle;"/>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	 	</div>
+		<div>
+			<table class="table" style="margin: 0px;">
+				<tbody>
+				     <tr *ngIf="optRecipeList && optRecipeList.length == 0" style="text-align: center;border: 1px solid #ccc;border-top: none;">
+                          <td width="100%" style="padding: 10px 0;text-align: center;">没有找到相关数据</td>
+                     </tr>
+				</tbody>
+			</table>
+		</div>
+    </div>
+</div>
+    	 

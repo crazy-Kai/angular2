@@ -1,0 +1,36 @@
+<!--版本管理的修改页面-->
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">	
+<div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);padding-left: 15px;padding-right: 15px;padding-top: 15px;">
+	<div class="HealthRulesVersionHeader">
+		<span style="cursor: pointer;" (click) = return()>< 返回</span>
+	</div>
+	<div class="suggestInformation01">
+		<span style="color: red;width: 10px;">*</span>
+		<span>版本名称：</span>
+		<input type="text" placeholder="2~10个不区分中英文的字符" [(ngModel)]="modificationName" (blur)="testInsuranceName(modificationName)" class="fn-input" style="width: 260px;margin-left: 13px;" (input)="testName()"/>
+	</div>
+	<div class="suggestInformation">
+		<span style="color: red;width: 10px;">*</span>
+		<span>版本说明：</span>
+		<textarea [(ngModel)]="modificationDescription" class="form-control fn-W378" style="font-size:13px;border-radius: 0;max-height:100px;max-width: 478px;"></textarea>
+	</div>
+	<div class="sicknessCatalogVersion">
+		<span>关联疾病目录：</span>
+		<div class="choose">{{modificationDiseaseName}}</div>
+	</div>
+	<div class="sicknessCatalogVersion">
+		<span>关联药品目录：</span>
+		<div class="choose">{{modificationDrugName}}</div>
+	</div>
+	<div class="sicknessCatalogVersion">
+		<span>关联项目目录：</span>
+		<div class="choose">{{modificationItemName}}</div>
+	</div>
+	<div class="sicknessCatalogVersion">
+		<span>关联材料目录：</span>
+		<div class="choose">{{modificationMaterialName}}</div>
+	</div>
+	<button type="submit" class="publicSureBtn fn-W80 fn-H30"  (click)="saveVersion()" style="height: 30px;margin-left: 167px;margin-top: 30px;">保存</button>
+</div>
+</div>
+<my-dialog></my-dialog>

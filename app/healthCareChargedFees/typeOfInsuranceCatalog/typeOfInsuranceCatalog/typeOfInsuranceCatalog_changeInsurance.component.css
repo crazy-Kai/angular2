@@ -1,0 +1,293 @@
+.spaceDescript{
+	width: 60%;
+	height: 30px;
+	line-height: 30px;
+	display:block;
+    white-space:nowrap;
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+}
+/*返回下面的内容*/
+.insuranceContentBox{
+	margin-top: 35px;
+	float: left;
+	width: 100%;
+	padding-left: 20px;
+}
+.insuranceContentBox span{
+	float: left;
+	line-height: 28px;
+	padding-right: 5px;
+}
+/*险种名称*/
+.insuranceContentBox .insuranceNameBox{
+	display: inline-block;
+	padding-left: 45px;
+}
+/*险种简介*/
+.insuranceContentBox .insuranceExanplainBox{
+	width: 100%;
+	float: left;
+	margin-top: 15px;
+	padding-left: 55px;
+}
+/*报销分类*/
+.insuranceContentBox .applyClassifyBox{
+	float: left;
+	width: 100%;
+	margin-top: 15px;
+	padding-left: 56px;
+}
+.insuranceContentBox .applyClassifyBox p{
+	display: block;
+	width: 100%;
+	line-height: 26px;
+	float: left;
+	padding-left: 66px;
+}
+/*报销分类下面的添加内容*/
+.insuranceContentBox .addInsuranceContentBigBox{
+	width: 100%;
+	overflow-y: auto;
+}
+.insuranceContentBox .addInsuranceContent{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	display: block;	
+	/*white-space:nowrap;
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display: inline-block;
+    vertical-align: middle;*/
+}
+.insuranceContentBox .addInsuranceContent img{
+	float: left;
+	display: block;
+	width: 13px;
+	height: 13px;
+	margin-top: 8px;
+}
+.insuranceContentBox .addInsuranceContent span{
+	line-height: 30px;
+	margin-left: 10px;
+}
+.insuranceContentBox .applyClassifyContentBox{
+	min-height: 28px;
+	width: 100%;
+	margin-left:-1px;
+	float: left;
+}
+/*点击那个笔进行修改信息*/
+.insuranceContentBox .nameContentBox{
+	display: block;
+	float: left;
+	margin-right: 30px;
+}
+.insuranceContentBox .nameContentBox img{
+	width: 15px;
+	height: 15px;
+	float: left;
+	display: block;
+}
+.insuranceContentBox .nameContentBox input{
+	width: 120px;
+}
+.insuranceContentBox .addInsuranceContent .nameBox{
+	float: left;
+}
+.insuranceContentBox .addInsuranceContent .nameBox span{
+	display: block;
+	float: left;
+	line-height: 30px;
+}
+/*报销比例*/
+.insuranceContentBox .APPlyScaleBox input{
+	width: 140px;
+}
+/*分类说明*/
+.insuranceContentBox .classifyExplainBox input{
+	width: 159px;
+	padding-left: 10px;
+}
+/*完成按钮*/
+.insuranceContentBox .completeButtom{
+	width: 80px;
+	height: 30px;
+	background: #61BBE2;
+    border: 1px solid #61BBE2;
+    border-radius: 4px;
+    float: left;
+    margin-left: 10px;
+    line-height: 30px;
+    text-align: center;
+}
+.insuranceContentBox .completeButtom:hover{
+	background: #41A4CB;
+}
+.insuranceContentBox .completeButtom span{
+	display: block;
+	line-height: 30px;
+	text-align: center;
+	float: left;
+	color: white;
+	font-size: 14px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+/*添加*/
+.insuranceContentBox .addInsuranceContentTypeButtom{
+	/*width: 70px;
+	height: 30px;
+	background: #61BBE2 100%;
+	margin-top: 20px;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 73px;*/
+
+}
+.insuranceContentBox .addInsuranceContentTypeButtom span{
+	/*text-align: center;
+	color: white;
+	font-size: 14px;
+	margin-left: 20px;
+	widows: 70px;
+	height: 30px;*/
+}
+/*投保人员类别*/
+.insuranceContentBox .bigcontent{
+	width: 770px;
+	float: left;
+	margin-left: 2px;
+}
+.insuranceContentBox .personnerClassesBox{
+	float: left;
+	padding-left: 25px;
+   padding-bottom: 15px;
+   padding-top: 30px;
+}
+.insuranceContentBox .personnerClassesContentBox .txt{
+	display: block;
+	width: 120px;
+	height: 25px;
+	float: left;
+	background: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    color: black;
+    font-size: 13px;
+    text-indent: 5px;
+    margin-left: 5px;
+}
+/*添加投保人员类别*/
+.insuranceContentBox .addPersonnerButtom{
+	/*width: 70px;
+	height: 30px;
+	background: #61BBE2;
+    border: 1px solid #61BBE2;
+    border-radius: 4px;
+    float: left;*/
+}
+.insuranceContentBox .addPersonnerButtom span{
+	/*display: block;
+	line-height: 30px;
+	text-align: center;
+	float: left;
+	color: white;
+	font-size: 14px;
+	margin-left: 15px;
+	cursor: pointer;*/
+}
+/*添加的盒子*/
+.insuranceContentBox .addContentBox{
+	min-width:150px;
+	height: 30px;
+	float: left;
+	margin-bottom: 5px;
+}
+/*退休*/
+.insuranceContentBox .retire{
+	width: 185px;
+	height:30px;
+	float: left;
+}
+.insuranceContentBox .boxTop{
+	margin-top: 10PX;
+}
+.insuranceContentBox .retire img{
+	float: left;
+	display: block;
+	width: 15px;
+	height: 15px;
+	margin-top: 7px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+/*复方的味数*/
+.insuranceContentBox .compoundCountBox{
+	width: 100%;
+	float: left;
+	display: block;
+	padding-bottom: 15px;
+	padding-top: 15px;
+	padding-left: 45px;
+}
+.insuranceContentBox .compoundCountBox span{
+	display: block;
+	float: left;
+	font-size: 13px;
+}
+/*报销分类下的盒子*/
+.insuranceContentBox .addInsuranceContentBox{
+	width: 97%;
+	height: 28px;
+	float: left;
+}
+.insuranceContentBox .addInsuranceContentBox span{
+	display: block;
+	float: left;
+}
+/*尾部信息  点击保存取消*/
+.bottomContentBox{
+	width: 100%;
+	float: left;
+}
+.bottomContentBox span{
+	display: block;
+	line-height: 30px;
+	text-align: center;
+	float: left;
+	font-size: 14px;
+	margin-left: 18px;
+	cursor: pointer;
+}
+/*取消*/
+.cancelButtom{
+	width: 70px;
+	height: 30px;
+	background:white;
+    border: 1px solid black;
+    border-radius: 4px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 300px;  
+}
+.cancelButtom span{
+	color: black;
+}
+/*保存*/
+.saveButtom{
+	width: 70px;
+	height: 30px;
+	background: #61BBE2;
+    border: 1px solid #61BBE2;
+    border-radius: 4px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;  
+}
+.saveButtom span{
+	color: white;
+}

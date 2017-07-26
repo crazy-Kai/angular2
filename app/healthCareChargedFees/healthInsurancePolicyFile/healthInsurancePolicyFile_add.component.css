@@ -1,0 +1,79 @@
+.descript textarea{
+	margin-left:-14px;
+}
+#edui1_imagescale{
+	width: 300px !important;
+	height: 300px !important;
+}
+#edui235_imagescale{
+	width: 300px !important;
+	height: 300px !important;
+}
+/*公共的样式*/
+.BOX{
+	margin-top: 20px;
+}
+.BOX span{
+	float: left;
+	font-family: STHeitiSC-Medium;
+	color: #515253 100%;
+	font-size: 13px;
+	line-height: 28px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.BOX input{
+	width: 770px;
+	height: 28px;
+	display: block;
+	float: left;
+	font-family: STHeitiSC-Medium;
+	color: #515253 100%;
+	font-size: 13px;
+	line-height: 30px;
+	padding-left: 10px;
+}
+/*来源*/
+.source span{
+	padding-left: 35px;
+}
+.source{
+	height: 30px;
+}
+.form-inline{
+	float: left;
+	
+}
+/*浮动层*/
+.show-dialog{
+	width: 300px;
+	height: 117px;
+}
+.datatype-choosing{
+    position: fixed;
+    left: 50%;top: 50%;
+    z-index: 1050;
+    width: 300px;
+    padding: 25px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+}
+.chooseVersion{
+	width: 250px;
+	height: 30px;
+	font-size: 18px;
+	color: #000;
+	line-height: 30px;
+	text-align: center;
+	font-weight: bold;
+}
+.chooseVersionButtom{
+	padding-left: 120px;
+	margin-top: 23px;	
+}
+.chooseVersionButtom span{
+	display: inline-block;
+	line-height: 30px;
+	cursor: pointer;
+	color: #4EB7E0;
+}

@@ -1,0 +1,112 @@
+/* checkbox 样式 */
+.button{
+	display: inline-block;
+	vertical-align: middle;
+	width:12px;
+	height:12px;
+	margin-right:5px;
+	vertical-align: -1px;
+}
+.status0{
+	/*background: url('../app/healthCareChargedFees/MedicareCatalog/druggroupdirectory/image/status0.png') no-repeat;*/
+	background: url('app/images/status0.png') no-repeat;
+}
+
+.status01{
+	/*background: url('../app/healthCareChargedFees/MedicareCatalog/druggroupdirectory/image/status01.png') no-repeat;*/
+	background: url('app/images/status01.png') no-repeat;
+	
+}
+
+.status02{
+	/*background: url('../app/healthCareChargedFees/MedicareCatalog/druggroupdirectory/image/status02.png') no-repeat;*/
+	background: url('app/images/status02.png') no-repeat;
+}
+
+.status04{
+	/*background: url('../app/healthCareChargedFees/MedicareCatalog/druggroupdirectory/image/status04.png') no-repeat;*/
+	background: url('app/images/status04.png') no-repeat;
+}
+
+  .relevanceDrugs-main{
+	width:605px;
+	height:350px;
+	margin:0 auto;
+}
+  .multitree-tree{
+	display: inline-block;
+	width:295px;
+	height:100%;
+	float: left;
+	
+}
+  .drugsObject{
+	height:30px;
+	width:295px;
+	line-height: 30px;
+	text-align: center;
+	
+}
+  .multitree-nodes{
+	display: inline-block;
+	width:295px;
+	height: 350px;
+	float:right;
+	
+}
+
+  .relevanceDrugs-tree{
+	width:295px;
+	height: 320px;
+	overflow: auto;
+	background: #fff;
+	margin-right: 15px;
+	border: 1px solid #ddd;
+	padding: 15px;
+}
+  .relevanceDrugs-bottom{
+	height:82px;
+	line-height: 82px;
+	text-align: center;
+}
+  .checkedDrugs{
+	padding: 15px;
+	width:295px;
+	height: 320px;
+	overflow: auto;
+	background: #fff;
+	margin-right: 15px;
+	border: 1px solid #ddd;
+}
+.search-panel{
+    width: 100%;
+    height: 32px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.multitree-tree .search-panel .input-group-addon{
+	border-radius: 0px;
+	/*border-right: none;*/
+	padding: 0px;
+	width: 30px;
+    /*background:url('../../../app/healthCareChargedFees/MedicareCatalog/drugs/image/u7006.svg') center center no-repeat;*/
+    background:url('app/images/u7006.svg') center center no-repeat;
+}
+.multitree-tree .search-panel .btn{
+	position: absolute;
+	left: 200px;
+	top: 0;
+	width: 51px;
+	height: 28px;
+	background: #4EB7E0;
+	border: 0;
+}
+.multitree-tree .search-panel .btn:hover{
+	background: #41A4CB;
+}
+.multitree-tree .relevanceDrugs-tree input{
+	width: 160px;
+}
+.fn-B-Left{
+	border-left: 1px solid transparent;
+}

@@ -1,0 +1,490 @@
+@charset "utf-8";
+/* 
+	框架样式
+
+ */
+/**{
+    box-sizing: content-box;
+}*/
+.fn-left{float:left;_display:inline;}
+.fn-right{float:right;_display:inline;}
+.fn-margin-center{margin:0 auto;}
+.fn-ellipsis{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;word-wrap:normal;}
+.fn-word-wrap{word-wrap:break-word;word-break:break-all;white-space:normal;}
+.fn-hide{display:none !important;}
+.fn-hide-input{position:absolute;z-index:-1;}
+.fn-display-inlineBlock{float:left;}
+.fn-disInBl{display:inline-block;}
+.fn-disBl{display:block;}
+.fn-MR40{margin-right:40px;}
+.fn-ML20{margin-left:20px;}
+.fn-MT18{margin-top: 18px;}
+.fn-ML15{margin-left:15px;}
+.fn-MT20{margin-top:20px;}
+.fn-ML5{margin-left:5px;}
+.fn-LH50{line-height:50px;}
+.fn-ML12{margin-left: 12px;}
+.fn-color-FFF{color:#FFF;}
+.fn-FS14{font-size:14px;}
+.fn-MT10{margin-top:10px;}
+.fn-ML12{margin-left: 12px;}
+.table a{
+	color: #169BD5;
+}
+
+#drgusPage{
+    height:100%;
+    width: 100%;
+    position: relative;
+}
+/* 导航条样式 */
+#navbar{
+    background-color:#0E80D2;
+    height: 50px;
+    min-width: 860px;
+
+}
+
+.drgus-navbar{
+    position: fixed;
+    width: 100%;
+    top:0;
+    z-index: 1000;
+}
+#navbar ul{
+    float:left;
+    display: block;
+    margin-left: 50PX;
+    overflow: hidden;
+}
+#navbar ul li {
+    float:left;
+}
+#navbar ul li a{
+    display: inline-block;
+    height:50px;
+    line-height: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 14px;
+    color:#ffffff;
+    text-decoration: none;
+}
+
+#navbar .user-icon{
+    display: inline-block;
+    width: 30px;
+    height:30px;
+  	background: url("app/images/u28.png") no-repeat;
+
+}
+#navbar .user{
+    display: inline-block;
+    padding: 0;
+    height: 50px;
+    color: #ffffff;
+  
+}
+/* 倒三角 */
+#navbar .caret{
+    width: 0;
+    height:0;
+    border:5px solid  transparent;
+    border-top: 5px solid #ffffff;
+
+}
+#navbar .triangle{
+    width: 0;
+    height:0;
+    border:5px solid  transparent;
+    border-bottom: 5px solid #ffffff;
+    margin-top: 18px;
+}
+
+#navbar .checked{
+    background-color: #0C74BF;
+}
+.nav-product-name{
+    height: 50px;
+    line-height: 50px;
+    padding-left: 15px;
+    font-family:"STHeitiSC-Medium";
+    font-size:18px;
+    color:#ffffff;
+}
+/* content */
+.main-content{
+    position: absolute;
+    top:50px;
+    width:100%;
+}
+/* menu 左侧栏*/
+.main-content .content-left{
+    position:fixed;
+    width: 160px;
+    height:100%;
+    background:#394B55;
+    color:#ddd;
+    border-right: 1px solid #eee;
+    font-size: 14px;
+    z-index: 999;
+	height: 100%;
+	float: left;
+   
+}
+.main-content .content-left .menu-button {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: #3A6264;
+    border-radius: 2px;
+    padding: 6px;
+   
+    margin: 10px 0 10px 126px;
+    cursor: pointer;
+}
+
+.main-content .content-left .menu-button-bar {
+    display: block;
+    width: 12px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+}
+.main-content .content-left .sec-nav{
+    display: inline-block;
+    width:100%;
+    height:50px;
+    color: #ffffff;
+    font-size: 13px;
+}
+.main-content .content-left .sec-nav:hover{
+    background: #32434c;
+   
+}
+.main-content .content-left .sec-nav  span{
+    float: left;
+    height:50px;
+    line-height: 50px;
+}
+.main-content .content-left .thr-nav{
+    width: 100%;
+    height: 35px;
+    overflow: hidden;
+    display: block;
+    margin: 0;
+    padding: 0;
+    color:#8D9098;
+    line-height: 35px;
+    text-align: left;
+    font-size: 13px;
+}
+.main-content .content-left .checked-thr{
+    width: 100%;
+    height: 35px;
+    overflow: hidden;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background-color: #0E80D2;
+   /*background-color: 0E80D2;*/
+    line-height: 35px;
+    text-align: left;
+    font-size: 13px;
+    color: #ffffff;
+}
+#drgusPage .main-content .content-left .checked-thr:hover{
+      /*color: #4BAAE0;*/
+     /*color: #0E80D2;*/
+    color: #FFFFFF;
+     background: #0E80D2;
+}
+
+.main-content .content-left li:hover{
+     color: #4BAAE0;
+}
+.main-content .content-left .checked{
+	width: 100%;
+	min-height: 50px;
+	/*background-color: rgba(32,43,47,1);*/
+	background-color: #1c2026;
+}
+
+.main-content .content-left .thr-nav:hover{
+    background: #192226;
+    color: #ffffff;
+}
+.main-content .content-left  .fn-CuPo .firstChecked:hover{
+	background: #192226;
+    color: #4BAAE0;
+}
+.main-content .content-left  .fn-CuPo .firstChecked .sec-nav:hover{
+    background: #192226;
+}
+.main-content .content-left .fn-CuPo  .firstChecked{
+    background: #192226;
+}
+.main-content .content-left .fn-CuPo  .firstChecked .sec-nav{
+    color: #4BAAE0;
+}
+.main-content .content-left .fn-CuPo  .firstChecked div{
+    color: #ffffff !important;
+    background-color: #1D272B !important;
+}
+
+/*  右侧栏*/
+.content-right{
+	min-width: 1100px;
+	box-sizing: border-box;
+    margin-left:160px;
+    position: relative;
+}
+.content-right .top-single-padding{
+	height:30px;
+	line-height: 30px;
+	padding-left: 15px;
+	width: 100%;
+}
+#page{
+	background: #F5F7FA;
+}
+/* 图片 */
+.main-content .content-left .sec-nav  .slide-icon{
+    width: 40px;height: 20px;
+    text-align: center;
+}
+.main-content .content-left .sec-nav .arrow-icon{
+    float: right;
+    width: 14px;
+    height: 14px;
+    margin: 18px 12px 0  0;
+    transform: scale(.7);
+    transition: all .5s ease-in-out; 
+}
+.main-content .content-left .sec-nav .arrow-icon.opened{
+   transform: scale(.7) rotate(90deg);
+}
+
+
+.list-icon{
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    /*background: url("../app/healthCareChargedFees/index/image/u71.png") no-repeat;*/
+   	/*background: url("app/images/u71.png") no-repeat;*/
+    float: left;
+    margin-left: 25px;
+    margin-top:15px;
+    margin-right: 14px;
+    border-radius: 50%;
+    background-color: #ffffff;
+}
+.nolist-icon{
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    float: left;
+    margin-left: 25px;
+    margin-top:15px;
+    margin-right: 14px;
+    border-radius: 50%;
+}
+.nav-icon{
+	display: inline-block;
+	width: 14px;
+	height:14px;
+	/*background:url('../app/healthCareChargedFees/index/image/u32.png') no-repeat;*/
+	background:url('app/images/u32.png') no-repeat;
+
+}
+.nav-setting{
+	display: inline-block;
+	width: 18px;
+	height:14px;
+	/*background: url('../app/healthCareChargedFees/index/image/u34.png') no-repeat;*/
+	background: url('app/images/u34.png') no-repeat;
+}
+/* 图片*/
+.border-style{
+	border-radius: inherit;
+}
+
+/* 登录页面样式表 */
+#body-content{
+    
+    height: 560px;
+    overflow: hidden;
+    background: url('app/images/indexLogo.png') center 90px repeat-x;
+}
+.fn-980{
+    width:980px;
+    margin:0 auto;
+}
+.header{
+    height: 90px;
+}
+.header .header_title {
+    font: 30px \5FAE\8F6F\96C5\9ED1;
+    color: #00528C;
+    padding: 27px 0 0 5px;
+    float: left;
+    width: 650px;
+    text-align: left;
+}
+.content{
+    height: 380px;
+    background: url('app/images/indexLogo.png') center top no-repeat;
+}
+.f-white,a-white{
+    color:#ffffff;
+}
+.con-name{
+    box-sizing: content-box;
+    float: left;
+    width: 388px;
+    font: 50px \5FAE\8F6F\96C5\9ED1;
+    padding: 154px 0 0 278px;
+}
+.login{
+    width: 300px;
+    overflow: hidden;
+    height: 320px;
+    background: rgba(0,0,0,0.4);
+    float: left;
+    margin-top: 30px;
+}
+.login-tit{
+    width: 260px;
+    margin-left: 20px;
+    border-bottom: 1px solid #ffffff;
+    height: 45px;
+    overflow: hidden;
+}
+.login-tit dt{
+    float: left;
+    padding: 17px 0 0 5px;
+    width: 150px;
+}
+.fb {
+    font-weight: 700;
+}
+.f-16 {
+    font-size: 16px;
+}
+.login-con {
+    padding-left: 30px;
+    height: 228px;
+}
+.login-con dt {
+    height: 25px;
+    padding-top: 15px;
+    width: 240px;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+.login-con i {
+    float: right;
+    padding-right: 3px;
+    color: #ff0;
+    display: none;
+    width: 180px;
+    text-align: right;
+}
+.login-con input {
+    background: #FFF;
+    height: 15px;
+    width: 230px;
+    padding: 5px;
+    line-height: 22px;
+    border: none;
+}
+.login_input{
+    color:#000;
+}
+.login-con a, .login-con a:visited {
+    display: inline-block;
+    border: 1px solid #2977C7;
+    width: 238px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    margin-top: 25px;
+    color:#ffffff;
+    text-decoration: none;
+    background: #589DE2;
+}
+.login-con a:hover{
+    background: #2977C7
+}
+.footer {
+    background: #EDEDED;
+}
+.footer-con {
+    background: #EDEDED;
+    height: 90px;
+}
+.footer dl {
+    float: left;
+    padding: 12px 0 0 35px;
+    width: 218px;
+}
+
+.footer p {
+    font-family: Arial;
+    color: #999;
+    float: right;
+    width: 400px;
+    text-align: right;
+    padding-top: 46px;
+}
+.f-14 {
+    font-size: 14px;
+}
+.footer ul {
+    width: 436px;
+    overflow: hidden;
+}
+.footer li {
+    float: left;
+    width: 218px;
+    height: 24px;
+}
+.footer a, .footer a:visited {
+    color: #8C8C8C;
+}
+.loginCheck{
+    background-color: #0C74BF;
+}
+.fn-ps{
+    position: absolute;
+    top:50px;
+    width:120px;
+    height:50px;
+    border:1px solid #ddd;
+    line-height: 50px;
+    text-align:center;
+    color: #000;
+    z-index: 99999;
+    font-size:12px;
+    border-top: none;
+    background: #ffffff;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+
+}
+.fn-ps a:hover{
+    /*color:#4EB7E0;*/
+   color: #0E80D2;
+}
+#navbar a.heliyongyao:active{
+    background-color: #41A4CB;
+}
+
+.openner{
+   /*background: #4EB7E0;*/ 
+   /*background: #0E80D2;*/
+  background: #ffffff;
+}
+.openner:hover{
+	background: #0E80D2;
+}

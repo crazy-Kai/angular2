@@ -1,0 +1,39 @@
+/*覆盖bootstrap的样式*/
+.InterventionTableBox .table thead th{
+	vertical-align: middle;
+    border: 1px solid #dfdfdf;
+    background: #f9f9f9;
+    padding: 0 0.75rem;
+    text-align: center;
+    padding: 0;
+    font-weight: normal;
+}
+.InterventionTableBox .table td{
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+    vertical-align: middle;
+    height: 30px;
+    padding: 0 8px 0 8px;
+}
+.InterventionTableBox .table tr:hover{
+	/*background-color: #D2DCF8;*/
+}
+.container-right tr:hover{
+	background-color: #EEEEF1;
+	cursor: pointer;
+}
+.activeTr{
+	background-color: #EEEEF1;
+}
+.goBack{
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+.table a{
+	color: #4ea4e0;
+}
+.fn-MR4{
+    margin-right: 4px;
+}

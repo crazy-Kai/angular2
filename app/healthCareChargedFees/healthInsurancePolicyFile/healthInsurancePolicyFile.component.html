@@ -1,0 +1,68 @@
+<div class="catalogObject fn-clear" style="height: calc(100vh - 80px);">	
+    <div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);">
+		<!--//头部-->
+		<div class="HealthInsurancePolicyFileHeaderBox">
+			<div class="form-inline content-search versionManagementAddBox">
+		             <div class="versionManagementAddImg" (click)=addFile()>
+		             	 <img src="../../../app/images/u6735.png"/>
+		             </div>
+		             <div class="versionManagementAdd" (click)=addFile()>
+		             	<span>添加</span>
+		             </div>
+		    </div>
+		</div>
+		<div class="InterventionTableBox" style="min-height: calc(100vh - 232px);padding-left: 15px;padding-right: 15px;">
+	     	<div>
+	     	  	<div style="padding-right: 17px; background: #fff;width: 100%;" id="tableHead">
+				    <table class="table alert-message-details-th tableLayout" >
+				        <thead>
+			                <tr style="height: 45px;">
+			                    <th width="20%">文本名称</th>
+			                    <th width="16%">来源</th>
+			                    <th width="14%">生效时间</th>
+			                    <th width="20%">添加时间</th>
+			                    <th width="20%">更新时间</th>
+			                    <th>操作</th>
+			                </tr>
+				        </thead>
+				    </table>
+	     	  	</div>
+	     	</div>
+		    <div>
+	            <div style="height:calc(100vh - 233px - 7px - 1px - 1px);width:100%;overflow-y: scroll;">
+		        	<div *ngIf="msgList && msgList.length != 0" style="background: #fff;margin-right:0px;">
+			            <table class="table tableLayout" style="margin: 0px;">
+			                <tbody>
+			                    <tr *ngFor="let item of msgList;let i = index" class="activedata">
+			                      		<td style="width: 20%" class="fn-ellipsis" title="{{item.summary}}">{{item.summary}}</td>
+										<td style="width: 16%" class="fn-ellipsis" title="{{item.source}}">{{item.source}}</td>
+										<td style="width: 14%">{{item.ativeDate}}</td>
+										<td style="width: 20%">{{item.gmtCreate}}</td>
+										<td style="width: 20%">{{item.gmtModified}}</td>
+										<td>
+											<a (click)="goToEditPage(item.id)" style="cursor: pointer;color: blue;">修改</a>
+											<a>|</a>
+											<a (click)="deleteData(item.id)" style="cursor: pointer;color: blue;">删除</a>
+										</td>	
+			                    </tr>
+			                </tbody>
+			            </table>
+	        		</div>
+	        		<div>
+						<table class="table" style="margin: 0px;">
+							<tbody>
+							     <tr *ngIf="msgList && msgList.length == 0" style="text-align: center;">
+			                          <td width="100%" style="padding: 10px 0;text-align: center;">没有找到相关数据</td>
+			                     </tr>
+							</tbody>
+						</table>
+					</div>
+	            </div>
+				<div style="padding-left: 20px;padding-right:17px;" id="tableFooter">
+	        		<pagination [pageInfo]="pageInfo" (changePage)="setPage($event)" (changePageSize)="setPageSize($event)"></pagination>
+				</div>
+		    </div>
+		</div>
+    </div>	
+</div>
+ <my-dialog></my-dialog>

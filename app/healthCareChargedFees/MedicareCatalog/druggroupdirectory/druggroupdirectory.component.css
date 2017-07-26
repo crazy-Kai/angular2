@@ -1,0 +1,90 @@
+.show-dialog .relevanceDrugs-content{
+	width:650px;
+	height:480px;
+	margin-left: -325px;
+	margin-top:-240px;
+	padding: 0;
+	background: #F5F7FA;
+	font-family: STHeitiSC-Medium;
+	color:#515253;
+}
+.relevanceDrugs-content .relevanceDrugs-title{
+	width:100%;
+	height:49px;
+	line-height: 49px;
+	font-size: 14px;
+	text-align: center;
+	background: #fff;
+}
+.show-dialog .relevanceDrugs-content .relevanceDrugs-main{
+	width:605px;
+	height:350px;
+	margin:0 auto;
+}
+.show-dialog .relevanceDrugs-content .multitree-tree{
+	display: inline-block;
+	width:295px;
+	height:100%;
+	float: left;
+	
+}
+.show-dialog .relevanceDrugs-content .drugsObject{
+	height:30px;
+	width:295px;
+	line-height: 30px;
+	text-align: center;
+	
+}
+.show-dialog .relevanceDrugs-content .multitree-nodes{
+	display: inline-block;
+	width:295px;
+	height: 350px;
+	float:right;
+	
+}
+
+.show-dialog .relevanceDrugs-content .relevanceDrugs-tree{
+	width:295px;
+	height: 320px;
+	overflow: auto;
+	background: #fff;
+	margin-right: 15px;
+	border: 1px solid #ddd;
+	padding: 15px;
+}
+.show-dialog .relevanceDrugs-content .relevanceDrugs-bottom{
+	height:82px;
+	line-height: 82px;
+	text-align: center;
+}
+.show-dialog .relevanceDrugs-content .checkedDrugs{
+	padding: 15px;
+	width:295px;
+	height: 320px;
+	overflow: auto;
+	background: #fff;
+	margin-right: 15px;
+	border: 1px solid #ddd;
+}
+
+
+.fn-table em{
+	padding:0 5px;
+	font-weight: 800;
+	color:#f00;
+}
+.fn-myInput{
+	padding: 5px 10px;
+}
+.fn-myTextarea{
+	padding: 5px;
+}
+.fn-minHT{
+	min-height: 30px;
+}
+.fn-table .saveButton .btn-primary{
+	padding:0px;background:#4EB7E0;color:#fff;border:1px solid #4EB7E0;
+}
+.fn-table .saveButton .btn-primary:hover{
+	background: #41A4CB;
+}

@@ -1,0 +1,410 @@
+<div  class="proceduresDetial" style="min-height: calc(100vh - 80px);" >
+	<div [class.fn-BGC-FFF] ="clinicType == 'old'">
+
+		<div class="proceduresDetial-content" >
+			<div class="content-header">
+				<div class="goBack"><span style="cursor: pointer;" (click)="goBack();">< 返回</span></div>
+				<div class="fn-TAC fn-FWB fn-FS15 fn-H35 fn-LH35">就诊详情</div>
+				<div class="chooseProcedures fn-clear">
+					<span class="fn-display-inlineBlock clinicType" [class.active] = "clinicType == 'current'" (click)="clinicType='current';">本次就诊</span>
+					<span [class.active] = "clinicType == 'old'" (click)="clinicType='old';" class="fn-display-inlineBlock clinicType">历史就诊</span>
+				</div>
+				<div *ngIf="clinicType == 'current'" style="width:100%;font-size:13px;background: #F5F7FA;padding-bottom: 20px;padding-top: 20px;">
+					<table class="fn-table fn-table-text" width="100%">
+						<tr>
+							<td align="right" width="104">患者号：</td>
+							<td width="15%">{{visitInfo.patientNumber}}</td>
+							<td align="right" width="94">就诊日期：</td>
+							<td width="15%">{{visitInfo.visitDate}}</td>
+							<td align="right" width="94">姓名：</td>
+							<td width="15%">{{visitInfo.name}}</td>
+							<td align="right" width="102">出生日期：</td>
+							<td width="15%">{{visitInfo.dateOfBirth}}</td>
+						</tr>
+						<tr>
+							<td align="right" >性别：</td>
+							<td >{{visitInfo.sex == 1 ? '男' : '女'}}</td>
+							<td align="right" >身高：</td>
+							<td >{{visitInfo.height}}cm</td>
+							<td align="right" >体重：</td>
+							<td >{{visitInfo.weight}}kg</td>
+							<td align="right" >体表面积：</td>
+							<td >{{visitInfo.surfaceArea}}㎡(计算)</td>
+						</tr>
+						<tr>
+							<td align="right" >出生时体重：</td>
+							<td >{{visitInfo.weightOfBirth}}g</td>
+							<td align="right" >是否透析：</td>
+							<td >{{visitInfo.isDialysis == 1?'是':'否'}}</td>
+							<td align="right" >是否怀孕：</td>
+							<td >{{visitInfo.isPregnant ==1?'是':'否'}}</td>
+							<td align="right" >孕期：</td>
+							<td >{{visitInfo.pregnancy}}(周)</td>
+						</tr>
+						<tr>
+							<td align="right" >是否哺乳：</td>
+							<td >{{visitInfo.pregnancy == 1?'是':'否'}}</td>
+							<td align="right" >过敏列表：</td>
+							<td class="fn-ellipsis" title="{{visitInfo.allergy}}">{{visitInfo.allergy}}</td>
+							<td align="right" >来源：</td>
+							<td *ngIf = "visitInfo.source == '1'">门诊相关</td>
+							<td *ngIf = "visitInfo.source == '2'">住院相关</td>
+							<td align="right" >诊断：</td>
+							<td class="fn-ellipsis" title="{{visitInfo.diagnosis}}">{{visitInfo.diagnosis}}</td>
+						</tr>
+						<tr>
+							<td align="right" >科室：</td>
+							<td >{{visitInfo.department}}</td>
+							<td align="right" >医生：</td>
+							<td >{{visitInfo.doctor}}</td>
+							<td align="right" >医生职称：</td>
+							<td >{{visitInfo.title}}</td>
+							<td align="right" >医院：</td>
+							<td class="fn-ellipsis" title="{{visitInfo.hospital}}">{{visitInfo.hospital}}</td>
+						</tr>
+						<tr>
+							<td align="right">人员类别：</td>
+							<td >{{visitInfo.personCategory}}</td>
+							<td align="right" >险种类型：</td>
+							<td  *ngIf = "visitInfo.insurance == '1'">城镇职工基本医疗保险</td>
+							<td  *ngIf = "visitInfo.insurance == '2'">城镇居民基本医疗保险</td>
+							<td  *ngIf = "visitInfo.insurance == '3'">新型农村合作医疗</td>
+							<td align="right" ></td>
+							<td ></td>
+							<td align="right" ></td>
+							<td ></td>
+						</tr>
+					</table>
+				</div>
+				<div *ngIf="clinicType == 'old'"  style="width:100%;font-size:13px;background: #F5F7FA;">
+					<table class="fn-table fn-table-text" width="100%">
+						<tr>
+							<td align="right" width="104">姓名：</td>
+							<td width="15%">{{visitInfo.name}}</td>
+							<td align="right" width="94">性别：</td>
+							<td width="15%">{{visitInfo.sex == 1?'男':'女'}}</td>
+							<td align="right" width="94">出生日期：</td>
+							<td width="15%">{{visitInfo.dateOfBirth}}</td>
+							<td align="right" width="104">出生时体重：</td>
+							<td width="15%">{{visitInfo.weightOfBirth}}g</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+		</div>
+		<div class="procedures-content-main" *ngIf="clinicType == 'current'">
+			<div class="obejct-kind fn-clear">
+				<span class="fn-display-inlineBlock fn-object-style" [class.active]="type == 'drug'" (click)="type='drug';">药品</span>
+				<span class="fn-display-inlineBlock fn-object-style" [class.active]="type == 'object'" (click)="type='object';">项目</span>
+				<span (click)="type='disease';" [class.active]="type == 'disease'" class="fn-display-inlineBlock fn-object-style">疾病</span>
+				<span (click)="type='material';" [class.active]="type == 'material'" class="fn-display-inlineBlock fn-object-style">材料</span>
+			</div>
+			<div class="drugTable" *ngIf="type == 'drug'">
+				<table class="table tableLayout">
+					 <thead>
+		                <tr style="height: 45px;">
+		                    <th width="10%">时间</th>
+		                    <th width="8%">处方号</th>
+		                    <th width="8%">药品名称</th>
+		                    <th width="8%">产品名称</th>
+		                    <th width="8%">剂型</th>
+		                    <th width="8%">包装规格</th>
+		                    <th width="8%">产品规格</th>
+		                    <th width="8%">发药数量</th>
+		                    <th width="10%">生产厂家</th>
+		                    <th width="16%">警示信息</th>
+		                    <th width="8%">操作</th>
+		                </tr>
+					</thead>
+					<tbody>
+					  <tr *ngFor="let item of drugInfo; let i = index;">
+						<td class="fn-ellipsis" title="{{item.optTime}}">{{item.optTime}}</td>
+						<td class="fn-ellipsis" title="{{item.recipeId}}">{{item.recipeId}}</td>
+						<td class="fn-ellipsis" title="{{item.drugName}}">{{item.drugName}}</td>
+						<td class="fn-ellipsis" title="{{item.productName}}">{{item.productName}}</td>
+						<td class="fn-ellipsis" title="{{item.dosageForm}}">{{item.dosageForm}}</td>
+						<td class="fn-ellipsis" title="{{item.packingSpecification}}">{{item.packingSpecification}}</td>
+						<td class="fn-ellipsis" title="{{item.productSpecification}}">{{item.productSpecification}}</td>
+						<td class="fn-ellipsis" title="{{item.quantity}}">{{item.quantity}}</td>
+						<td class="fn-ellipsis" title="{{item.manufacturer}}">{{item.manufacturer}}</td>
+						<td class="fn-ellipsis" title="{{item.warningInfo}}">{{item.warningInfo}}</td>
+						<td><a>查看规则</a></td>
+					  </tr>
+					  <tr *ngIf="drugInfo && drugInfo.length == 0">
+						<td colspan="11">没有找到相关数据</td>
+					  </tr>	
+					</tbody>
+				</table>
+			</div>
+			<div class="objectTable" *ngIf="type == 'object'">
+				<table class="table tableLayout">
+					 <thead>
+		                <tr style="height: 45px;">
+		                    <th width="10%">时间</th>
+		                    <th width="8%">处方号</th>
+		                    <th width="14%">名称</th>
+		                    <th width="10%">数量</th>
+		                    <th width="10%">剂量单位</th>
+		                    <th width="8%">单价</th>
+		                    <th width="8%">总金额</th>
+		                    <th width="10%">医保金额</th>
+		                    <th width="14%">警示信息</th>
+		                    <th width="8%">操作</th>
+		                </tr>
+					</thead>
+					<tbody>
+					  <tr *ngFor="let item of itemInfo;let i = index;">
+						<td class="fn-ellipsis" title="{{item.optTime}}">{{item.optTime}}</td>
+						<td class="fn-ellipsis" title="{{item.recipeId}}">{{item.recipeId}}</td>
+						<td class="fn-ellipsis" title="{{item.name}}">{{item.name}}</td>
+						<td class="fn-ellipsis" title="{{item.quantity}}">{{item.quantity}}</td>
+						<td class="fn-ellipsis" title="{{item.unit}}">{{item.unit}}</td>
+						<td class="fn-ellipsis" title="{{item.price?item.price+'元':''}}">{{item.price?item.price+'元':''}}</td>
+						<td class="fn-ellipsis" title="{{item.totalAmount?item.totalAmount+'元':''}}">{{item.totalAmount?item.totalAmount+'元':''}}</td>
+						<td class="fn-ellipsis" title="{{item.amountInsured?item.amountInsured+'元':''}}">{{item.amountInsured?item.amountInsured+'元':''}}</td>
+						<td class="fn-ellipsis" title="{{item.warningInfo}}">{{item.warningInfo}}</td>
+						<td><a>查看规则</a></td>
+					  </tr>	
+					  <tr *ngIf="itemInfo && itemInfo.length == 0">
+						<td colspan="10">没有找到相关数据</td>
+					  </tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="diseaseTable" *ngIf="type == 'disease'">
+				<table class="table tableLayout">
+					 <thead>
+		                <tr style="height: 45px;">
+		                    <th width="15%">时间</th>
+		                    <th width="15%">名称</th>
+		                    <th width="15%">疾病编码</th>
+		                    <th width="45%">警示信息</th>
+		                    <th width="10%">操作</th>
+		                </tr>
+					</thead>
+					<tbody>
+					  <tr *ngFor="let item of diseaseInfo;let i = index;">
+						<td class="fn-ellipsis" title="{{item.diagTime}}">{{item.diagTime}}</td>
+						<td class="fn-ellipsis" title="{{item.name}}">{{item.name}}</td>
+						<td class="fn-ellipsis" title="{{item.code}}">{{item.code}}</td>
+						<td class="fn-ellipsis" title="{{item.warningInfo}}">{{item.warningInfo}}</td>
+						<td><a>查看规则</a></td>
+					  </tr>	
+					  <tr *ngIf="diseaseInfo && diseaseInfo.length == 0">
+						<td colspan="5">没有找到相关数据</td>
+					  </tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="materialTable" *ngIf="type == 'material'">
+				<table class="table tableLayout">
+					 <thead>
+		                <tr style="height: 45px;">
+		                    <th width="10%">时间</th>
+		                    <th width="8%">处方号</th>
+		                    <th width="12%">名称</th>
+		                    <th width="10%">数量</th>
+		                    <th width="8%">计数单位</th>
+		                    <th width="10%">单价</th>
+		                    <th width="10%">总金额</th>
+		                    <th width="10%">医保金额</th>
+		                    <th width="14%">警示信息</th>
+		                    <th width="8%">操作</th>
+		                </tr>
+					</thead>
+					<tbody>
+					  <tr *ngFor="let item of materialInfo;let i = index;">
+						<td  class="fn-ellipsis" title="{{item.optTime}}">{{item.optTime}}</td>
+						<td  class="fn-ellipsis" title="{{item.recipeId}}">{{item.recipeId}}</td>
+						<td  class="fn-ellipsis" title="{{item.name}}">{{item.name}}</td>
+						<td  class="fn-ellipsis" title="{{item.quantity}}">{{item.quantity}}</td>
+						<td  class="fn-ellipsis" title="{{item.unit}}">{{item.unit}}</td>
+						<td  class="fn-ellipsis" title="{{item.unitPrice?item.unitPrice+'元':''}}">{{item.unitPrice?item.unitPrice+'元':''}}</td>
+						<td  class="fn-ellipsis" title="{{item.totalAmount?item.totalAmount+'元':''}}">{{item.totalAmount?item.totalAmount+'元':''}}</td>
+						<td  class="fn-ellipsis" title="{{item.amountInsured?item.amountInsured+'元':''}}">{{item.amountInsured?item.amountInsured+'元':''}}</td>
+						<td  class="fn-ellipsis" title="{{item.warningInfo}}">{{item.warningInfo}}</td>
+						<td><a>查看规则</a></td>
+					  </tr>	
+					  <tr *ngIf="materialInfo && materialInfo.length == 0">
+						<td colspan="10">没有找到相关数据</td>
+					  </tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div *ngIf="clinicType == 'old'" class="fn-PL25" style="height: calc(100vh - 95px - 200px);overflow-y: scroll;">
+			<div class="fn-BLS-ddd fn-W100P" style="height: calc(100vh - 95px - 200px);">
+				<div class="recipeDetails fn-MB10" *ngFor="let obj of oldDataList;let i = index;">
+					<div class="fn-H30 fn-LH30" (click)="switchState(obj)" style="cursor: pointer;">
+						<div class="switchFlag"></div>
+						<div class="switcTime">{{obj.time}}</div>
+					</div>
+					<div class="fn-ML20 fn-BGC-F5F7FA" *ngIf="obj.isShow">
+						<table class="fn-table fn-table-text fn-FS13" width="100%">
+							<tr>
+								<td align="right" width="94">就诊日期：</td>
+								<td width="15%">{{obj.visitInfo.visitDate}}</td>
+								<td align="right" width="94">身高：</td>
+								<td width="15%">{{obj.visitInfo.height}}cm</td>
+								<td align="right" width="94">体重：</td>
+								<td width="15%">{{obj.visitInfo.weight}}kg</td>
+								<td align="right" width="104">体表面积：</td>
+								<td width="15%">{{obj.visitInfo.surfaceArea}}㎡</td>
+							</tr>
+							<tr>
+								<td align="right" >患者号：</td>
+								<td>{{obj.visitInfo.patientNumber}}</td>
+								<td align="right" >是否透析：</td>
+								<td >{{obj.visitInfo.isDialysis == 1?'是':'否'}}</td>
+								<td align="right" >是否怀孕：</td>
+								<td >{{obj.visitInfo.isPregnant ==1?'是':'否'}}</td>
+								<td align="right" >孕期：</td>
+								<td >{{obj.visitInfo.pregnancy}}(周)</td>
+							</tr>
+							<tr>
+								<td align="right" >是否哺乳：</td>
+								<td >{{obj.visitInfo.pregnancy == 1?'是':'否'}}</td>
+								<td align="right" >过敏列表：</td>
+								<td >{{obj.visitInfo.allergy}}</td>
+								<td align="right" >保险类型：</td>
+								<td  *ngIf = "obj.visitInfo.insurance == '1'">城镇职工基本医疗保险</td>
+								<td  *ngIf = "obj.visitInfo.insurance == '2'">城镇居民基本医疗保险</td>
+								<td  *ngIf = "obj.visitInfo.insurance == '3'">新型农村合作医疗</td>
+								<td align="right" >人员类别：</td>
+								<td >{{obj.visitInfo.personCategory}}</td>
+							</tr>
+							
+						</table>
+
+					</div>
+					<div class="fn-MT20 fn-ML20" *ngIf="obj.isShow">
+						<div class="obejct-kind fn-clear">
+							<span class="fn-display-inlineBlock fn-object-style" [class.active]="obj.currentType == 'drug'" (click)="obj.currentType='drug';">药品</span>
+							<span class="fn-display-inlineBlock fn-object-style" [class.active]="obj.currentType == 'object'" (click)="obj.currentType='object';">项目</span>
+							<span (click)="obj.currentType='disease';" [class.active]="obj.currentType == 'disease'" class="fn-display-inlineBlock fn-object-style">疾病</span>
+							<span (click)="obj.currentType='material';" [class.active]="obj.currentType == 'material'" class="fn-display-inlineBlock fn-object-style">材料</span>
+					   </div>
+						<div class="drugTable" *ngIf="obj.currentType == 'drug'">
+							<table class="table tableLayout">
+								 <thead>
+					                <tr style="height: 45px;">
+					                    <th width="14%">时间</th>
+					                    <th width="10%">处方号</th>
+					                    <th width="12%">药品名称</th>
+					                    <th width="8%">产品名称</th>
+					                    <th width="8%">剂型</th>
+					                    <th width="12%">包装规格</th>
+					                    <th width="12%">产品规格</th>
+					                    <th width="12%">发药数量</th>
+					                    <th width="12%">生产厂家</th>
+					                </tr>
+								</thead>
+								<tbody>
+								  <tr  *ngFor="let obj of obj.DrugInfo;let i= index;">
+									<td class="fn-ellipsis" title="{{obj.optTime}}">{{obj.optTime}}</td>
+									<td class="fn-ellipsis" title="{{obj.recipeId}}">{{obj.recipeId}}</td>
+									<td class="fn-ellipsis" title="{{obj.drugName}}">{{obj.drugName}}</td>
+									<td class="fn-ellipsis" title="{{obj.productName}}">{{obj.productName}}</td>
+									<td class="fn-ellipsis" title="{{obj.dosageForm}}">{{obj.dosageForm}}</td>
+									<td class="fn-ellipsis" title="{{obj.packingSpecification}}">{{obj.packingSpecification}}</td>
+									<td class="fn-ellipsis" title="{{obj.productSpecification}}">{{obj.productSpecification}}</td>
+									<td class="fn-ellipsis" title="{{obj.quantity}}">{{obj.quantity}}</td>
+									<td class="fn-ellipsis" title="{{obj.manufacturer}}">{{obj.manufacturer}}</td>
+								  </tr>
+								  <tr *ngIf="obj.DrugInfo && obj.DrugInfo.length == 0">
+									<td colspan="9">没有找到相关数据</td>
+								  </tr>	
+								</tbody>
+							</table>
+						</div>
+						<div class="objectTable" *ngIf="obj.currentType == 'object'">
+							<table class="table tableLayout">
+								 <thead>
+					                <tr style="height: 45px;">
+					                    <th width="14%">时间</th>
+					                    <th width="12%">处方号</th>
+					                    <th width="14%">名称</th>
+					                    <th width="12%">数量</th>
+					                    <th width="12%">剂量单位</th>
+					                    <th width="12%">单价</th>
+					                    <th width="12%">总金额</th>
+					                    <th width="12%">医保金额</th>
+					                </tr>
+								</thead>
+								<tbody>
+								  <tr *ngFor="let obj of obj.ItemInfo;let i= index;">
+									<td class="fn-ellipsis" title="{{obj.optTime}}">{{obj.optTime}}</td>
+									<td class="fn-ellipsis" title="{{obj.recipeId}}">{{obj.recipeId}}</td>
+									<td class="fn-ellipsis" title="{{obj.name}}">{{obj.name}}</td>
+									<td class="fn-ellipsis" title="{{obj.quantity}}">{{obj.quantity}}</td>
+									<td class="fn-ellipsis" title="{{obj.unit}}">{{obj.unit}}</td>
+									<td class="fn-ellipsis" title="{{obj.price?obj.price+'元':''}}">{{obj.price?obj.price+'元':''}}</td>
+									<td class="fn-ellipsis" title="{{obj.totalAmount?obj.totalAmount+'元':''}}">{{obj.totalAmount?obj.totalAmount+'元':''}}</td>
+									<td class="fn-ellipsis" title="{{obj.amountInsured?obj.amountInsured+'元':''}}">{{obj.amountInsured?obj.amountInsured+'元':''}}</td>
+								  </tr>	
+								    <tr *ngIf="obj.ItemInfo && obj.ItemInfo.length == 0">
+										<td colspan="8">没有找到相关数据</td>
+					  				</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="diseaseTable" *ngIf="obj.currentType == 'disease'">
+							<table class="table tableLayout">
+								 <thead>
+					                <tr style="height: 45px;">
+					                    <th width="33%">时间</th>
+					                    <th width="33%">名称</th>
+					                    <th width="36%">疾病编码</th>
+					                </tr>
+								</thead>
+								<tbody>
+								  <tr *ngFor="let obj of obj.DiseaseInfo;let i = index;">
+									<td class="fn-ellipsis" title="{{obj.diagTime}}">{{obj.diagTime}}</td>
+									<td class="fn-ellipsis" title="{{obj.name}}">{{obj.name}}</td>
+									<td class="fn-ellipsis" title="{{obj.code}}">{{obj.code}}</td>
+								  </tr>  
+								  <tr *ngIf="obj.DiseaseInfo && obj.DiseaseInfo.length == 0">
+									<td colspan="3">没有找到相关数据</td>
+					  			  </tr>	
+								</tbody>
+							</table>
+						</div>
+						<div class="materialTable" *ngIf="obj.currentType == 'material'">
+							<table class="table tableLayout">
+								 <thead>
+					                <tr style="height: 45px;">
+					                    <th width="12%">时间</th>
+					                    <th width="12%">处方号</th>
+					                    <th width="16%">名称</th>
+					                    <th width="12%">数量</th>
+					                    <th width="12%">计数单位</th>
+					                    <th width="12%">单价</th>
+					                    <th width="12%">总金额</th>
+					                    <th width="12%">医保金额</th>
+					                </tr>
+								</thead>
+								<tbody>
+								  <tr *ngFor="let obj of obj.MaterialInfo;let i = index;">
+									<td class="fn-ellipsis" title="{{obj.optTime}}">{{obj.optTime}}</td>
+									<td class="fn-ellipsis" title="{{obj.recipeId}}">{{obj.recipeId}}</td>
+									<td class="fn-ellipsis" title="{{obj.name}}">{{obj.name}}</td>
+									<td class="fn-ellipsis" title="{{obj.quantity}}">{{obj.quantity}}</td>
+									<td class="fn-ellipsis" title="{{obj.unit}}">{{obj.unit}}</td>
+									<td class="fn-ellipsis" title="{{obj.unitPrice?obj.unitPrice+'元':''}}">{{obj.unitPrice?obj.unitPrice+'元':''}}</td>
+									<td class="fn-ellipsis" title="{{obj.totalAmount?obj.totalAmount+'元':''}}">{{obj.totalAmount?obj.totalAmount+'元':''}}</td>
+									<td class="fn-ellipsis" title="{{obj.amountInsured?obj.amountInsured+'元':''}}">{{obj.amountInsured?obj.amountInsured+'元':''}}</td>
+								  </tr>
+								  <tr *ngIf="obj.MaterialInfo && obj.MaterialInfo.length == 0">
+									<td colspan="8">没有找到相关数据</td>
+					  			  </tr>	
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+<my-dialog></my-dialog>

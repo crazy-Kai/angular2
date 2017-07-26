@@ -1,0 +1,230 @@
+/*头部*/
+.waringHeader{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.title{
+	line-height: 30px;
+	font-size: 13px;
+	margin-right: 5px;
+	height: 30px;
+	line-height: 30px;
+	color: #515253;
+	display: inline-block;
+}
+.waringList{
+	width: 426px;
+	height: 28px;
+	display: inline-block;
+}
+/*医生端*/
+.doctorBigBox{
+	border: 1px solid #dfdfdf;
+	margin-top: 6px;
+	margin-bottom: 8px;
+}
+.doctorBox{
+	line-height: 30px;
+}
+.doctorContent{
+	font-size: 16px;
+	color: #000;
+	line-height: 30px;
+}
+.doctorContentBox{
+	float: left;
+}
+
+.addGroud{
+	 /*margin-top: 15px;
+     margin-bottom: 10px;*/
+}
+#doctorScrollBox{
+	overflow-y: auto;
+	color: #515253;
+	height: 230px;
+	padding-top: 15px;
+}
+#nueseScrollBox{
+	overflow-y: auto;
+	color: #515253;
+	height: 230px;
+	padding-top: 15px;
+}
+.addGroundTitle{
+	font-size: 13px;
+	color: #4EB7E0;
+	cursor: pointer;
+	padding-left: 10px;
+	width: 100px;
+	display: inline-block;
+	/*line-height: 45px;
+	float: right;*/
+}
+.warimgXinxi{
+	/*cursor: pointer;
+	background: #61BBE2;
+    border: 1px solid #61BBE2;
+    border-radius: 4px;
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    margin-top: 20px;*/
+}
+
+/*医生端*/
+.doctorBox{
+	height: 45px;
+	padding-left: 13px;
+	background: #F9F9F9;
+	border-bottom: 1px solid #DFDFDF;
+}
+.doctorContent{
+	font-family: STHeitiSC-Medium;
+	font-size: 13px;
+	line-height: 45px;
+	color: #515253;
+	display: inline-block;
+}
+.doctorContentBox{
+	width: 1000px;
+	min-height: 300px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	line-height: 40px;
+}
+
+.warimgDoctorSelectBox{
+	padding: 5px 25px;
+}
+.cancelGroupImg{
+	display: inline-block;
+}
+.cancelGroupImg img{
+	cursor: pointer;
+	width: 25px;
+	margin-top: -5px;
+}
+.warimgDoctorSelect{
+	display: block;
+	float: left;
+	width: 100px;
+	height: 30px;
+}
+/*//从新修改的部分*/
+.warimgDoctorSelect02{
+	position:relative;
+	display: inline-block;
+	margin-bottom: 20px;
+	width: 30%;
+}
+.waringBox{
+	/*margin-bottom: 50px;*/
+}
+.selectList{
+	width: 160px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 11px;
+	display:inline-block;
+	white-space:nowrap;
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	border: 1px solid #DFDFDF;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 5px;
+    font-size: 13px;
+    text-rendering: auto;
+    color: #555;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+}
+.selectListContent{
+	width: 160px;
+	height: 180px;
+	z-index: 999;
+	background: #FFFFFF;
+	border: 1px solid #DFDFDF;
+	overflow-y: auto;
+	position:absolute;
+	top:28px;
+	left:74px;
+	z-index: 1000;
+	color: #515253;
+}
+.selectListData{
+	width: 100%;
+	height: 24px;
+	line-height: 24px;
+	margin-top: 5px;
+}
+.selectListData :hover{
+	background: #F8F8F8;
+	cursor: pointer;
+}
+
+.checkbox{
+	float: left;
+	width: 12px;
+	height: 12px;
+	margin-top: 5px;
+	margin-left: 12px;
+}
+.Listdata{
+	height: 24px;
+	line-height: 24px;
+	margin-left: 30px;
+	color: #515253;
+	text-align: left;
+	font-size: 13px;
+	font-weight: normal;
+}
+/*浮动层*/
+.show-dialog{
+	width: 300px;
+	height: 117px;
+}
+.datatype-choosing{
+    position: fixed;
+    left: 50%;top: 50%;
+    z-index: 1050;
+    width: 300px;
+    padding: 25px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+}
+.chooseVersion{
+	width: 250px;
+	height: 30px;
+	font-size: 18px;
+	color: #000;
+	line-height: 30px;
+	text-align: center;
+	font-weight: bold;
+}
+.chooseVersionButtom{
+	color: #4EB7E0;
+	padding-left: 100px;
+	margin-top: 23px;	
+}
+.chooseVersionButtom p{
+	line-height: 30px;
+	float: left;
+	margin-left: 20px;
+	cursor: pointer;
+}
+.warimgDoctorSelect02 > .isSourceBorder{
+	border: 1px solid #7A9CD3;
+}
+.warimgDoctorSelect02 > .isContentSourceBorder{
+	border: 1px solid #7A9CD3;
+}

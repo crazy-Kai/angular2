@@ -1,0 +1,272 @@
+<!--项目目录模板-->
+<div class="catalogObject fn-clear" style="height: calc(100vh - 80px);">
+    <div class="catalogObject-content" style="min-width:1100px;width:calc(100vw - 190px);height: calc(100vh - 95px);">
+
+		<div class="container-left fn-left" style="height:calc(100vh - 95px)">
+
+			<div class="selected-insurance form-inline">
+				<div class="form-group">
+					<label class="control-label fn-W42">险种：</label>
+					<div class="fn-disInBl fn-W323">
+						<select-comp [option]="insuranceTypeOption" (select)="chooseInsurance($event)"></select-comp>
+					</div>
+				</div>
+			</div>
+			<div class="selected-insurance form-inline">	
+				<div class="form-group">
+					<label class="control-label fn-W42">目录：</label>
+					<div *ngIf="isTextShow" class="fn-disInBl fn-H20 fn-W323 fn-clear" style="vertical-align: -6px;">
+						<div class="fn-left fn-H20 ">
+							<span  title="{{versionName}}" style="vertical-align: -4px;" class="fn-disInBl versionName fn-ellipsis">{{versionName}}
+							</span>
+						</div>
+						<div *ngIf="showSearchBtn" class="fn-left switchVerson" (click)="isShow=true;isTextShow=false;">切换目录
+						</div>
+						<div class="fn-right cursor" (click)="versionControl()">
+							<span class="verson-icon"></span>
+							<span class="fn-disInBl">目录管理</span>
+						</div>
+					</div>
+					<div *ngIf="isShow" class="fn-disInBl fn-W323 ">
+						<div class="fn-disInBl fn-W250 fn-MR-8" >
+							<select class="fn-input fn-W235" [(ngModel)]="activeIdx" (change)="optionClick($event)">
+								<option *ngFor="let obj of list;let i = index;" value="{{i}}" >{{obj.name}}</option>
+							</select>
+							
+						</div>
+						<div class="fn-right fn-LH28 cursor" (click)="versionControl()">
+							<span class="verson-icon"></span>
+							<span class="fn-right ">目录管理</span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="catalog-tree" style="min-height:calc(100vh - 190px);">
+				<div class="catalog-header">
+							<div class="search-panel form-inline">
+						            <div class="form-group"  *ngIf="showSearchBtn">
+						                <label class="control-label catalog-name fn-W70">材料名称：</label>
+						                <div class="input-group fn-MR10 fn-W220">
+						                    <div class="input-group-addon"></div>
+						                    <input class="fn-input" style="width:190px;" type="text" maxlength="30"  placeholder="请输入材料名称" [(ngModel)]="searchWord"/>
+						                </div>
+						            	<button type="submit" class="publicBtn fn-W40" (click)="search()">搜索</button>
+						            </div>
+	        				</div>
+							<div  class="fn-LH34  setting">
+								<div *ngIf="showSearchBtn">
+									<span class="warningMessage" (click)="setMessage()">警示信息设置</span>
+									<div class="import-button" (mouseenter)="onMouseenter($event)" (mouseleave)="onMoseleave($event)">
+										<div class="fn-disInBl" style="width: 78px;">
+											<div class="uploadComponent">
+												  <a class="importStyle">批量导入</a> 
+	       										  <input  type="file" #file (change)="uploadFile(file)"   title="请选择文件" accept=".xls,.xlsx">
+											</div>
+										</div>
+										<div class="button-hover" *ngIf="isShowDownLoad">
+										   <a  href="{{templateUrl}}">模板下载</a>
+										</div>
+									
+									</div>
+								</div>
+							</div>
+							
+	        			
+				</div>
+				<div id="data-catalog-list" class="catalog-list" style="height:calc(100vh - 265px);overflow: auto;">
+			            <Tree [nodes]="materialTreeData"  class="my-tree commonTree   " [options]="options"   (onMoveNode)="onMoveNode($event)">
+			                <template #treeNodeTemplate let-node>
+			                    <table style="width:100%;">
+									<tr>
+										<td style="width:25px;" valign="top">
+											 <span [class.material-icon]="node.data.type == 1" [class.nodes-icon]="node.data.type != 1" ></span>
+										</td>
+										<td>
+											<span *ngIf="node.data.orgxtType == 1" style="color:#26BB96;" >{{node.data.name || node.data.bookName}}</span>
+			                          		<span *ngIf="node.data.orgxtType == 2" style="color:#FF0000;" >{{node.data.name || node.data.bookName}}</span>
+			                          		<span *ngIf="node.data.orgxtType == 0" style="color:#000000;" >{{node.data.name || node.data.bookName}}</span>
+			                        		<span class="fn-ML5" *ngIf="node.data.type !==1 && node.data == curNode" (click)="add(node,$event)"><img src="../../../../app/images/add.svg" style="vertical-align: -3px;"></span>
+			                        		<span class="fn-ML5" *ngIf="node.data == curNode && node.data.type != 2" (click)="delData(node)"><img src="../../../../app/images/commonicons/delete-icon.svg" style="vertical-align: -2px;"></span>
+										</td>
+									</tr>
+			                    </table>		
+			                </template>
+			            </Tree>
+		        </div>
+
+			</div>
+		</div>
+		<div class="fn-left fn-W20 container-center" style="height: calc(100vh - 95px);"></div>
+		<div class="container-right fn-left" style="height: calc(100vh - 95px);min-width:600px;">
+				<div *ngIf="curNode || isAdd" class="add-catalog-form fn-W580 fn-PT15" style="height: calc(100vh - 95px);overflow: auto;">
+								<div *ngIf="curNode && curNode.type != 1 && isAdd"  class="form-group">
+									<label class="col-md-2 control-label">
+										<em _ngcontent-kdt-4="">*</em>节点层级：
+									</label>
+									<div class="form-inline">
+										 <div class="fn-disInBl fn-MR20" *ngIf="curNode && curNode.type != 3 && isAdd">
+										 	<label class="fn-MT5 fn-MB0">
+												<input type="radio" class="fn-VA2D"  [(ngModel)]="addlevel"  name="addlevel" value="1" (change)="addlevel=$event.target.value;">  同级
+										 	</label>
+									    </div>
+									     <div class="fn-disInBl" *ngIf="curNode && curNode.type != 3 && isAdd">
+									     	<label class="fn-MT5 fn-MB0">
+												<input type="radio" class="fn-VA2D" [(ngModel)]="addlevel" name="addlevel" value="2" (change)="addlevel=$event.target.value;">  子级
+									     	</label>
+									    </div>
+									    <div class="fn-disInBl fn-MR20" *ngIf="curNode && curNode.type == 3 && isAdd">
+										 	<label class="fn-MT5 fn-MB0">
+												<input type="radio" class="fn-VA2D" [(ngModel)]="addlevel" name="addlevel" value="1" (change)="addlevel=$event.target.value;isLeaf=null;">  同级
+										 	</label>
+									    </div>
+									     <div class="fn-disInBl" *ngIf="curNode && curNode.type == 3 && isAdd">
+									     	<label class="fn-MT5 fn-MB0">
+												<input type="radio" class="fn-VA2D" [(ngModel)]="addlevel" name="addlevel" value="2" (change)="addlevel=$event.target.value;isLeaf=1;">  材料
+									     	</label>
+									    </div>
+									    
+									</div>
+								</div>
+								
+								<div *ngIf="curNode && curNode.type != 1 && isAdd && isLeaf !=1"  class="form-group">
+									<label class="col-md-2 control-label">
+										<em _ngcontent-kdt-4="">*</em>节点类型：
+									</label>
+									<div class="form-inline">
+										 <div class="fn-disInBl fn-MR20">
+										 	<label class="fn-MT5 fn-MB0">
+												<input type="radio" class="fn-VA2D" [(ngModel)]="isLeaf" name="isLeaf" value="0" (change)="isLeaf=$event.target.value;">  普通分类
+										 	</label>
+									    </div>
+									     <div class="fn-disInBl">
+									     	<label class="fn-MT5 fn-MB0">
+												<input type="radio" class="fn-VA2D" [(ngModel)]="isLeaf" name="isLeaf" value="3" (change)="isLeaf=$event.target.value;">  最小分类
+									     	</label>
+									    </div>
+									</div>
+								</div>
+								
+								<div class="form-group" *ngIf="!isAdd">
+									<label class=" col-md-2 control-label">
+											<em _ngcontent-kdt-4="">*</em>节点名称：
+									</label>
+									<div class="form-inline">
+										<input type="text"  (input)="testName()" *ngIf="curNode && curNode.type == 2" readonly  class="fn-input fn-W378" 
+											 [(ngModel)]="cateType.summary"   maxlength="30" placeholder="支持数字与字母、汉字、'.'、'-'且长度不超过30个汉字"  style="height: 28px;"/>
+										<input type="text"  (blur)="testIptName(cateType.summary)" (input)="testName()" *ngIf="curNode && curNode.type !=2"  class="fn-input fn-W378" 
+											 [(ngModel)]="cateType.summary"   maxlength="30" placeholder="支持数字与字母、汉字、'.'、'-'且长度不超过30个汉字"  style="height: 28px;"/>
+									</div>
+								</div>
+								<div class="form-group" *ngIf="curNode && curNode.type != 1 && isAdd">
+									<label class=" col-md-2 control-label">
+											<em _ngcontent-kdt-4="">*</em>节点名称：
+									</label>
+									<div class="form-inline">
+										
+										<input type="text"  (blur)="testIptName(cateType.summary)" (input)="testName()" class="fn-input fn-W378" 
+											 [(ngModel)]="cateType.summary"   maxlength="30" placeholder="支持数字与字母、汉字、'.'、'-'且长度不超过30个汉字"  style="height: 28px;"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class=" col-md-2 control-label">
+											报销目录：
+									</label>
+									<div class="form-inline">
+									    <div class="fn-disInBl fn-MR20" *ngIf="!isAdd">
+									    	<label class="fn-MT5 fn-MB0">
+												<input type="radio" class="fn-VA2D" name="isReimbursement"  
+												(change)="cateType.isReimbursement=$event.target.value;"
+										 		[checked]="cateType.isReimbursement == '1'" value="1"  >  是
+									    	</label>
+									    </div>
+									    <div class="fn-disInBl" *ngIf="!isAdd">
+									     	<label class="fn-MT5 fn-MB0">
+												<input type="radio"   [checked]="cateType.isReimbursement == '2'"  value="2" 
+											 	name="isReimbursement" class="fn-VA2D" 	(change)="cateType.isReimbursement=$event.target.value;">  否
+									     	</label>
+									    </div>
+									    <div *ngIf="isAdd" class="fn-LH30" style="font-size: 13px;">
+									      请在新增后进行设置
+									    </div>
+									</div>
+								</div>
+								<div class="form-group" *ngIf="cateType.isReimbursement == 1">
+									<label class=" col-md-2 control-label control-textarea-label">
+											报销分类：
+									</label>
+									<div class="form-inline pr">
+									  <div class="fn-disInBl fn-MR20">
+									  	<select class="fn-input fn-W378" style="font-size:12px;height:28px;"  [(ngModel)]="reimbursementId" >
+											<option *ngFor="let obj of reimbursementData;let i = index;" value="{{obj.id}}">{{obj.name}}</option>
+										</select>
+										
+									  </div>
+									</div>
+									
+										
+								
+								</div>
+								<div class="form-group" *ngIf="cateType.isReimbursement == 2">
+									<label class="col-md-2 control-label">
+											警示设置：
+									</label>
+									<div class="form-inline">
+										<button  (click)="setMessage(curNode)" class="publicSureBtn fn-W80">设置</button>
+										
+									</div>
+								</div>
+								
+								
+								
+								<div class="form-group form-textarea">
+									<label class=" col-md-2 control-label control-textarea-label">
+											医保代码：
+									</label>
+									<div class="form-inline">
+											<textarea  (blur)="testIptYBCode(cateType.code)" placeholder="仅支持数字与字母、'.'、'-'且长度不超过15个字符." class="form-control fn-W378" maxlength="15" style="font-size:13px;border-radius: 0;height:100px;max-height:100px;max-width: 378px;" [(ngModel)]="cateType.code">{{cateType.code}}</textarea>
+									</div>
+								</div>
+								
+								
+								
+								<div class="form-group form-textarea" >
+									<label class=" col-md-2 control-label control-textarea-label">
+											备注说明：
+									</label>
+									<div class="form-inline">
+											<textarea placeholder="选填,支持分段，长度不超过500个汉字" class="form-control fn-W378" maxlength="500" style="font-size:13px;border-radius: 0;height:100px;max-height:100px;max-width: 378px;" [(ngModel)]="cateType.description" >{{cateType.Operation}}</textarea>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class=" col-md-2 control-label">
+											
+									</label>
+									<div class="form-inline">
+										<button class="publicSureBtn fn-W80" type="submit"  (click)="save()">保存</button>
+									</div>
+								</div>		
+				</div>
+		</div>
+
+    </div>
+<div>
+<my-dialog class="show-dialog">
+	<template *ngIf="alertMessageTemplate" #dialogTemplate let-dialogModel >
+	  <div class="settingMessage-content">
+	
+	  	<cautionInformationDialog (getDataList)="getDataList($event)" (getMedicareRules)="getMedicareRules($event)" [option]="cautionInformationDialogOptions"></cautionInformationDialog>
+		<div class="settingMessage-button">
+				        <span class="btn-cancel fn-MR10">
+							<button class="btn btn-primary fn-W80 fn-H30"  style="font-size: 13px;padding-top: 7px;" (click)="cancelMessage()">取消</button>
+				        </span>
+				        <span class="btn-save">
+							<button class="publicSureBtn fn-W80" (click)="saveMessage()" >保存</button>
+				        </span>
+		</div>
+	  </div>
+	</template>
+
+	
+</my-dialog>

@@ -1,0 +1,121 @@
+.suggestInformation{
+	height: 95px;
+	margin-top: 20px;
+	margin-left: 75px;
+}
+.suggestInformation span{
+	display: block;
+	float: left;
+	font-size: 13px;
+	font-family: STHeitiSC-Medium;
+	color: #515253 100%;
+	line-height: 30px;
+}
+.suggestInformation textarea{
+	display: block;
+	width: 260px;
+	height: 91px;
+	float: left;
+	padding: 5px;
+}
+.sicknessCatalogVersion{
+	height: 30px;
+	margin-top: 20px;
+	padding-left: 50px;
+}
+.sicknessCatalogVersion span{
+	display: inline-block;
+	float: left;
+	font-size: 13px;
+	font-family: STHeitiSC-Medium;
+	color: #515253 100%;
+	line-height: 28px;
+}
+.sicknessCatalogVersion .choose{
+	width: 70px;
+	height: 28px;
+	border: 1px solid #A1DDF4;
+	background: #EEFAFF;
+	border-radius: 4px;
+	display: inline-block;
+	text-align: center;
+	line-height: 26px;
+	cursor: pointer;
+}
+/*浮动层*/
+.show-dialog{
+	width: 300px;
+}
+.datatype-choosing{
+    position: fixed;
+    left: 50%;top: 50%;
+    z-index: 1050;
+    width: 380px;
+    padding: 25px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+}
+.chooseVersion{
+	width: 305px;
+	height: 30px;
+	font-size: 18px;
+	color: #000;
+	line-height: 30px;
+	text-align: center;
+}
+.chooseVersionContent{
+	width: 328px;
+	height: 250px;
+	border: 1px solid #9D9D9D;
+	margin-top: 15px;
+	overflow: auto;
+}
+.versionContentBox{
+	width: 309px;
+	height: 230px;
+	margin-top: 10px;
+}
+.versionContentBox .selectList{
+	width: 300px;
+	height: 28px;
+	display: block;
+	float: left;
+	padding-left: 20px;
+}
+.listdata{
+	/*width: 300px;*/
+	height: 28px;
+	float: left;
+	cursor: pointer;
+	/*padding-left: 30px;*/
+	line-height: 28px;
+}
+.listdata.selected{
+	background: #ccc;
+}
+.chooseVersionWord{
+	width: 220px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 60px;
+	font-size: 15px;
+	float: left;
+	cursor: default;
+}
+.chooseVersionWord span{
+	display: block;
+	width: 40px;
+	height: 20px;
+}
+.chooseVersionWord span:hover{
+	background: blue;
+}
+.chooseVersionButtom{
+	width: 250px;
+	height: 50px;
+	margin-top: 15px;
+	padding-left: 22px;
+}
+.chooseVersionButtom button{
+	margin-right: 15px;
+}

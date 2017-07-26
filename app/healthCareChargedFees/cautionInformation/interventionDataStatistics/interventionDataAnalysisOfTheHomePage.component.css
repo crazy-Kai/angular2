@@ -1,0 +1,48 @@
+.container-content{
+	padding: 0 15px 15px 15px;
+	font-size: 13px;
+}
+
+.InterventionTableBox{
+	width: 100%;
+}
+.InterventionTableBox td{
+	height: 30px;	
+}
+
+.alert-message-details-th tr {
+    border: 1px solid #F9F9F9;
+}
+.fn-PD{
+	padding-left: 17px;
+	padding-right: 17px;
+}
+.ipts{
+	width:59px;
+	height: 28px;
+	text-indent: 15px;
+}
+.table{
+	margin-bottom: 0px;
+}
+
+.table thead th{
+	vertical-align: middle;
+    border: 1px solid #dfdfdf;
+    background: #f9f9f9;
+    padding: 0 0.75rem;
+    text-align: center;
+   /* border-bottom:none;*/
+    font-weight: normal;
+}
+.table a{
+	color:blue;
+}
+.table td{
+	vertical-align: middle;
+	font-size: 13px;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+}

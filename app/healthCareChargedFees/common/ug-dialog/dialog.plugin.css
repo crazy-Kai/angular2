@@ -1,0 +1,179 @@
+/**begin dialog styles**/
+.dialog{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    right:0;
+    bottom: 0;
+    left:0;
+    background:  rgba(0,0,0,0.5);
+    z-index: 1000211111;
+}
+
+.dialog .dialog-message{
+    text-align: center;
+    color: #000;
+    background: #fff;
+    border:1px;
+  /*  padding: 10px;*/
+    font-size: 16px;
+    height:40px;
+    line-height: 40px;
+    width:170px;
+    position: fixed;
+    top:50%;
+    margin-top: -20px;
+    left:50%;
+    margin-left: -80px;
+    border:1px solid #ddd;
+   
+}
+/* 成功 */
+.dialog .dialog-success{
+    text-align: center;
+    color: #000;
+    background: #fff;
+    border:1px;
+    font-size: 16px;
+    height:40px;
+    line-height: 40px;
+    width:100px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    margin-top: -20px;
+    margin-left: -50px;
+    border: 1px solid #ddd;
+    z-index: 10000;
+}
+/* 系统错误 */
+.dialog .dialog-resMessage{
+    text-align: center;
+    color: #000;
+    background: #fff;
+    border:1px;
+    font-size: 16px;
+    height:110px;
+    line-height: 30px;
+    width:320px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    margin-top: -55px;
+    margin-left: -160px;
+    border: 1px solid #ddd;
+}
+.dialog .success-image{
+    display: inline-block;
+    width: 14px;
+    height:14px;
+    margin-right:5px;
+    vertical-align: -2px;
+    background:url('../app/images/save-success.svg') center center no-repeat;
+}
+.dialog .error-image{
+    display: inline-block;
+    width: 14px;
+    height:14px;
+    margin-right:5px;
+    vertical-align: -2px;
+    background:url('../app/images/save-fail.svg') center center no-repeat;
+}
+.dialog .confirm{
+    width: 320px;
+    height: 206px;
+    position: fixed;
+    top:50%;
+    left: 50%;
+    margin-top:-103px;
+    margin-left: -160px;
+    padding:15px;
+    background: #fff;
+    border:1px solid #ddd;
+}
+.dialog .dialog-btn-cancel{
+  width:70px;
+  height:30px;
+  line-height: 30px;
+  border-radius: 4px;
+  margin-right:20px;
+  background: #fff;
+  text-align: center;
+  color: #000;
+  margin-top:17px;
+  cursor: pointer;
+  font-size: 13px;
+  border: 1px solid #ccc;
+}
+.dialog .dialog-btn-determine{
+    width:70px;
+    height:30px;
+    margin-top:17px;
+    line-height: 30px; 
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    font-size: 13px;
+    background: #62BBE3;
+    border: 1px solid #ccc;
+}
+.dialog .warning{
+    width:290px;
+    height:54px;
+    padding-top: 12px;
+    text-align: center;
+    line-height: 100px;
+}
+.dialog .warning .warning-image{
+    width:30px;
+    height:30px;
+    margin-left: 130px;
+    background: url("../app/images/warning-image.svg") center center no-repeat;
+}
+/**end dialog styles**/
+
+/**begin dialog-template styles**/
+.mask{
+    position: fixed;
+    width:100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    top: 0;
+    left: 0;
+    z-index: 10001;
+}
+.dialog-template{
+    height: 500px;
+    background: white;
+    border: 1px solid #000;
+    width: 1000px;
+    position: fixed;
+    left: 50%;
+    margin-left: -500px;
+    top: 20%;
+    z-index: 10002;
+    overflow: auto;
+}
+.dialog-template-content{
+    margin-top: 40px;
+    overflow: auto;
+}
+.dialog-template-title{
+    position: fixed;
+    width: 998px;
+    background: #61bbe2;
+    padding:10px;
+    color:white;
+    z-index: 10003;
+}
+.dialog-template-title .icon-close{
+    float: right;
+    cursor: pointer;
+}
+.center{
+    text-align: center;
+}    
+.fn-clear,.clearfix{zoom:1;}
+.fn-clear:after,.clearfix:after{visibility:hidden;display:block;font-size:0;content:"1";clear:both;height:0;}

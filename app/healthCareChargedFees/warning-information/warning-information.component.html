@@ -1,0 +1,176 @@
+
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">	
+	<div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);padding-left: 15px;padding-right: 15px;">
+	<!--头部-->
+	    <div class="waringHeader">
+            <div class="title">险种：</div>
+            <div class="waringList">
+			   <select-comp [option]="insuranceTypeOption" (select)="chooseInsurance($event)"></select-comp>
+			</div>
+	    </div>
+		<div class="groupDataListBigBox">
+			    <!--医生端设置-->
+			<div class="doctorBigBox">
+			    <div class="doctorBox">
+			    	<div class="doctorContent">※ 医生端设置</div>
+			    	<div class="addGroundTitle" (click)="addGroupDetails()">&nbsp;+&nbsp;添加组合</div>
+			    </div>
+				<div *ngIf="isDoctorcontentShow">
+				    <!--添加组合的那部分内容开始-->
+				    	<div id="doctorScrollBox">
+				    		<!--整个大盒子，需要循环的数据-->
+					    	<div class="warimgDoctorSelectBox doctorScrollBox" *ngFor="let value of addGroupList; let i = index;" id="doctorScrollBox1">
+					    		<!--就诊来源-->
+					    		<div class="warimgDoctorSelect02">
+					    			<div class="title">就诊来源：</div>  
+					    			<div class="selectList" (click)="checkboxData($event,i,value)" style="width: 160px;line-height: 28px;" [class.isSourceBorder]=this.addGroupList[i].isAnalysisBoxShow title="{{addGroupList[i].sourceData}}">{{addGroupList[i].sourceData}}</div>
+					    			<div class="selectListContent" *ngIf="value.isAnalysisBoxShow" (click)="savecontent($event,i,value)" [class.isContentSourceBorder]=this.addGroupList[i].isAnalysisBoxShow>	
+				    				    <label class="selectListData" *ngFor ="let item of  value.doctoryListContent;let info=index;">				   
+					    					<input type="checkbox" class="checkbox" [checked]="item.check == true" (change)='saveCheckSource(item,value.doctoryListContent,i,$event.target,info)'/>				    				
+					    				    <div class="Listdata">{{item.name}}</div>
+					    				</label>
+					    			</div>
+					    		</div>
+						    	<!--规则类型-->
+						    	<div class="warimgDoctorSelect02">
+					    			<div class="title">规则类型：</div>  
+					    			<div class="selectList" (click)="checkboxData1($event,i,value)" [class.isSourceBorder]=this.addGroupList[i].isRuleTypeShow title="{{addGroupList[i].typeData}}">{{addGroupList[i].typeData}}</div>
+					    			<div class="selectListContent" *ngIf="value.isRuleTypeShow" (click)="savecontent1($event,i)" [class.isContentSourceBorder]=this.addGroupList[i].isRuleTypeShow>
+					    				<div id="selectListContentBox">
+						    				<label class="selectListData" *ngFor ="let obj of value.doctorTypeContent;let info=index;">
+						    					<input type="checkbox" class="checkbox" [checked]="obj.check == true" (change)='saveCheckSource1(obj,value.doctorTypeContent,i,$event.target,info)'/>
+						    				    <div class="Listdata">{{obj.name}}</div>
+						    				</label>
+						    			</div>
+					    			</div>
+					    		</div>
+					    		<!--使用理由-->
+					    		<div class="warimgDoctorSelect02">
+					    			<div class="title">使用理由：</div>  
+					    			<select class="fn-input" [(ngModel)]="value.reason" style="width: 160px;">
+					    				<option value="0">需要</option>
+					    				<option value="1">不需要</option>
+					    			</select>
+					    		</div>
+					    		<!--警示等级-->
+					    		<div class="warimgDoctorSelect02 waring">
+					    			<div class="title">警示等级：</div>  
+					    			<div class="selectList" (click)="checkboxData2($event,i,value)" [class.isSourceBorder]=this.addGroupList[i].isLeveShow title="{{value.level}}">{{addGroupList[i].level}}</div>
+					    			<div class="selectListContent" *ngIf="value.isLeveShow" (click)="savecontent2($event,i)" [class.isContentSourceBorder]=this.addGroupList[i].isLeveShow>
+					    				<label class="selectListData" *ngFor ="let obj of value.doctorlevelContent;let info=index;">
+					    					<input type="checkbox" class="checkbox" [checked]="obj.check == true" (change)='saveCheckSource2(obj,value.doctorlevelContent,i,$event.target,info)'/>
+					    				    <div class="Listdata">{{obj.name}}</div>
+					    				</label>
+					    			</div>
+					    		</div>
+					    		<!--执行操作-->
+					    		<div class="warimgDoctorSelect02">
+					    			<div class="title">执行操作：</div>  
+					    			<select class="fn-input" [(ngModel)]="value.action" style="width: 160px;">
+					    				<option value="1">拦截</option>
+					    				<option value="2">警示</option>
+					    				<option value="0">隐藏</option>
+					    			</select>
+					    		</div>
+					    		<div class="cancelGroupImg">
+			    			       <img src="../../../app/images/forbid.svg" (click)=deleatedata(i,value)/>
+			    		        </div>
+					    	</div>
+	           		    </div>
+		        </div>
+				         <!--添加组合的那部分内容结束-->
+			</div>
+		</div>
+	    <div class="groupDataListBigBox">
+			    <!--护士端设置-->
+			<div class="doctorBigBox">
+			    <div class="doctorBox">
+			    	<div class="doctorContent">※ 护士端设置</div>
+			    	<div class="addGroundTitle" (click)="addGroupsNurse()">&nbsp;+&nbsp;添加组合</div>
+			    </div>
+				<div *ngIf="isNursecontentShow">
+						    <!--添加组合的那部分内容开始-->
+					<!--<div class="contentbox" id="nueseScrollBox">-->
+						<div style="top: 0px;" id="nueseScrollBox">
+						    		<!--整个大盒子，需要循环的数据-->
+							<div class="warimgDoctorSelectBox" *ngFor="let value of addGroupNurselist; let i = index;">
+					    		<!--就诊来源-->
+					    		<div class="warimgDoctorSelect02">
+					    			<div class="title">就诊来源：</div>  
+					    			<div class="selectList" (click)="checkboxNurse($event,i,value)" [class.isSourceBorder]=this.addGroupNurselist[i].isNurseBoxShow title="{{addGroupNurselist[i].nurseSourceData}}">{{addGroupNurselist[i].nurseSourceData}}</div>
+					    			<div class="selectListContent" *ngIf="value.isNurseBoxShow" (click)=saveNurse($event,i) [class.isContentSourceBorder]=this.addGroupNurselist[i].isNurseBoxShow>	
+					    				<label class="selectListData" *ngFor ="let item of value.nurseListContent;let info=index;">
+					    					<input type="checkbox" class="checkbox" [checked]="item.check == true" (change)='saveNurseSource(item,value.nurseListContent,i,$event.target,info)'/>
+					    				    <div class="Listdata">{{item.name}}</div>
+					    				</label>
+					    			</div>
+					    		</div>
+						    	<!--规则类型-->
+						    	<div class="warimgDoctorSelect02">
+					    			<div class="title">规则类型：</div>  
+					    			<div class="selectList" (click)="checkTypeNurse($event,i,vlaue)" [class.isSourceBorder]=this.addGroupNurselist[i].isNurseTypeShow title="{{addGroupNurselist[i].nurseTypeData}}">{{addGroupNurselist[i].nurseTypeData}}</div>
+					    			<div class="selectListContent" *ngIf="value.isNurseTypeShow" (click)="saveTypeNurse($event,i)" [class.isContentSourceBorder]=this.addGroupNurselist[i].isNurseTypeShow>
+					    				<label class="selectListData" *ngFor ="let obj of value.nurseTypeContent;let info=index;">
+					    					<input type="checkbox" class="checkbox" [checked]="obj.check == true" (change)='saveCheckNurse(obj,value.nurseTypeContent,i,$event.target,info)'/>
+					    				    <div class="Listdata">{{obj.name}}</div>
+					    				</label>
+					    			</div>
+					    		</div>
+					    		<!--使用理由-->
+					    		<div class="warimgDoctorSelect02">
+					    			<div class="title">使用理由：</div>  
+					    			<select class="fn-input" [(ngModel)]="value.reason" style="width: 160px;">
+					    				<option value="0">需要</option>
+					    				<option value="1">不需要</option>
+					    			</select>
+					    		</div>
+					    		<!--警示等级-->
+					    		<div class="warimgDoctorSelect02 waring">
+					    			<div class="title">警示等级：</div>  
+					    			<div class="selectList" (click)="checkLevelNurse($event,i,value)" [class.isSourceBorder]=this.addGroupNurselist[i].isNurseLenverShow title="{{value.level}}">{{value.level}}</div>
+					    			<div class="selectListContent" *ngIf="value.isNurseLenverShow" (click)="saveLevelNurse($event,i)" [class.isContentSourceBorder]=this.addGroupNurselist[i].isNurseLenverShow>
+					    				<label class="selectListData" *ngFor ="let obj of value.nurselevelContent;let info=index;">
+					    					<input type="checkbox" class="checkbox" [checked]="obj.check == true" (change)='saveCheckNurseLevel(obj,value.nurselevelContent,i,$event.target,info)'/>
+					    				    <div class="Listdata">{{obj.name}}</div>
+					    				</label>
+					    			</div>
+					    		</div>
+					    		<!--执行操作-->
+					    		<div class="warimgDoctorSelect02">
+					    			<div class="title">执行操作：</div>  
+					    			<select class="fn-input" [(ngModel)]="value.action" style="width: 160px;">
+					    				<option value="1">拦截</option>
+					    				<option value="2">警示</option>
+					    				<option value="0">隐藏</option>
+					    			</select>
+					    		</div>
+					    		<div class="cancelGroupImg">
+			    			       <img src="../../../app/images/forbid.svg" (click)="deleatenursedata(i,value)"/>
+			    		        </div>
+							</div>
+			           	</div>
+				</div>
+			</div>
+		</div>
+	    <!--保存-->
+		<button class="publicSureBtn fn-W80 fn-H30"  (click)="WarimgSave()" style="margin-top: 20px;">保存</button>
+	</div>
+</div>
+<my-dialog class="show-dialog">
+ 	 <template #dialogTemplate let-dialogModel>
+        <div class="datatype-choosing" *ngIf="isDoctorShow">
+              <div class="chooseVersion">确认取消编辑信息并返回?</div>
+              <div class="chooseVersionButtom">
+              	 <p class="chooseCancel" (click)="dialogModel.customModule = false;">再想想</p>
+              	 <p class="chooseCancel" (click)="deleateDataList()">删除</p>
+              </div>
+        </div>
+        <div class="datatype-choosing" *ngIf="isNurseShow">
+              <div class="chooseVersion">确认取消编辑信息并返回?</div>
+              <div class="chooseVersionButtom">
+              	 <p class="chooseCancel" (click)="dialogModel.customModule = false;">再想想</p>
+              	 <p class="chooseCancel" (click)="deleateNurseList()">删除</p>
+              </div>
+        </div>
+    </template>
+</my-dialog>

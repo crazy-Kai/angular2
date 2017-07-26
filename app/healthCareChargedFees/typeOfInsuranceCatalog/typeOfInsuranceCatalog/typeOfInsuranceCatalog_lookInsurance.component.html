@@ -1,0 +1,78 @@
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">
+    <div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);">
+			<div style="height: calc(100vh - 152px);width: 100%;display: inline-block;overflow-y: auto;padding-left: 20px;">
+		        <div class="ReturnBox">
+		             <div routerLink='/healthCareChargedFees/typeOfInsuranceCatalog'>
+		             	<span>< 返回</span>
+		             </div>
+		        </div>
+		        <div class="insuranceNameBox">
+		        	<span style="color: red;width: 10px;padding-top: 3px;">*</span>
+		        	<span>险种名称：</span>
+		        	<span style="padding-left: 10px;">{{auditPlan.name}}</span>
+		        </div>
+		        <div class="insuranceExplainBox">
+		        	<span>险种简介：</span>
+		        	<span style="width: 770px;padding-left: 10px;">{{auditPlan.description==''?'暂无':auditPlan.description}}</span>
+		        </div>
+		        <!--报销分类-->
+		        <div class="applyClassifyBox">
+		        	<span>险种分类：</span>
+		        	<div class="applyClassifyContentBox">
+		        		<div class="addInsuranceContent" *ngFor="let obj of reimbursementsList; let i = index;">
+			        			<div class="addInsuranceContentBox">
+			        				<div>{{obj.summary==''?'暂无':obj.summary}} —— </div>
+			        				<div>{{obj.rate==""?"0":obj.rate}}%,</div>
+			        				<div class="spaceDescript" title="{{obj.description}}">{{obj.description==""?"暂无":obj.description}}</div>
+			        	        </div>
+			        	</div>
+		        	</div>
+		        </div>
+		        <div class="personnerClassesBox">
+		        	<p>投保人员类别：</p>
+		        	<div class="personBox">
+	        			<div class="personnerClassesContentBox" *ngFor="let obj of personClassifiesList; let i = index;">
+			        		<span title="{{obj.classify}}">{{obj.classify==''?'暂无':obj.classify}}</span>
+			        	</div>
+		        	</div>
+		        </div>
+		        <div class="compoundCountBox">
+		        	<span>复方的味数：</span>
+		        	<span>{{auditPlan.drugNumbers==''?'5':auditPlan.drugNumbers}}</span>
+		        	<!--<td width="20%">{{optRecipe.description==''?'暂无':optRecipe.description}}</td>-->
+		        </div> 
+		        <div class="compoundCountBox" style="padding-left: 7px;">
+		        	<span style="color: red;width: 10px;padding-top: 3px;">*</span>
+					<span>医院关联的险种ID：</span>
+		        	<!--<td width="15%" *ngIf = "visitInfo.insurance == '1'">城镇职工基本医疗保险</td>-->
+		        	<span *ngIf = "auditPlan.payType == '01'">城市职工基本医疗保险</span>
+		        	<span *ngIf = "auditPlan.payType == '02'">城市居民基本医疗保险</span>
+		        	<span *ngIf = "auditPlan.payType == '03'">新型农村合作医疗</span>
+		        	<span *ngIf = "auditPlan.payType == '04'">贫困救助</span>
+		        	<span *ngIf = "auditPlan.payType == '05'">商业医疗保险</span>
+		        	<span *ngIf = "auditPlan.payType == '06'">全公费</span>
+		        	<span *ngIf = "auditPlan.payType == '07'">全自费</span>
+		        	<span *ngIf = "auditPlan.payType == '08'">其他社会保险</span>
+		        	<span *ngIf = "auditPlan.payType == '99'">其他</span>
+		        </div> 
+		        <!--<div class="modificationBox" (click)=modificationdata(auditPlan.id)>	
+		        	<span>修改</span>
+		        </div>-->
+	        </div>
+	        <div class="footer">
+	        	<button class="publicSureBtn fn-W80 fn-H30"  (click)="modificationdata(auditPlan.id)">修改</button>
+	        </div>
+    </div>
+</div>
+<!--弹窗浮动层  添加版本-->  
+ <my-dialog class="show-dialog" id="insuranceDialog">
+ 	 <template #dialogTemplate let-dialogModel>
+        <div class="datatype-choosing">
+        	<h1>确定删除改条数据</h1>
+        	<div class="versionTrue">
+	            <a class="mt10" (click)="dialogModel.customModule = false;">取消</a>
+	            <a class="mt10 true" (click)=daleateList()>删除</a>
+            </div>
+        </div>
+    </template>
+ </my-dialog>

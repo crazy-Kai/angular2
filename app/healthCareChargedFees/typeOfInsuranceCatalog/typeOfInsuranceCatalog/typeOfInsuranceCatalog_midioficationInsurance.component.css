@@ -1,0 +1,306 @@
+.spaceDescript{
+	width: 60%;
+	height: 30px;
+	line-height: 30px;
+	display:block;
+    white-space:nowrap;
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+}
+.spaceSummary{
+	/*min-width: 18%;*/
+}
+.sapceRate{
+	min-width: 5%;
+}
+.TypesOfInsuranceAddInsuranceHeaderBox{
+	width: 1000px;
+	float: left;
+}
+.insuranceContentBox{
+	margin-top: 35px;
+	float: left;
+	padding-left: 25px;
+}
+.insuranceContentBox span{
+	display: block;
+	float: left;
+	line-height: 28px;
+	padding-right: 5px;
+}
+.insuranceContentBox{
+	width: 1000px;
+	float: left;
+}
+.insuranceNameBox{
+	padding-left: 50px;
+}
+.insuranceNameBox input{
+	width: 361px;
+}
+.insuranceExanplainBox{
+	width: 1000px;
+	float: left;
+	margin-top: 15px;
+	padding-left: 60px;
+}
+.insuranceExanplainBox textarea{
+	width: 378px;
+}
+.applyClassifyContentHeaderBox{
+	width: 1000px;
+	overflow-y: auto;
+	padding-left: 67px;
+}
+.applyClassifyBox{
+	float: left;
+	width: 1000px;
+	margin-top: 15px;
+	padding-left: 60px;
+}
+.applyClassifyBox p{
+	display: block;
+	line-height: 26px;
+	float: left;
+	margin-left: 66px;
+	width: 100%;
+}
+.addInsuranceContent{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	display: block;	
+}
+.addInsuranceContent img{
+	float: left;
+	display: block;
+	width: 13px;
+	height: 13px;
+	margin-top: 7px;
+}
+.addInsuranceContent span{
+	float: left;
+	display: block;
+	line-height: 30px;
+	margin-left: 10px;
+}
+.applyClassifyContentBox{
+	min-height: 28px;
+	width: 90%;
+	margin-left:-1px;
+	float: left;
+}
+.nameContentBox{
+	display: block;
+	float: left;
+	margin-right: 30px;
+}
+.nameContentBox img{
+	width: 15px;
+	height: 15px;
+	float: left;
+	display: block;
+}
+.nameContentBox input{
+	width: 120px;
+}
+.addInsuranceContent .nameBox{
+	float: left;
+}
+.addInsuranceContent .nameBox span{
+	display: block;
+	float: left;
+	line-height: 30px;
+}
+.APPlyScaleBox input{
+	width: 140px;
+}
+.classifyExplainBox input{
+	width: 159px;
+}
+.completeButtom{
+	width: 80px;
+	height: 30px;
+	background: #61BBE2;
+    border: 1px solid #61BBE2;
+    border-radius: 4px;
+    float: left;
+    margin-left: 10px;
+    line-height: 30px;
+}
+.completeButtom:hover{
+	background: #41A4CB;
+}
+.completeButtom span{
+	display: block;
+	line-height: 30px;
+	text-align: center;
+	float: left;
+	color: white;
+	font-size: 14px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+.addInsuranceContentTypeButtom{
+	width: 70px;
+	height: 30px;
+	background: #61BBE2 100%;
+	border: 1px solid #61BBE2 100%;
+	float: left;
+	margin-top: 20px;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 70px;
+}
+.addInsuranceContentTypeButtom span{
+	display: block;
+	text-align: center;
+	line-height: 30px;
+	color: white;
+	font-size: 14px;
+	margin-left: 20px;
+	float: left;
+}
+.personnerClassesBox{
+	min-width: 100%;
+	float: left;
+	margin-top: 15px;
+	padding-left: 31px;
+}
+.bigcontent{
+	width: 770px;
+	float: left;
+}
+.personnerClassesContentBox .txt{
+	display: block;
+	width: 120px;
+	height: 25px;
+	float: left;
+	background: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    color: black;
+    font-size: 13px;
+    text-indent: 5px;
+    margin-left: 5px;
+}
+/*.addPersonnerButtom{
+	width: 70px;
+	height: 30px;
+	background: #61BBE2;
+    border: 1px solid #61BBE2;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+}
+.addPersonnerButtom span{
+	color: white;
+	font-size: 14px;
+	margin-left: 18px;
+	cursor: pointer;
+}*/
+.addContentBox{
+	min-width:150px;
+	height: 30px;
+	float: left;
+	margin-bottom: 5px;
+}
+.retire{
+	width: 185px;
+	height:30px;
+	float: left;
+}
+.boxTop{
+	margin-top: 10PX;
+}
+.retire img{
+	float: left;
+	display: block;
+	width: 15px;
+	height: 15px;
+	margin-top: 7px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.retire input{
+	width: 150px;
+	float: left;
+}
+.compoundCountBox{
+	width: 1000px;
+	float: left;
+	display: block;
+	margin-top: 15px;
+	padding-left: 46px;
+}
+.compoundCountBox span{
+	display: block;
+	float: left;
+	font-size: 13px;
+}
+.compoundCountBox select{
+	width: 150px;
+}
+/*.bottomContentBox{
+	display: inline-block;
+}
+.bottomContentBox span{
+	display: block;
+	line-height: 30px;
+	text-align: center;
+	float: left;
+	font-size: 14px;
+	margin-left: 18px;
+	cursor: pointer;
+}*/
+/*.cancelButtom{
+	width: 70px;
+	height: 30px;
+	background:white;
+    border: 1px solid black;
+    border-radius: 4px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 300px;  
+}
+.cancelButtom span{
+	color: black;
+}*/
+/*.saveButtom{
+	width: 70px;
+	height: 30px;
+	background: #61BBE2;
+    border: 1px solid #61BBE2;
+    border-radius: 4px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;  
+}
+.saveButtom span{
+	color: white;
+}*/
+.addInsuranceContentBox{
+	width: 97%;
+	height: 28px;
+	float: left;
+}
+.addInsuranceContentBox span{
+	display: block;
+	float: left;
+}
+.insuranceIdBox{
+	width: 100%;
+	height: 30px;
+	float: left;
+	margin-top: 15px;
+}
+.insuranceIdBox span{
+	float: left;
+	font-size: 13px;
+	margin-right: 10px;
+}
+.insuranceIdBox select{
+	width: 150px;
+}

@@ -1,0 +1,32 @@
+.container-content{
+	padding: 0px 15px 15px 15px;
+	font-size: 13px;	
+}
+.container-content .control-label{
+	font-weight: normal;
+	vertical-align: top;
+}
+.bigBox{
+	width: 100%;
+	background: #fff;
+	padding: 20px;
+}
+.InterventionTableBox table thead th{
+	vertical-align: middle;
+    border: 1px solid #dfdfdf;
+    background: #f9f9f9;
+    padding: 0 0.75rem;
+    text-align: center;
+    font-weight: normal;
+	font-size: 14px;
+}
+.InterventionTableBox table td{
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+    vertical-align: middle;
+}
+.table a{
+	color: #4ea4e0;
+}

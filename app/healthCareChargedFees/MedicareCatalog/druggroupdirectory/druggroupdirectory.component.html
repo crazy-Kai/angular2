@@ -1,0 +1,144 @@
+<div class="catalogObject fn-clear" style="height: calc(100vh - 80px);">
+    <div class="catalogObject-content" style="min-width:1100px;width:calc(100vw - 190px);height: calc(100vh - 95px);">
+
+		<div class="container-left fn-left" style="height:calc(100vh - 95px)">
+				<div class="selected-insurance form-inline">
+					<div class="form-group">
+						<label class="control-label fn-W42">险种：</label>
+						<select-comp [option]="insuranceTypeOption" (select)="chooseInsurance($event)"></select-comp>
+					</div>
+				</div>
+				<div class="selected-insurance form-inline">	
+					<div class="form-group">
+						<label class="control-label fn-W42">版本：</label>
+						<div *ngIf="isTextShow"   class="fn-disInBl fn-H20 fn-W323 fn-clear" style="vertical-align: -6px;">
+							<div class="fn-left fn-H20">
+								<span style="vertical-align: -4px;max-width: 256px;" title="{{versionName}}" class="fn-disInBl versionName fn-ellipsis">{{versionName}}</span>
+							</div>
+							<div *ngIf="showSearchBtn" class="fn-left switchVerson" (click)="isShow=true;isTextShow=false;">切换版本</div>
+							<!-- <div class="fn-right cursor fn-LH25" (click)="versionControl()">
+								<span class="verson-icon"></span>
+								<span class="fn-right">版本管理</span>
+							</div> -->
+						</div>
+					<div *ngIf="isShow" class="fn-disInBl fn-W323">
+						<div class="fn-disInBl fn-W323"  >
+							<select class="fn-input fn-W323" [(ngModel)]="activeIdx" (change)="optionClick($event)">
+								<option *ngFor="let obj of list;let i = index;" value="{{i}}" >{{obj.name}}</option>
+							</select>
+							
+						</div>
+						<!-- <div class="fn-right fn-LH28 cursor" (click)="versionControl()">
+							<span class="verson-icon"></span>
+							<span class="fn-right ">版本管理</span>
+						</div> -->
+					</div>
+					
+				</div>
+			</div>
+			
+			<div class="catalog-tree" style="min-height:calc(100vh - 191px);">
+				<div class="catalog-header">
+							<div class="search-panel form-inline" style="height:28px;margin-bottom: 10px;">
+						            <div class="form-group" *ngIf="showSearchBtn">
+
+						                <label class="control-label catalog-name fn-W84">药物组名称：</label>
+						                <div class="input-group fn-MR10 fn-W206">
+						                    <div class="input-group-addon"></div>
+						                    <input class="fn-input" style="width:176px;" type="text" maxlength="30"  placeholder="请输入关键字" [(ngModel)]="searchWord"/>
+						                </div>
+						            	<button type="submit" class="publicBtn fn-W40"  (click)="search()">搜索</button>
+						            </div>
+	        				</div>
+				</div>
+				<div id="data-catalog-list"   class="catalog-list" style="height:calc(100vh - 241px);padding-top:36px;position:relative;overflow:auto">
+						<div *ngIf="addButton" class="add-button" (click)="add()"><span class="add-image"></span>添加</div>
+			            <Tree [nodes]="medicineGroup"   [options]="options" class="my-tree commonTree" >
+			                <template #treeNodeTemplate let-node>
+			                    <table  style="width:100%;">
+									<tr>
+										<td style="width:25px;" valign="top">
+											<span class="nodes-icon"></span>
+										</td>
+										<td>
+											<span>{{node.data.name}}</span>
+			                        		<span class="fn-ML5" *ngIf="node.data == curNode && node.data.type != 2" (click)="delData(node)"><img src="../../../../app/images/commonicons/delete-icon.svg" style="vertical-align: -2px;"></span>
+										</td>
+									</tr>
+			                    </table>
+			                </template>
+			            </Tree>
+		        </div>
+			</div>
+		</div>
+		<div class="fn-left fn-W20 container-center" style="height: calc(100vh - 95px);"></div>
+		<div class="container-right fn-left" style="height: calc(100vh - 95px);min-width:600px;">
+				<div *ngIf="curNode && curNode.type !=2 || isAdd" class="fn-W580 fn-PT15" style="height: calc(100vh - 95px);overflow: auto;">
+					<table  class="fn-table fn-table-input">
+				 	<tr>
+						<td width="100" align="right" class="fn-LH30">
+							<em>*</em>标题：
+						</td>
+						<td>
+							<input type="text" (input)="testName()" (blur)="testIptName(activeIdNodeData.summary)" class="fn-input fn-W378 fn-myInput"  [(ngModel)]="activeIdNodeData.summary"  maxlength="30" placeholder="支持数字与字母、汉子、'.'、'-'且长度不超过30个汉字"  />
+						</td>
+				 	</tr>
+				 	<tr>
+						<td align="right" class="fn-LH30">
+							描述：
+						</td>
+						<td>
+							<textarea  class="form-control fn-W378 " maxlength="500" style="font-size:13px;border-radius: 0;height:100px;max-height:100px;max-width: 378px;" [(ngModel)]="activeIdNodeData.description" >{{activeIdNodeData.description}}</textarea>
+						</td>
+				 	</tr>
+				 	<tr>
+						<td align="right" class="fn-LH20">
+							关联药品：
+						</td>
+						<td>
+							<div class="fn-LH20 fn-MB10 fn-W378" *ngIf="activeIdNodeData.drugsName">{{activeIdNodeData.drugsName}}</div>
+							<div class="modify-button" >
+							 	<span class="fn-MR10">
+									<!--<button class="btn btn-primary fn-W80 fn-H30 " style="padding:0px;background:#EEFBFF;color:#558593;border: 1px solid #A2DDF5;" (click)="modifyDrugsFn()">修改药品</button>-->
+									<button class="publicSureBtn fn-W80" style="background:#EEFBFF;color:#558593;border: 1px solid #A2DDF5;" (click)="modifyDrugsFn()">选择药品</button>
+        						</span>
+							</div>
+						</td>
+				 	</tr>
+				 	<tr>
+
+						<td align="right" class="fn-LH30"></td>
+						<td>
+							<div class="saveButton">
+								<button class="publicSureBtn fn-W80 fn-MT15 "  type="submit"  (click)="save()">保存</button>	
+							</div>	
+						</td>
+				 	</tr>
+					</table>
+				</div>
+				
+		</div>
+
+    </div>
+<div>
+<my-dialog class="show-dialog">
+	<template *ngIf="relevanceDrugsTemplate" #dialogTemplate let-dialogModel >
+		
+		<div class="addcatalog-content relevanceDrugs-content">
+				<div class="relevanceDrugs-title">选择药品</div>
+				
+				<div  style="overflow: auto;">
+					<drug-category-tree  [drugCode]="activeIdNodeData.drugCode" (onActivate)="onActivate($event)" [drugUrl]="drugUrl" [drugs]="activeIdNodeData.drugs"></drug-category-tree>
+				</div>  
+				<div class="addcatalog-button relevanceDrugs-bottom ">
+					        <span class="btn-cancel fn-MR10">
+								<button class="btn btn-primary fn-W80" style="padding:0;width:70px;height:30px;" (click)="cancelfn()">取消</button>
+					        </span>
+					        <span class="btn-save" style="line-height: 12px;">
+								<button class="publicSureBtn fn-W80" style="width:70px;" (click)="saveAddData()">确定</button>
+					        </span>
+			    </div>
+		</div>
+	
+	</template>
+</my-dialog>

@@ -1,0 +1,157 @@
+<div class="origanizationBigBox" style="min-width:1100px;min-height: calc(100vh - 80px);">
+	<!--左边的内容-->
+	<div class="origanizationBigBoxLeft"  style="min-height: calc(100vh - 95px);padding: 15px;">
+		<div class="origanizationBigHeader">
+	        <label>机构名称</label>
+	    </div>
+	    <div class="search-panel form-inline" style="padding-top: 15px;padding-bottom: 15px;">
+            <div class="form-group">
+                <label class="control-label catalog-name fn-W70">机构名称：</label>
+                <div class="input-group fn-MR10" style="width: 270px;">
+                    <div class="input-group-addon"></div>
+                    <input class="fn-input" style="width:240px;" type="text" placeholder="请输入关键字" [(ngModel)]="searchWord" (keyup.enter)="onEnterData($event)"/>
+                </div>
+            	<button type="submit" class="publicBtn fn-H28 fn-W40"  (click)="search()">搜索</button>
+            </div>
+		</div>
+        <div class="InterventionTableBox" style="min-height: calc(100vh - 323px);">
+	     	<div>
+	     	  	<div style="min-width:417px;padding-right: 17px; background: #fff;width: 100%;" id="tableHead">
+				    <table class="table alert-message-details-th tableLayout" >
+				        <thead>
+			                <tr style="height: 45px;">
+			                    <th width="50%">机构名称</th>
+			                    <th width="40%">医保干预</th>
+			                </tr>
+				        </thead>
+				    </table>
+	     	  	</div>
+	     	</div>
+		    <div *ngIf="isShowTable == true">
+	            <div style="height:calc(100vh - 366px);min-width:417px;width:100%;overflow-y: scroll;" class="comTbody" >
+		        	<div *ngIf="hospitalInfo && hospitalInfo.length != 0" style="background: #fff;margin-right:0px;">
+			            <table class="table tableLayout" style="margin: 0px;">
+			                <tbody>
+			                     <tr *ngFor="let item of hospitalInfo;let i = index;" [class.selected]='item == selectedProductList'>
+				    				<td style="width: 50%;" (click)="choose(item,i);" class="fn-ellipsis cursor" title="{{item.hospitalName}}">{{item.hospitalName}}</td>
+				    				<td class="activeTitle" style="border-right: none;width: 40%;" [style.cursor]="item == selectedProductList?'pointer':'not-allowed'" >
+				    					<a *ngIf="item.enable==1">
+				    						<img src="../../../app/images/open.png"  (click)='open(item,i)' [style.cursor]="item == selectedProductList?'pointer':'not-allowed'" />
+			    						</a>
+				    					<a *ngIf="item.enable==0">
+				    						<img src="../../../app/images/close.png"  (click)="close(item,i)" [style.cursor]="item == selectedProductList?'pointer':'not-allowed'" />
+			    						</a>
+				    				</td>
+				    			</tr>
+			                </tbody>
+			            </table>
+	        		</div>
+	        		<div>
+						<table class="table" style="margin: 0px;">
+							<tbody>
+							     <tr *ngIf="hospitalInfo && hospitalInfo.length == 0" style="text-align: center;">
+			                          <td width="100%" style="padding: 10px 0;text-align: center;">没有找到相关数据</td>
+			                     </tr>
+							</tbody>
+						</table>
+					</div>
+	            </div>
+		    </div>
+		</div>
+       <!--表格end-->
+       <!--表格end-->
+    </div>
+    <!--右边的内容-->
+    <div class="origanizationBigBoxRight" style="min-height: calc(100vh - 95px);padding: 15px;">
+	    <div class="origanizationBigHeader">
+	        <label>{{hospitalName}}</label>
+	    </div>
+	    
+		<div class="origanizationBigBoxLeftHeader">
+			<div fole="form" >
+				<table id="noBorders" class="fn-table fn-table-input" width="100%" style="min-width: 590px;">
+					<tr>
+						<td width="80" align="right" class="fn-LH30">医保干预：</td>
+						<td width="81">
+							<select class="fn-input" [(ngModel)]="rightSearchDetail.isIntervene" style="width:81px">
+				            	<option value="">全部</option>
+				            	<option value="0">关闭</option>
+				            	<option value="1">开启</option>
+				            </select>
+					    </td>
+					    <td width="80" align="right" class="fn-LH30">科室来源：</td>
+						<td width="81">
+							<select class="fn-input" [(ngModel)]="rightSearchDetail.orgType" style="width:81px">
+				            	<option value="">全部</option>
+				            	<option value="1">门诊</option>
+				            	<option value="2">住院</option>
+				            </select>
+					    </td>
+					    <td width="80" align="right" class="fn-LH30">科室名称：</td>
+					    <td width="123">
+							<div style="width:105px;">
+								<input class="fn-input ipts" type="text" [(ngModel)]="rightSearchDetail.orgName" style="width:105px;height: 28px;padding: 5px;"/>
+							</div>
+					    </td>
+					    <td width="56">
+					    	<div class="publicBtn fn-H28 fn-W40 fn-ML10" (click)="rightSearch()">搜索</div>
+					    </td>
+					</tr>
+				</table>
+			</div>
+	    </div>
+	    
+	    <!--表格start-->	  
+        <div class="InterventionTableBox" style="min-width: 620px;min-height: calc(100vh - 323px);padding-right: 15px;">
+	     	<div>
+	     	  	<div style="padding-right: 17px; background: #fff;width: 100%;" id="tableHead">
+				    <table class="table alert-message-details-th tableLayout" >
+				        <thead>
+			                <tr style="height: 45px;">
+			                    <th width="30%">科室名称</th>
+			                    <th width="30%">部门</th>
+			                    <th>医保干预</th>
+			                </tr>
+				        </thead>
+				    </table>
+	     	  	</div>
+	     	</div>
+		    <div *ngIf="isShowTable == true">
+	            <div style="height:calc(100vh - 357px - 7px - 1px - 1px);width:100%;overflow-y: scroll;" class="comTbody" >
+		        	<div *ngIf="officeInfo && officeInfo.length != 0" style="background: #fff;margin-right:0px;">
+			            <table class="table tableLayout" style="margin: 0px;">
+			                <tbody>
+			                     <tr *ngFor="let obj of officeInfo;let i = index;" (click)="selectedProductListRight = obj" [class.selected]='obj == selectedProductListRight'>
+					    			 <td style="width: 30%;" class="fn-ellipsis cursor" title="{{obj.orgName}}">{{obj.orgName}}</td>
+					    			 <td style="width: 30%;" class="fn-ellipsis cursor">{{obj.parentOrgName}}</td>
+					    			 <td class="activeTitle cursor">
+					    					<a *ngIf="obj.enable==1">
+					    						<img src="../../../app/images/open.png" (click)=officeOpen(obj,i) />
+					    					</a>
+					    					<a *ngIf="obj.enable==0">
+					    						<img src="../../../app/images/close.png" (click)=officeClose(obj,i)  />
+					    					</a>
+					    			 </td>
+					    		</tr>
+			                </tbody>
+			            </table>
+	        		</div>
+	        		<div>
+						<table class="table" style="margin: 0px;">
+							<tbody>
+							     <tr *ngIf="officeInfo && officeInfo.length == 0" style="text-align: center;">
+			                          <td width="100%" style="padding: 10px 0;text-align: center;">没有找到相关数据</td>
+			                     </tr>
+							</tbody>
+						</table>
+					</div>
+	            </div>
+		    </div>
+		</div>
+		<div>
+			<div class="publicSureBtn fn-H30 fn-W70 fn-MT10" (click) = saveOriganization() style="margin-left: 15px;margin-top: 15px;">保存</div>
+	      
+		</div>
+	 </div>
+</div>
+<my-dialog></my-dialog>

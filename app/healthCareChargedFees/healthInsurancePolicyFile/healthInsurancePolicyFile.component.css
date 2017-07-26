@@ -1,0 +1,68 @@
+/*头部*/
+.HealthInsurancePolicyFileHeaderBox{
+	width: 98%;
+	height: 50px;
+}
+.versionManagementAddBox{
+	width: 70px;
+	height: 30px;
+	float: right;
+}
+.versionManagementAddBox img{
+	display: block;
+	width: 15px;
+	height: 15px;
+	float: left;
+	margin-top: 16px;
+	cursor: pointer;
+}
+.versionManagementAdd{
+	width: 30px;
+	height: 14px;
+	float: left;
+	margin-top: 16px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+.versionManagementAdd span{
+	display: block;
+    text-align: center;
+    line-height: 14px;
+    font-size: 14px;
+}
+/*表格内容*/
+#noBorder {
+	border:none;
+}
+#noBorder>*>tr>td{
+	border: none;
+	vertical-align: center;
+}
+.InterventionTableBox{
+	width: 100%;
+}
+.InterventionTableBox td{
+	height: 30px;	
+}
+.alert-message-details-th tr {
+    border: 1px solid #F9F9F9;
+}
+.table{
+	margin-bottom: 0px;
+}
+.table thead th{
+	vertical-align: middle;
+    border: 1px solid #dfdfdf;
+    background: #f9f9f9;
+    padding: 0 0.75rem;
+    text-align: center;
+    font-weight: normal;
+}
+.table td{
+	vertical-align: middle;
+	font-size: 13px;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+}

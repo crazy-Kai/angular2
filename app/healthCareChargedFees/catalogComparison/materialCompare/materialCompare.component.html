@@ -1,0 +1,113 @@
+<!--材料比对目录模板-->
+<div class="catalogObject fn-clear" style="height: calc(100vh - 80px);">
+    <div class="catalogObject-content" style="min-width:1100px;width:calc(100vw - 190px);height: calc(100vh - 95px);">
+
+		<div class="container-left fn-left" style="height:calc(100vh - 95px);min-width:580px;border: 0;">
+				<div class="goBack"><span style="cursor: pointer;" (click)="goBack();">< 返回</span></div>
+				<div class="catalog-tree" style="border:none;margin-bottom:20px;">
+					<div class="form-inline">
+						<label class="control-label catalog-name fn-W50">险种：</label>
+						<select-comp [option]="insuranceTypeOption" (select)="chooseInsurance($event)"></select-comp>
+					</div>
+				</div>
+				<div class="catalog-tree" style="border:none;margin-bottom:20px;">
+					<div class="form-inline">
+						<label class="control-label catalog-name fn-W50">版本：</label>
+						<select class="fn-input fn-W495" [(ngModel)]="activeIdx" (change)="optionClick($event)">
+							<option *ngFor="let obj of versionList;let i = index;" value="{{i}}" >{{obj.name}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="catalog-tree" style="border:none;margin-bottom:20px;height: 34px;">
+					<div class="search-panel form-inline">
+				            <div class="form-group ">
+				                <label class="control-label catalog-name fn-W70">用户字典：</label>
+				                <div class="input-group fn-W395">
+				                    <div class="input-group-addon icon-BR"></div>
+				                    <input class="fn-input" type="text" placeholder="请输入字典名称" [(ngModel)]="searchWord" style="width: 365px;" (keyup.enter)="onEnterData($event)"/>
+				                </div>
+				            	<button type="submit" class="publicBtn fn-W40 fn-ML36" (click)="search()">搜索</button>
+				            </div>
+					</div>
+				</div>
+				<div class="form-inline" style="font-size: 13px;margin-bottom: 10px;">
+					<div class="form-group" style="margin-right: 262px;">
+						<label class="fn-MB0 fn-ML7">				
+							<input class="fn-VA1D fn-MR4"   type="checkbox" (change)="showNoCompare($event.target)" [checked]="noCompare"/>  只显示未比对的材料
+						</label>
+					</div>
+					<div class="form-group">
+						<span  style="margin-right: 30px;width: 52px;display:inline-block;" class="showColor fn-CuPo"><span class="fn-VA2D" *ngIf="isShow" (click)="cancelAll()">取消比对</span></span>
+						<span class="showColor fn-CuPo fn-VA2D" (click)="autoCompare()">自动比对</span>
+					</div>
+				</div>
+				<div class="InterventionTableBox" style="height: calc(100vh - 347px);background: #fff; overflow: auto;">
+			     	<div>
+			     	  	<div>
+						       <table class="table tableLayout"  width="100%">
+						            <thead>
+						                <tr style="height: 30px;">
+						                    <th width="5%"><label class="fn-MB0"><input type="checkbox" [disabled]="materialCatalogue && materialCatalogue.length == 0" [checked] ="allChecked" (change)="isAllChecked()"></label></th>
+						                    <th width="40%" style="text-align: left;padding-left: 20px;">医院字典</th>
+						                    <th width="40%" style="text-align: left;padding-left: 20px;">映射字典</th> 
+						                    <th width="15%">操作</th>
+						                </tr>
+						            </thead>
+						            <tbody *ngIf = "materialCatalogue && materialCatalogue.length">
+						            	<tr *ngFor = "let item of materialCatalogue let i=index" [class.activeTr]="item.activeColor">
+						            		<td width="5%"><label class="fn-MB0"><input type="checkbox" [checked] = "item.checked" (change)="comfirmIsChecked(i)"></label></td>
+						                    <td width="40%" class="fn-ellipsis" title="{{item.iDeptName}}" (click)="getCompareData(item,i)" style="text-align: left;padding-left: 20px;">{{item.iDeptName}}</td>
+						                    <td width="40%" class="fn-ellipsis" title="{{item.deptName}}" (click)="getCompareData(item,i)" style="text-align: left;padding-left: 20px;">{{item.deptName}}</td> 
+						                    <td width="15%"  style="color: #4EB7E0;cursor: pointer;" *ngIf = "item.deptName&&item.iDeptName" (click)="getCompareData(item,i)"><a>修改比对</a></td>
+						                    <td width="15%"  style="color: #4EB7E0;cursor: pointer;" *ngIf = "!item.deptName&&item.iDeptName" (click)="getCompareData(item,i)"><a>建立比对</a></td>
+						            	</tr>
+						            	
+						            </tbody>
+						            <tbody *ngIf = "materialCatalogue && materialCatalogue.length == 0">
+						            		<tr><td colspan="4">没有未比对数据</td></tr>
+						            </tbody>
+						        </table>
+			     	  	</div>
+			     	</div>
+				</div>   
+		</div>
+		<div class="fn-left fn-W20 container-center" style="height: calc(100vh - 95px);"></div>
+		<div class="container-right fn-left" style="height: calc(100vh - 95px);width:400px;position: relative;" *ngIf = "showRight">
+			<div *ngIf = 'materialTip.length'>
+				<div class="catalog-tree rightSearch" style="border:none;height: 34px;">
+					<div class="search-panel form-inline">
+					    <div class="form-group ">
+					        <label class="control-label catalog-name fn-W70">标准字典：</label>
+					        <div class="input-group fn-MR10 fn-W238">
+					            <div class="input-group-addon icon-BR"></div>
+					            <input class="fn-input" type="text" placeholder="请输入字典名称" [(ngModel)]="searchRightWord" style="width: 200px;" (keyup.enter)="onEnterDetailData($event)"/>
+					        </div>
+					        <button type="submit" class="publicBtn fn-W40" (click)="searchRight()">搜索</button>
+					    </div>
+					</div>
+				</div>
+				<div class="InterventionTableBox" style="height: calc(100vh - 167px);background: #fff;overflow: auto">
+				     	<div>
+				     	  	<div style="padding-left:20px;padding-right: 20px;">
+							       <table  style="width: 100%;"  class="fn-table">
+							       		<tr *ngFor ="let item of materialRightCatalogue let i=index" style="height: 30px;vertical-align: top;">
+							       			<td  valign="middle">
+							       				<div class="fn-H20" (click)="getRightData(item)">
+							       					<span class="compareIcon fn-disInBl fn-MR10"></span>
+							       					<span title="{{item.summary}}" class="fn-disInBl fn-ellipsis fn-W326">{{item.summary}}</span>
+							       				</div>
+							       			</td>
+							       			
+							       		</tr>
+							       </table>
+				     	  	</div>
+				     	</div>
+				</div>   
+			</div>
+			<div *ngIf = 'materialTip.length==0' class="compareTip">当前版本下没有标准字典数据用来比对</div>
+		</div>   
+				
+
+    </div>
+<div>
+<my-dialog></my-dialog>

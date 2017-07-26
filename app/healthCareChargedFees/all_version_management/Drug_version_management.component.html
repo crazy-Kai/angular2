@@ -1,0 +1,132 @@
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">	
+	<div class="catalogObject-content" style="min-height: calc(100vh - 95px);padding-left: 15px;padding-right: 15px;padding-top: 15px;min-width: 1000px;">	
+	    <div class="versionManagementBox">
+	         <div class="versionManagementReturnImg" routerLink='/healthCareChargedFees/medicareCatalog/drugs'>
+	         	 <span>< 返回</span>
+	         </div>
+	        <div class="versionManagementReturnImg fn-right" (click)="addVersionManagement()">
+	             <img src="../../../app/images/u6735.png"/>
+	             <span>添加</span>
+	        </div>
+	    </div> 
+		<div class="InterventionTableBox" style="min-height: calc(100vh - 232px);">
+	     	<div>
+	     	  	<div style="background: #fff;width: 100%;" id="tableHead">
+				    <table class="table alert-message-details-th tableLayout" >
+				        <thead>
+			                <tr style="height: 45px;">
+			                    <th width="15%">新建目录信息</th>
+			                    <th width="15%">基础目录信息</th>
+			                    <th width="15%">对应规则版本</th>
+			                    <th width="25%">说明</th>
+			                    <th width="20%">最近修改日期</th>
+			                    <th>操作</th>
+			                </tr>
+				        </thead>
+				    </table>
+	     	  	</div>
+	     	</div>
+		    <div>
+	            <div style="min-height:calc(100vh - 233px - 7px - 1px - 1px);width:100%;">
+		        	<div *ngIf="optRecipeList && optRecipeList.length != 0" style="background: #fff;margin-right:0px;">
+			            <table class="table tableLayout" style="margin: 0px;">
+			                <tbody>
+			                    <tr *ngFor="let optRecipe of optRecipeList;let i = index;" class="activedata">
+									<td width="15%" class="fn-ellipsis" title="{{optRecipe.summary}}">{{optRecipe.summary}}</td>
+									<td width="15%" class="fn-ellipsis" title="{{optRecipe.basic}}">{{optRecipe.basic==''?'无':optRecipe.basic}}</td>
+									<td width="15%" class="fn-ellipsis" title="{{optRecipe.mrvName}}">{{optRecipe.mrvName==''?'未设置':optRecipe.mrvName}}</td>
+									<td width="25%" class="fn-ellipsis" title="{{optRecipe.description}}">{{optRecipe.description}}</td>
+									<td width="20%" class="fn-ellipsis" title="{{optRecipe.gmtModified}}">{{optRecipe.gmtModified}}</td>
+									<td>
+										<a style="cursor: pointer;color: blue;" (click)="choose(optRecipeList[i].id,i)">修改</a>
+									</td>
+								</tr>
+			                </tbody>
+			            </table>
+	        		</div>
+	        		<div>
+						<table class="table" style="margin: 0px;">
+							<tbody>
+							     <tr *ngIf="optRecipeList && optRecipeList.length == 0" style="text-align: center;">
+			                          <td width="100%" style="padding: 10px 0;text-align: center;">没有找到相关数据</td>
+			                     </tr>
+							</tbody>
+						</table>
+					</div>
+	            </div>
+		    </div>
+		</div>
+	</div>
+</div>	
+<!--弹窗浮动层  添加版本-->  
+ <my-dialog class="show-dialog1" id="show-dialog1">
+ 	 <template #dialogTemplate let-dialogModel *ngIf="isShow">
+        <div class="datatype-choosing1">
+              <div class="chooseVersion">请选择将要修改的目录</div>
+              <div class="chooseVersionContent">
+              	<div class="versionContentBox">
+              		<span>目录信息：</span>
+              			<select [(ngModel)]="activeIdx" (change)="optionClick($event)" class="fn-input">
+	              			  <option *ngFor="let obj of selectList;let i = index;" value="{{i}}" >{{obj.name}}</option>
+              		     </select>
+              	</div>
+              </div>
+               <div class="addcatalog-button fn-MT20" style="padding-left: 73px;">
+			        <span class="btn-cancel fn-MR10">
+						<button class="btn btn-primary fn-W80 fn-H30" (click)="dialogModel.customModule = false;">取消</button>
+			        </span>
+			        <span class="btn-save">
+						<button class="publicSureBtn fn-W80 fn-H30" (click) = "sureAddVersion()">保存</button>
+			        </span>
+			   </div>
+        </div>
+    </template>   
+    <template #dialogTemplate let-dialogModel *ngIf="isTextShow">
+        <div class="datatype-choosing2">
+              <div class="chooseVersion">目录信息添加</div>
+              <div class="chooseVersionContent">
+              	<div class="versionContentBox" >
+              		<span>目录名称：</span>          
+              		<input type="text" [disabled]="isEdit" placeholder="支持数字字母汉字小数点，且长度不能超过10" maxlength = "10" title="支持数字字母汉字小数点，且长度不能超过10" [(ngModel)]="versionManagementSave.summary" class="fn-input" style="width: 230px;" (input)="testName()" (blur)="testInsuranceName(versionManagementSave.summary)"/>
+              	
+              	</div>
+              	<div class="versionContentBox">
+              		<span>目录说明：</span>
+              		<textarea [(ngModel)]="versionManagementSave.description" class="form-control fn-W378" style="max-width: 230px;font-size:13px;border-radius: 0;max-height:100px;height:100px;padding-left: 5px !important;"></textarea>
+              	</div>
+              </div>
+              <div class="addcatalog-button fn-MT20" style="padding-left: 70px;">
+			        <span class="btn-cancel fn-MR10">
+						<button class="btn btn-primary fn-W80 fn-H30" (click)="dialogModel.customModule = false;">取消</button>
+			        </span>
+			        <span class="btn-save">
+						<button class="publicSureBtn fn-W80 fn-H30" (click)="saveVersion()">保存</button>
+			        </span>
+			   </div>
+        </div>
+    </template>      
+    <template #dialogTemplate let-dialogModel *ngIf="isChangeHide">    
+        <div class="datatype-choosing2">
+              <div class="chooseVersion">目录信息修改</div>
+              <div class="chooseVersionContent">
+              	<div class="versionContentBox">
+              		<span>目录修改：</span>          
+              		<input type="text" [disabled]="isEdit" placeholder="支持数字字母汉字小数点，且长度不能超过10" maxlength = "10" title="支持数字字母汉字小数点，且长度不能超过10" [(ngModel)]="modificationsummary" class="fn-input" style="width: 230px;" (input)="testNameChange()" (blur)="testInsuranceName(modificationsummary)"/>
+              	
+              	</div>
+              	<div class="versionContentBox">
+              		<span>目录说明：</span>
+              		<textarea [(ngModel)]="modificationdescription" class="form-control fn-W378" style="max-width:230px;font-size:13px;border-radius: 0;max-height:100px;height:100px;padding-left: 5px !important;"></textarea>
+              	</div>
+              </div>
+              <div class="addcatalog-button fn-MT20" style="padding-left: 70px;">
+			        <span class="btn-cancel fn-MR10">
+						<button class="btn btn-primary fn-W80 fn-H30" (click)="dialogModel.customModule = false;">取消</button>
+			        </span>
+			        <span class="btn-save">
+						<button class="publicSureBtn fn-W80 fn-H30" (click)="modificationSave()">保存</button>
+			        </span>
+			   </div>
+        </div>
+    </template>
+ </my-dialog>

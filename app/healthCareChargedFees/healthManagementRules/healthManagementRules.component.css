@@ -1,0 +1,351 @@
+@charset "utf-8";
+.managementRulesHeaderBox{
+	padding: 20px 0 0 0;
+	font-family: STHeitiSC-Medium;
+	font-size: 13px;
+	color: #515253;
+}
+a{
+	text-decoration: none;
+}
+ul{
+	padding-bottom: 5px;
+}
+.managementRulesHeaderBox .selects{
+	display: inline-block;
+}
+.managementRulesHeaderBox .selects.right{
+	float: right;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.selects .control-label{
+	font-weight: normal;
+}
+.control-label{
+	margin-left: 10px;
+}
+.changeRules{
+	width: 240px;
+	height: 25px;
+	cursor: pointer;
+	float: left;
+}
+.selectListcomp{
+	width: 280px !important;
+	height: 28px !important;
+	display: block;
+}
+.selectListcomp select.my-select {
+	width: 280px;
+}
+.form-control{
+	width: 200px !important;
+	height: 30px !important;
+	display: block;
+}
+/*.insurancechange{
+	float: left;
+	display: block;
+	line-height: 25px;
+}*/
+/*.changeRulesinsurance{
+	width: 280px;
+	display: block;
+	float: left;
+	height: 28px;
+}*/
+.selects .rules{
+	width: 65px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	cursor: pointer;
+}
+/*banben*/
+.versionManagementBigBox{
+	width: 120px;
+	height: 28px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+.versionManagementBigBox .versionManagementImg, .versionManagementBigBox .versionManagementTitle {
+	display: inline-block;
+}
+.versionManagementBigBox .versionManagementImg img{
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+.addrules img{
+	width: 15px;
+	height: 15px;
+	float: left;
+	cursor: pointer;
+	margin-top: 2px;
+}
+/*规则*/
+.RulesCheckBigBox{
+	width: 120px;
+	height: 28px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+.RulesCheckBigBox .RulesCheckImg ,.RulesCheckBigBox .RulesCheckTitle{
+	display: inline-block;
+}
+.RulesCheckImg img{
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+}
+.radiusdata{
+	width: 145px;
+	height: 180px;
+	display: inline-block;
+	cursor: pointer;
+}
+.radiusdata img{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+.radiusdata1{
+	background:#5DC2F0 100%;
+}
+.radiusdata2{
+	background:#83B4FF 100%;
+}
+.radiusdata3{
+	background:#41CEAB 100%;
+}
+.radiusdata4{
+	background:#7E74D2 100%;
+}
+.radiusdata5{
+	background:#F16D67 100% ;
+}
+.clearfix {
+	display: table;
+	content: "";
+	clear: both;
+}
+/*倒三角*/
+.operator, .operatorBox .active{
+	width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 20px solid red;
+    margin-left: 55px;
+}
+.operatorBox{
+	width: 100%;
+	position: relative;
+	top: -10px;
+	display: inline-block;
+}
+.operatorBox td {
+	padding: 0;
+}
+.operatorBox .operator, .operatorBox .active{
+    display:block; 
+    width:0; 
+    height:0; 
+    border-width:0 15px 15px; 
+    border-style:solid; 
+    border-color:transparent transparent #E0E0E0; 
+    position:absolute; 
+    margin-left:55px;/* 三角形居中显示 */
+}
+.operatorBox .operator em, .operatorBox .active em{
+    display:block; 
+    width:0; 
+    height:0; 
+    border-width:0 15px 15px; 
+    border-style:solid; 
+    border-color:transparent transparent white; 
+    position:absolute; 
+    top:1px; 
+    left:-15px;
+}
+/*//圆圈里面的内容*/
+.HealthRulesRadiusHeaderBox{
+	display: inline-block;
+	line-height: 45px;
+	color: #fff;
+	font-size: 18px;
+	float: right;
+	margin-right: 15px;
+	margin-top: 10px;
+}
+.search-bar img{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	margin-left: 15px;
+}
+.HealthRulesRadiusBigBox .radiusTitle{
+	font-size: 18px;
+	display: inline-block;
+	margin-left: 20px;	
+}
+.HealthCount{
+	width: 145px;
+	height: 30px;
+	margin-top: 20px;
+	font-size: 28px;
+	text-align: center;	
+}
+.HealthRules{
+	width: 100%;
+	height: 30px;
+	margin-top: 25px;
+	font-size: 14px;
+	text-align: center;
+}
+/*//下面的大内容*/
+.HealthBigBox{
+	background: rgba(255,255,255,0.80);
+    border: 1px solid #E0E0E0;
+    border-radius: 3px 3px 0px 3px 3px;
+    width: 100%;
+}
+.treeBox img{
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+}
+/*左边*/
+.HealthBigLeftBox{
+	width: 34%;
+	float: left;
+}
+.mytree span{
+	display: block;
+	width:150px;
+	height: 18px;
+	line-height: 26px;
+	float: left;
+}
+/*左边公共样式*/
+.HealthBigLeftBox span{
+	font-size: 13px;
+	font-family: STHeitiSC-Light;
+	color:#262626;
+	margin-top: -1px;
+	cursor: pointer;
+}
+.seeDoctor span{
+	margin-left: 10px;
+}
+.HealthBigLeftBox a{
+	color: #4EB7E0;
+	font-size: 13px;
+	margin-left: 5px;
+}
+/*后边的头部公共样式end*/
+.HealthBigRightBottomBox div{
+	width: 100%;
+	padding: 20px;
+}
+.HealthBigRightBottomBox div img{
+	width: 100%;
+}
+.HealthBigRightBottomBox p{
+	color: black;
+	font-size: 25px;
+	text-align: center;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+.HealthBigRightBottomBox span {
+	color: #515253;
+	font-size: 13px;
+	display: inline-block;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+.HealthBigRightBox{
+	width: 64%;
+	display: inline-block;
+	float: right;
+	border: 1px solid #E0E0E0;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.HealthBigRightBox .HealthBigRightChangeTime {
+	width: 40%;
+}
+.HealthBigRightBox .HealthBigRightChangeTime span {
+	display: inline-block;
+	width: 85px;
+	text-align: right;
+}
+.HealthBigRightBox .HealthBigRightChangePerson  {
+	width: 28%;
+}
+.HealthBigRightBox .HealthBigRightChangeTime.timeCicle , .HealthBigRightBox .HealthBigRightChangeTime.alerdyChoice{
+	margin-top: 25px;
+}
+.HealthBigRightBox input{
+	width: 327px;
+	height: 28px;
+	display: inline-block;
+}
+.nextStep{
+	width: 90px !important;
+	height: 30px !important;
+}
+.last_next{
+	padding-top: 30px;
+	padding-left: 100px;
+}
+.datatype-choosing1{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 1050;
+    width: 350px;
+    padding: 25px;
+    background: white;
+    transform: translate(-50%, -50%);
+}
+.title{
+	font-weight: bold;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: inline-block;
+	font-size: 18px;
+	width: 100%;
+	text-align: center;
+	color: #000;
+}
+.table{
+	margin-bottom: 0px;
+}
+
+.table thead th{
+	vertical-align: middle;
+    border: 1px solid #dfdfdf;
+    background: #f9f9f9;
+    padding: 0 0.75rem;
+    text-align: center;
+}
+.table-head thead th {
+	border-bottom:none;
+}
+.table td{
+	vertical-align: middle;
+	font-size: 13px;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+}

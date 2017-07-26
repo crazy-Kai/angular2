@@ -1,0 +1,418 @@
+<!--校验历史页面-->
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">
+	<div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);padding-left: 15px;padding-right: 15px;">
+	<!--头部信息-->
+		    <div class="RulesCheckoutHeaderBox" style="padding-top: 10px;padding-bottom: 10px;">
+		       <div class="versionManagementReturnBox fn-clear" style="width: 80%;display: inline-block;">
+		             <div class="versionManagementReturn">
+		             	<span routerLink='/healthCareChargedFees/healthManagementRules' style="cursor: pointer;">< 返回</span>
+		             </div>
+		        </div>
+		    </div> 
+		 <!--修改后的搜索条件start-->
+		    <div class='bigBox fn-clear' style="background: #fff;">
+				<div class="search-bar" fole="form" >
+					<table id="noBorders" class="fn-table fn-table-input" width="100%">
+						<tr>
+							<td width="94" align="right" class="fn-LH30">发生时间：</td>
+							<td width="20%">
+									<div style="width:195px;">
+										<span (click)="$event.stopPropagation();">
+										    <input class="fn-input ipttime" placeholder="yyyy-mm-dd" (click)="toggleStart(startDateforSearch)" (ngModelChange)="setEndInterval($event)"
+										        [maxDate]="maxStartDate" name="startDateforSearch" [(ngModel)]="startDate" tabIndex="-1" ngbDatepicker #startDateforSearch="ngbDatepicker" [disabled]="static">
+										    -
+										    <input class="fn-input ipttime" placeholder="yyyy-mm-dd" (click)="toggleEnd(endDateforSearch)" (ngModelChange)="setStrartInterval($event)"
+										        [minDate]="minEndDate" [maxDate]="maxEndDate" name="endDateforSearch" [(ngModel)]="endDate" tabIndex="-1" ngbDatepicker #endDateforSearch="ngbDatepicker" [disabled]="static">
+										</span>
+									</div>
+							</td>
+							<td width="104" align="right" class="fn-LH30">规则名称：</td>
+							<td width="14%">
+								<input type="text" class="fn-input fn-ellipsis" style="width:130px;" [(ngModel)]="nodeName" readonly/>
+							</td>
+							<td width="94" align="right" class="fn-LH30">分支名称：</td>
+							<td  width="14%">
+								 <input type="text" class="fn-input" style="width:130px;" [(ngModel)]="lookRecipeList.branch"/>
+							</td>
+							<td width="94" align="right" class="fn-LH30" >警示信息数：</td>
+							<td width="14%">
+								<!--<select class="fn-input" style="width:130px" [(ngModel)]="lookRecipeList.warningNumber">
+					                <option value=''>全部</option>
+					                <option value="">全部</option>
+									<option>20</option>
+									<option>50</option>
+									<option>100</option>
+		            			</select>-->
+		            			<select class="fn-input" style="width:130px" [(ngModel)]="lookRecipeList.warningNumber" *ngIf="warningNumberShow">
+									<option>20</option>
+									<option value="" selected="selected">50</option>
+									<option>100</option>
+								</select>
+								<select class="fn-input" style="width:130px" [(ngModel)]="lookRecipeList.warningNumber" *ngIf="warningNumberShows">
+									<option>20</option>
+									<option value="50" selected="selected">50</option>
+									<option>100</option>
+								</select>
+							</td>
+							<td rowspan="3" width="80">
+								<div class="fn-ML10" style="height:118px;border-left:1px solid #ddd;">
+									<!--<button type="submit" class="btn btn-primary btn-sm" style="margin-left:12px;margin-top:50px;">数据校验</button>-->
+									<!--<button class="publicBtn fn-ML12 fn-MT45" (click)="search()">数据校验</button>-->
+									<button type="submit" class="publicBtn fn-ML12 fn-MT45" (click)="search()">数据校验</button>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td width="94" align="right" class="fn-LH30">患者年龄：</td>
+							<td width="20%" >
+								<!--<input  #startAge type="text" name="startAge" class="fn-input" style="width:90px;"  (change)="checkNumber(startAge.value)" />
+								~
+								<input #endAge type="text" class="fn-input" style="width:90px;"  (change)="checkOverCount(endAge.value)" />-->
+								<div style="width:195px;">
+									<input  #startAge type="text" name="startAge" class="fn-input" style="width:90px;"  (change)="checkNumber($event.target.value)" value="{{startAgeNUmber}}"/>
+									-
+									<input #endAge type="text" class="fn-input" style="width:90px;"  (change)="checkOverCount($event.target.value)" value="{{endAgeNumber}}"/>
+							    </div>
+							</td>
+							<td width="104" align="right" class="fn-LH30">就诊方式：</td>
+							<td width="14%">
+								<select class="fn-input" style="width:130px" [(ngModel)]="lookRecipeList.visitSource">
+									<option value=''>全部</option>
+									<option value='1'>门诊</option>
+									<option value='2'>住院</option>
+								</select>
+							</td>
+							<td width="94" align="right" class="fn-LH30">患者性别：</td>
+							<td width="14%">
+								<select class="fn-input" style="width:131px" [(ngModel)]="lookRecipeList.sex">
+									<option value=''>全部</option>
+									<option value='1'>男</option>
+									<option value='2'>女</option>
+								</select>
+							</td>
+							<td width="94" align="right" class="fn-LH30">孕产信息：</td>
+							<td width="14%">
+								<select class="fn-input" style="width:130px" [(ngModel)]="lookRecipeList.isPregnant">
+									<option value=''>全部</option>
+									<option value='1'>是</option>	
+									<option value='0'>否</option>	
+								</select>
+							</td>
+						</tr>
+						<!--新增的  点击就诊下面只展示规则类型-->
+						<tr *ngIf="isTypeShow">
+							<td width="94" align="right" class="fn-LH30">规则类型：</td>
+							<td width="20%">
+								<input type="text" class="fn-input" style="width:193px;" [(ngModel)]="type" readonly/>
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td>
+							<td width="195"  >
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td>
+							<td width="195" >
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td>
+							<td width="130" >
+							</td>
+						</tr>
+						<!--end-->
+						<!--疾病-->
+						<tr *ngIf="type=='疾病'&&isServiceTableShow">
+							<td width="80" align="right" class="fn-LH30">诊断疾病：</td>
+							<td width="130">
+								<input type="text" placeholder="{{diseasesChildrenName}}" (click)=checkdiseases($event) class="fn-ellipsis fn-input" style="width:193px;" [(ngModel)]="diseasesIndexName" readonly/>
+							</td>
+							<td width="80" align="right" class="fn-LH30">规则类型：</td>
+							<td >
+								<input type="text" class="fn-input" style="width:131px;" [(ngModel)]="type" readonly/>
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td>
+							<td width="195" >
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td> 
+							<td width="130" >
+							</td>
+						</tr>
+						<!--药品-->
+						<tr *ngIf="type=='药品'&&isServiceTableShow">
+							<td width="80" align="right" class="fn-LH30">使用药物：</td>
+							<td width="130">
+								<input type="text" placeholder="{{drugsChildrenName}}" (click)=checkdrugs($event) class="fn-ellipsis fn-input" style="width:193px;" [(ngModel)]="drugsIndexName" readonly/>
+							</td>
+							<td width="80" align="right" class="fn-LH30">规则类型：</td>
+							<td>
+								<input type="text" class="fn-input" style="width:131px;" [(ngModel)]="type" readonly/>
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td>
+							<td width="195" >
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td>
+							<td width="130" >
+							</td>
+						</tr>
+						<!--项目-->
+						<tr *ngIf="type=='项目'&&isServiceTableShow">
+							<td width="80" align="right" class="fn-LH30">使用项目：</td>
+							<td width="130">
+								<input type="text" placeholder="{{itemsChildrenName}}" (click)=checkprojects($event) class="fn-ellipsis fn-input" style="width:193px;" [(ngModel)]="projectsIndexName" readonly/>
+							</td>
+							<td width="80" align="right" class="fn-LH30">规则类型：</td>
+							<td>
+								<input type="text" class="fn-input" style="width:131px;" [(ngModel)]="type" readonly/>
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td>
+							<td width="195" >
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td>
+							<td width="130" >
+							</td>
+						</tr>
+						<!--材料-->
+						<tr *ngIf="type=='材料'&&isServiceTableShow">
+							<td width="80" align="right" class="fn-LH30">使用材料：</td>
+							<td width="130">
+								<input type="text" placeholder="{{projectsChildrenName}}" (click)=checkMaterials($event) class="fn-ellipsis fn-input" style="width:195px;" [(ngModel)]="materialsIndexName" readonly/>
+							</td>
+							<td width="80" align="right" class="fn-LH30">规则类型：</td>
+							<td>
+								<input type="text" class="fn-input" style="width:131px;" [(ngModel)]="type" readonly/>
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td>
+							<td width="195" >
+							</td>
+							<td width="80" align="right" class="fn-LH30"></td>
+							<td width="130" >
+							</td>
+						</tr>
+					</table>
+				 </div>
+	          </div>
+		 <!--修改后的搜索条件end-->
+		 <!--修改后的表格start-->
+			 <div class="InterventionTableBox" style="height: calc(100vh - 320px);">
+		   	    <div>
+		     	  	<div style="padding-right: 17px; background: #fff;" id="tableHead">
+					      <table class="table alert-message-details-th tableLayout">
+					            <thead>
+					                <tr style="height: 45px;">
+					                    <th width="10%">就诊医院</th>
+					                    <th width="10%">就诊科室</th>
+					                    <th width="10%">医生职称</th>
+					                    <th width="10%">就诊类型</th>
+					                    <th width="10%">患者年龄</th>
+					                    <th width="10%">患者性别</th>
+					                    <th width="10%">诊断结果</th>
+					                    <th width="10%">警示信息</th>
+					                    <th width="10%">建议信息</th>
+					                    <th>详情</th>
+					                </tr>
+					            </thead>
+					       </table>
+		     	  	</div>
+	            </div>    
+	     	  	<div>
+		            <div style="height:calc(100vh - 359px - 9px - 9px - 9px);width:100%;overflow-y: scroll;">
+		            	<div style="background: #fff;margin-right:0px;"  *ngIf="msgList && msgList.length != 0" style="background: #fff;">
+				            <table class="table tableLayout" style="margin: 0px;">
+				                <tbody>
+				                    <!--<tr class="activedata">
+					                    <td width="10%" class="fn-ellipsis">杭州第一人民医院</td>
+					                    <td width="10%">心血管内科</td>
+					                    <td width="10%">主任</td>
+					                    <td width="10%">门诊</td>
+					                    <td width="10%">20</td>
+					                    <td width="10%">女</td>
+					                    <td width="10%">良好</td>
+					                    <td width="10%">警示信息</td>
+					                    <td width="10%">提示建议</td>
+					                    <td routerLink = "/healthCareChargedFees/healthManagementRules/interferenceAnalysis/interferenceAnalysis">
+					                    	<a style="cursor: pointer;color: blue;">查看</a>
+					                    </td>
+				                    </tr>
+				                     <tr class="activedata">
+					                    <td width="10%" class="fn-ellipsis">杭州第一人民医院</td>
+					                    <td width="10%">心血管内科</td>
+					                    <td width="10%">主任</td>
+					                    <td width="10%">门诊</td>
+					                    <td width="10%">20</td>
+					                    <td width="10%">女</td>
+					                    <td width="10%">良好</td>
+					                    <td width="10%">警示信息</td>
+					                    <td width="10%">提示建议</td>
+					                    <td routerLink = "/healthCareChargedFees/healthManagementRules/inHospitalPage/inHospitalPage">
+					                    	<a style="cursor: pointer;color: blue;">查看</a>
+					                    </td>
+				                    </tr>-->
+				                    <tr *ngFor="let item of msgList;let i = index" >
+					                    <td width="10%" class="fn-ellipsis" title="{{item.hospital}}">{{item.hospital}}</td>
+					                    <td width="10%" class="fn-ellipsis" title="{{item.dept}}">{{item.dept}}</td>
+					                    <td width="10%">{{item.docTitle}}</td>
+					                    <!--<td width="10%">{{item.source == '1' ? '门诊' : (item.sex == '2' ? '住院' : '住院')}}</td>-->
+					                    <td width="10%">{{item.source==1?'门诊':'住院'}}</td>
+					                    <td width="10%">{{item.age}}</td>
+					                    <!--<td width='10%'>{{item.sex == '1' ? '男' : (item.sex == '2' ? '女' : '全部')}}</td>-->
+					                    <td width="10%">{{item.sex==1?'男':'女'}}</td>
+					                    <td width="10%" class="fn-ellipsis" title="{{item.disease}}">{{item.disease}}</td>
+					                    <td width="10%" class="fn-ellipsis" title="{{item.message}}">{{item.message}}</td>
+					                    <td width="10%" class="fn-ellipsis" title="{{item.opinion}}">{{item.opinion}}</td>
+					                    <!--<td routerLink = "/healthCareChargedFees/healthManagementRules/interferenceAnalysis/interferenceAnalysis">
+					                    	<a style="cursor: pointer;color: blue;" (click)='lookRecipe(item.eventNo,item.hospitalNo)'>查看</a>
+					                    </td>-->
+					                    <!--<td>
+					                    	<a target="_blank"  style="cursor: pointer;color: blue;" (click)='lookRecipe(item.eventNo,item.hospitalNo,item.source)'>查看</a>
+					                    </td>-->
+					                    <td>
+					                    	<p *ngIf = "item.source==1">
+					                    		<a target="_blank" href="healthCareChargedFees/healthManagementRules/interferenceAnalysis/interferenceAnalysis/{{item.eventNo}}/{{item.hospitalNo}}" style="cursor: pointer;color: blue;">查看</a>
+					                    	</p>
+					                    	<p *ngIf = "item.source==2">
+					                    		<a target="_blank" href="healthCareChargedFees/healthManagementRules/inHospitalPage/inHospitalPage/{{item.eventNo}}/{{item.hospitalNo}}" style="cursor: pointer;color: blue;">查看</a>
+					                    	</p>
+					                    </td>
+				                    </tr>
+				                </tbody>
+				            </table>
+		        		</div>
+		        		<div style="background: #fff;">
+			        		<div  *ngIf="msgList && msgList.length == 0" style="background: #fff;">	
+					            <table class="table" style="margin: 0px;">
+					                <tbody>
+					                  <tr>
+										<td>没有找到相关数据</td>
+					                  </tr>
+					                </tbody>
+					            </table>
+			        		</div>
+		                </div>
+		        </div>    
+				<div style="padding-right:17px;" id="tableFooter">
+	        		<pagination [pageInfo]="pageInfo" (changePage)="setPage($event)" (changePageSize)="setPageSize($event)"></pagination>
+				</div>
+		    </div>  
+		  </div>   
+		  <div class="HealthBigBox clearfix" style="display: none;">
+				<div class="HealthBigLeftBox"> 	
+			    	<div class="catalog-list"  style="height:calc(100vh - 443px);overflow: auto;">
+			    		 <div>
+				            <Tree [nodes]="diseaseTreeData" [options]="diseaseOptions"  class="my-tree commonTree">
+				            	<template #treeNodeTemplate let-node>
+				                </template>	               
+				            </Tree>
+			        	 </div>  		
+			    	</div> 
+			    </div>  		
+		  </div>   
+		 <!--修改后的表格end-->
+    </div>
+</div>
+<my-dialog class="show-dialog">
+	<template *ngIf="isDiseaseShow" #dialogTemplate let-dialogModel>
+		<div class="addcatalog-content">
+			<div class="addcatalog-title">修改疾病</div>
+			<div class="catalog-list" style="height:calc(100vh - 640px);overflow: auto;">
+	    		<div>
+		            <Tree [nodes]="diseaseArray"  class="my-tree commonTree" [options]="diseasesOptions">
+		            	<template #treeNodeTemplate let-node>
+		            		<div class="treeBox">
+								<label style="font-weight: normal;">
+									<input class="fn-VA2D" name="disease" type="radio" *ngIf="node.data.type==1" style="margin-right: 2px;" (change)="diseasesClick($event,node.data.name,node.data.id)"/> 
+									{{node.data.name}}  
+								</label>
+		            		</div>
+		            	</template>	  	               
+		            </Tree>
+	        	 </div>  
+	    	</div> 
+			<div class="addcatalog-button fn-MT20">
+		        <span class="btn-cancel fn-MR10">
+					<button class="btn btn-primary fn-W80 fn-H30" style="padding-top: 7px; font-size:13px;" (click)="dialogModel.customModule = false;">取消</button>
+		        </span>
+		        <span class="btn-save">
+					<button class="publicBtn fn-W80 fn-H30" style="padding-top: 7px;"  (click)="surediseases()">确认</button>
+		        </span>
+		    </div>
+		</div>
+	</template>
+	<template *ngIf="isDrugsShow" #dialogTemplate let-dialogModel>
+		<div class="addcatalog-content">
+			<div class="addcatalog-title">修改药品</div>
+			<div class="catalog-list" style="height:calc(100vh - 640px);overflow: auto;">
+	    		<div>
+		            <Tree [nodes]="drugDataArray"  class="my-tree commonTree" [options]="drugsOptions">
+		            	<template #treeNodeTemplate let-node>
+		            		<div class="treeBox">
+								<label style="font-weight: normal;">
+									<input class="fn-VA2D" name="drugs" type="radio" *ngIf="node.data.type==1" style="margin-right: 2px;" (change)="drugsClick($event,node.data.name,node.data.id)"/> 
+									{{node.data.name}}
+								</label>
+		            		</div>
+		            	</template>	  	               
+		            </Tree>
+	        	 </div>  
+	    	</div> 
+			<div class="addcatalog-button fn-MT20">
+		        <span class="btn-cancel fn-MR10">
+					<button class="btn btn-primary fn-W80 fn-H30" style="padding-top: 7px; font-size:13px;" (click)="dialogModel.customModule = false;">取消</button>
+		        </span>
+		        <span class="btn-save">
+					<button class="publicBtn fn-W80 fn-H30" style="padding-top: 7px;"  (click)="sureDrugs()">确认</button>
+		        </span>
+		    </div>
+		</div>
+	</template>
+	<template *ngIf="isProjectsShow" #dialogTemplate let-dialogModel>
+		<div class="addcatalog-content">
+			<div class="addcatalog-title">修改项目</div>
+			<div class="catalog-list" style="height:calc(100vh - 640px);overflow: auto;">
+	    		<div>
+		            <Tree [nodes]="projectDataArray"  class="my-tree commonTree" [options]="projectsOptions">
+		            	<template #treeNodeTemplate let-node>
+		            		<div class="treeBox">
+								<label style="font-weight: normal;">
+									<input class="fn-VA2D" name="drugs" type="radio" *ngIf="node.data.type==1" style="margin-right: 2px;" (change)="projectsClick($event,node.data.name,node.data.id)"/> 
+									{{node.data.name}}
+								</label>
+		            		</div>
+		            	</template>	  	               
+		            </Tree>
+	        	 </div>  	
+	    	</div> 
+			<div class="addcatalog-button fn-MT20">
+		        <span class="btn-cancel fn-MR10">
+					<button class="btn btn-primary fn-W80 fn-H30" style="padding-top: 7px; font-size:13px;" (click)="dialogModel.customModule = false;">取消</button>
+		        </span>
+		        <span class="btn-save">
+					<button class="publicBtn fn-W80 fn-H30" style="padding-top: 7px;" (click)="sureProjects()">确认</button>
+		        </span>
+		    </div>
+		</div>
+	</template>
+    <template *ngIf="isMaterialsShow" #dialogTemplate let-dialogModel>
+		<div class="addcatalog-content">
+			<div class="addcatalog-title">修改材料</div>
+			<div class="catalog-list" style="height:calc(100vh - 640px);overflow: auto;">
+	    		<div>
+		            <Tree [nodes]="materialDataArray"  class="my-tree commonTree" [options]="materialsOptions">
+		            	<template #treeNodeTemplate let-node>
+		            		<div class="treeBox">
+								<label style="font-weight: normal;">
+									<input class="fn-VA2D" name="drugs" type="radio" *ngIf="node.data.type==1" style="margin-right: 2px;" (change)="materialsClick($event,node.data.name,node.data.id)"/> 
+									{{node.data.name}}
+								</label>
+		            		</div>
+		            	</template>	  	               
+		            </Tree>
+	        	 </div>  	
+	    	</div> 
+			<div class="addcatalog-button fn-MT20">
+		        <span class="btn-cancel fn-MR10">
+					<button class="btn btn-primary fn-W80 fn-H30" style="padding-top: 7px; font-size:13px;" (click)="dialogModel.customModule = false;">取消</button>
+		        </span>
+		        <span class="btn-save">
+					<button class="publicBtn fn-W80 fn-H30" style="padding-top: 7px;"  (click)="sureMaterials()">确认</button>
+		        </span>
+		    </div>
+		</div>
+	</template>
+</my-dialog>
+

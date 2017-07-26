@@ -1,0 +1,36 @@
+/* 科室目录样式 */
+.readOnly{
+	readOnly = true;
+}
+.pr{
+	position: relative;
+}
+.pa{
+	position: absolute;
+}
+.location{
+	left: 350px;
+	top: 0;
+	width: 75px;
+}
+.sp-font{
+	font-size: 13px;
+	top: 6px;
+	left: 15px;
+}
+.container-left  .input-group-addon{
+	padding: 0px;
+	width: 30px;
+ 	background:url('../app/images/u7006.svg') center center no-repeat;
+}
+/* 右侧表格样式 */
+
+/*.add-catalog-form  .form-group .form-reimbursement{
+	width:100px;float: left;
+}*/
+.add-catalog-form .form-inline .fn-W378{
+	width:378px;
+}
+
+
+

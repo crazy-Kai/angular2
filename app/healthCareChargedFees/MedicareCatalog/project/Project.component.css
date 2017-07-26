@@ -1,0 +1,33 @@
+/* 药品目录样式 */
+.readOnly{
+	readOnly = true;
+}
+.pr{
+	position: relative;
+}
+.pa{
+	position: absolute;
+}
+.location{
+	left: 350px;
+	top: 0;
+	width: 75px;
+}
+.sp-font{
+	font-size: 13px;
+	top: 6px;
+	left: 15px;
+}
+/* 右侧表格样式 */
+
+/*.add-catalog-form .form-group .chooseWord{
+	height:34px;
+	padding:5px 10px;
+}
+*/
+
+/*.add-catalog-form  .form-group .form-reimbursement{
+	width:100px;float: left;
+}
+
+*/

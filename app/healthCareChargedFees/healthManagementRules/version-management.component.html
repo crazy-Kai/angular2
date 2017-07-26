@@ -1,0 +1,73 @@
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">	
+<!--规则版本管理中的版本管理页面-->
+	<div class="catalogObject-content" style="min-height: calc(100vh - 95px);min-width: 1000px;padding-top: 15px;">
+		<div class="versionManagementBox">
+	        <div class="versionManagementReturnImg" routerLink='/healthCareChargedFees/healthManagementRules'>
+	         	 <span>< 返回</span>
+	        </div>
+	        <div class="versionManagementReturnImg fn-right" (click)=choose()>
+	             <img src="../../../app/images/u6735.png"/>
+	             <span>添加</span>
+	        </div>
+	    </div> 
+		<div class="InterventionTableBox" style="min-height: calc(100vh - 232px);padding-left: 15px;padding-right: 15px;">
+	     	<div>
+	     	  	<div style="background: #fff;width: 100%;" id="tableHead">
+				    <table class="table alert-message-details-th tableLayout" >
+				        <thead>
+			                <tr style="height: 45px;">
+			                    <th width="15%">规则版本</th>
+						    	<th width="15%">版本说明</th>
+						    	<th width="15%" class="fn-ellipsis" title="对应疾病目录">对应疾病目录</th>
+						    	<th width="15%" class="fn-ellipsis" title="对应药品目录">对应药品目录</th>
+						    	<th width="15%" class="fn-ellipsis" title="对应项目目录">对应项目目录</th>
+						    	<th width="15%" class="fn-ellipsis" title="对应材料目录">对应材料目录</th>
+						    	<th>操作</th>
+				            </tr>
+				        </thead>
+				    </table>
+	     	  	</div>
+	     	</div>
+		    <div>
+	            <div style="min-height:calc(100vh - 192px - 7px - 1px - 1px);width:100%;">
+		        	<div *ngIf="optRecipeList && optRecipeList.length != 0" style="background: #fff;margin-right:0px;">
+			            <table class="table tableLayout" style="margin: 0px;">
+			                <tbody>
+								<tr *ngFor="let optRecipe of optRecipeList;let i = index;" class="trContent">
+									<td width="15%" class="fn-ellipsis" title="{{optRecipe.name}}">{{optRecipe.name}}</td>
+									<td width="15%" class="fn-ellipsis" title="{{optRecipe.description}}">{{optRecipe.description==''?'暂无':optRecipe.description}}</td>
+									<td width="15%" class="fn-ellipsis" title="{{optRecipe.diseaseName}}">{{optRecipe.diseaseName}}</td>
+									<td width="15%" class="fn-ellipsis" title="{{optRecipe.drugName}}">{{optRecipe.drugName}}</td>
+									<td width="15%" class="fn-ellipsis" title="{{optRecipe.itemName}}">{{optRecipe.itemName}}</td>
+									<td width="15%" class="fn-ellipsis" title="{{optRecipe.materialName}}">{{optRecipe.materialName}}</td>
+									<td>
+										<p style="display: inline-block;">
+											<a style="cursor: pointer;color: blue;" (click)=modification(optRecipe.id) (click)="isChangeShow=false;isChangeHide=true">修改</a>
+										</p>
+										<span style="display: none;">|</span>
+										<p style="display: none;" *ngIf="optRecipe.status == 1 ">
+											<a style="cursor: not-allowed;color: #ccc;text-decoration: none;">&nbsp;&nbsp;删除</a>
+										</p>
+									</td>
+								</tr>
+			                </tbody>
+			            </table>
+	        		</div>
+	        		<div>
+						<table class="table" style="margin: 0px;">
+							<tbody>
+							     <tr *ngIf="optRecipeList && optRecipeList.length == 0" style="text-align: center;">
+			                          <td width="100%" style="padding: 10px 0;text-align: center;">没有找到相关数据</td>
+			                     </tr>
+							</tbody>
+						</table>
+					</div>
+	            </div>
+		    </div>
+		</div>
+	</div>
+</div>
+<my-dialog></my-dialog>
+
+
+

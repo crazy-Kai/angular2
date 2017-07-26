@@ -1,0 +1,184 @@
+<!-- 疾病目录模版 -->
+<div class="catalogObject fn-clear" style="height: calc(100vh - 80px);">
+    <div class="catalogObject-content" style="min-width:1100px;width:calc(100vw - 190px);min-height: calc(100vh - 95px);">
+
+		<div class="container-left fn-left" style="min-height:calc(100vh - 95px);">
+
+			<div class="selected-insurance form-inline">
+				<div class="form-group">
+					<label class="control-label fn-W42">险种：</label>
+					<div class="fn-disInBl fn-W323">
+						<select-comp [option]="insuranceTypeOption" (select)="chooseInsurance($event)"></select-comp>
+					</div>
+				</div>
+			</div>
+			<div class="selected-insurance form-inline">	
+				<div class="form-group">
+					<label class="control-label fn-W42">目录：</label>
+					<div *ngIf="isTextShow" class="fn-disInBl fn-H20 fn-W323 fn-clear" style="vertical-align: -6px;">
+						<div class="fn-left fn-H20">
+							<span  title="{{versionName}}" style="vertical-align: -4px;" class="fn-disInBl versionName fn-ellipsis">{{versionName}}
+							</span>
+						</div>
+						<div *ngIf="showSearchBtn" class="fn-left switchVerson" (click)="isShow=true;isTextShow=false;">切换目录
+						</div>
+						<div class="fn-right cursor" (click)="versionControl()">
+							<span class="verson-icon"></span>
+							<span class="fn-disInBl">目录管理</span>
+						</div>
+					</div>
+					<div *ngIf="isShow" class="fn-disInBl fn-W323 ">
+						<div class="fn-disInBl fn-W250 fn-MR-8" >
+							<select class="fn-input fn-W235" [(ngModel)]="activeIdx" (change)="optionClick($event)">
+								<option *ngFor="let obj of list;let i = index;" value="{{i}}" >{{obj.name}}</option>
+							</select>
+							
+						</div>
+						<div class="fn-right fn-LH28 cursor" (click)="versionControl()">
+							<span class="verson-icon"></span>
+							<span class="fn-right ">目录管理</span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="catalog-tree" style="min-height:calc(100vh - 190px);">
+				<div class="catalog-header">
+							<div class="search-panel form-inline">
+						            <div *ngIf="showSearchBtn" class="form-group">
+						                <label class="control-label catalog-name fn-W70">疾病名称：</label>
+						                <div class="input-group fn-MR10 fn-W220">
+						                    <div class="input-group-addon"></div>
+						                    <input class="fn-input" style="width:190px;"  type="text" maxlength="30" placeholder="请搜索疾病名称" [(ngModel)]="searchWord"/>
+						                </div>
+						            	<button type="submit" class="publicBtn fn-W40" (click)="search()">搜索</button>
+						            </div>
+	        				</div>
+							<div  class="fn-LH34  setting">
+								<span *ngIf="showSearchBtn" class="warningMessage" (click)="setMessage()">警示信息设置</span>
+								
+							</div>
+				</div>
+				<div id="data-catalog-list" class="catalog-list" style="height:calc(100vh - 265px);overflow: auto;">
+					<div>
+			            <Tree #tree [nodes]="diseaseTreeData"  class="my-tree commonTree"   [options]="options"  (onActivate)="chooseNode($event)"  (onMoveNode)="onMoveNode($event)">
+			                <template #treeNodeTemplate let-node>
+			                    <div>
+			                        <span *ngIf="node.data.orgxtType == 1" style="color:#26BB96;" >{{node.data.name || node.data.bookName}}</span>
+			                        <span *ngIf="node.data.orgxtType == 2" style="color:#FF0000;" >{{node.data.name || node.data.bookName}}</span>
+			                        <span *ngIf="node.data.orgxtType == 0" style="color:#000000;" >{{node.data.name || node.data.bookName}}</span>
+			                       
+			                    </div>
+			                </template>
+			            </Tree>
+			        </div>
+		        </div>
+
+			</div>
+		</div>
+		<div class="fn-left fn-W20 container-center" style="min-height: calc(100vh - 95px);"></div>
+		<div class="container-right fn-left" style="min-height: calc(100vh - 95px);">
+				<div *ngIf="!curNode && showText" class="defaultDetails" style="width:calc(100vw - 610px);line-height: calc(100vh - 95px);">请选择左侧的疾病来进行设置</div>
+				<div *ngIf="curNode && backResult == true && curNode.type !=2 || isAdd" class="add-catalog-form fn-W580 fn-PT15 fn-PL20" style="height: calc(100vh - 95px);overflow: auto;">
+
+								<div *ngFor="let object of cateType;let i = index;">
+								  	<div class="insuranceDetails">
+										
+										<div *ngIf="!object.open">
+											<div class="form-group" >
+												<label class=".col-md-2 control-label fn-left" style="text-align:left;" >
+														险种名称：
+												</label>
+												<div class="form-inline ">
+													<div class="fn-disBl" style="height: 30px;line-height: 26px;">
+														{{object.insuranceName}}
+													</div>
+												</div>
+											</div>
+											<div class="form-group" >
+												<label class=".col-md-2 control-label fn-left" style="text-align:left;">
+														报销目录：
+												</label>
+												<div class="form-inline">
+													<div class="fn-disInBl fn-MR20">
+														<label class="fn-MT5 fn-MB0">
+															<input type="radio"  class="fn-VA2D" name="isReimbursement{{i}}"  
+															(change)="object.isReimbursement=$event.target.value;"
+													 		[checked]="object.isReimbursement == '1'" value="1"> 报销
+														</label>
+											    	</div>
+												     <div class="fn-disInBl ">
+												     	<label class="fn-MT5 fn-MB0">
+															<input type="radio"   [checked]="object.isReimbursement == '2'"  value="2" 
+															 name="isReimbursement{{i}}"  class="fn-VA2D" 	(change)="object.isReimbursement=$event.target.value;"> 不报销
+												     	</label>
+												    </div>
+												</div>
+											</div>
+											<div class="form-group" *ngIf="object.isReimbursement == 1">
+												<label class=" .col-md-2 control-label control-textarea-label fn-left" style="text-align:left;">
+														报销分类：
+												</label>
+												<div class="form-inline ">
+													  <div class="fn-disInBl fn-MR20">
+													  	<select class="fn-input fn-W187"   [(ngModel)]="reimbursementId"  >
+															<option *ngFor="let obj of reimbursementData;let k = index;" value="{{obj.id}}">{{obj.name}}</option>
+														</select>
+													  </div>
+												</div>
+											</div>
+											<div class="form-group" *ngIf="object.isReimbursement == 2">
+												<label class=".col-md-2 control-label fn-left " style="text-align:left;">
+														警示设置：
+												</label>
+
+												<div class="form-inline">
+													<button  (click)="setMessage(curNode)" class="publicSureBtn fn-W80">设置</button>
+													
+												</div>
+											</div>
+											<div class="form-group" >
+												<label class=".col-md-2 control-label fn-left " style="text-align:left;">
+														疾病分类：
+												</label>
+												<div class="form-inline">
+													<div *ngFor="let obj of object.categorys;let g = index;" class="fn-disInBl fn-MR20">
+															<label class="fn-MT5 fn-MB0">
+																<input type="checkbox" value="obj.id"  [(ngModel)]="obj.checked" (change)="classify($event.target.checked,g,i)" class="fn-VA2D"> {{obj.name}}
+															</label>
+													 </div>
+													 
+												</div>
+												
+											</div>
+										</div>
+									</div>
+
+								</div>
+						
+								<div class="form-group">
+									
+									<div class="form-inline">
+										<button class="publicSureBtn fn-W80  fn-ML70"  type="submit"  (click)="save()">保存</button>
+									</div>
+								</div>		
+				</div>
+		</div>
+
+    </div>
+<div>
+<my-dialog class="show-dialog">
+	<template *ngIf="alertMessageTemplate" #dialogTemplate let-dialogModel >
+	  <div class="settingMessage-content">
+	  	<cautionInformationDialog (getDataList)="getDataList($event)" (getMedicareRules)="getMedicareRules($event)" [option]="cautionInformationDialogOptions"></cautionInformationDialog>
+		<div class="settingMessage-button">
+				        <span class="btn-cancel fn-MR10">
+							<button class="btn btn-primary fn-W80 fn-H30"  style="font-size: 13px;padding-top: 7px;" (click)="cancelMessage()">取消</button>
+				        </span>
+				        <span class="btn-save">
+							<button class="publicSureBtn fn-W80"  (click)="saveMessage()" >保存</button>
+				        </span>
+		</div>
+	  </div>
+	</template>
+</my-dialog>

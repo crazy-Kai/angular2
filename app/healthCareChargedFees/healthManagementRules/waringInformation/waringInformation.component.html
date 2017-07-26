@@ -1,0 +1,157 @@
+<!--模拟干预页面-->
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">
+	<div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);padding-left: 15px;padding-top: 15px;padding-right: 15px;">
+		<div>
+			<div class="RulesCheckoutHeaderBox">
+		       <div class="versionManagementReturnBox fn-clear" style="width: 80%;display: inline-block;">
+		             <div class="versionManagementReturn">
+		             	<span routerLink='/healthCareChargedFees/healthManagementRules/rulesCheckout/rulesCheckoutHistory/rulesCheckoutHistory' style="cursor: pointer;">< 返回</span>
+		             </div>
+		        </div>
+		    </div> 
+		    <!--患者信息  start-->
+		    <div class='rulesname'>
+		    	<div class="title">当前规则名称:{{ruleName}}</div>
+		    	<div class="detail">
+		    		<a>规则详情</a>
+		    	</div>
+			 </div> 
+			 <!--患者信息  end-->
+	         <!--表格信息开始-->
+		   	<div class="InterventionTableBox" style="height: calc(100vh - 195px);">
+		   	    <div>
+		     	  	<div style="padding-right: 17px; background: #fff;width:100%" id="tableHead">
+					      <table class="table alert-message-details-th tableLayout"  >
+					            <thead>
+					                <!--<tr style="height: 45px;">
+					                    <th width="12%">发生时间</th>
+					                    <th width="8%">患者性别</th>
+					                    <th width="8%">患者年龄</th>
+					                    <th width="8%">人员类别</th>
+					                    <th width="10%">就诊医院</th>
+					                    <th width="10%">就诊情况</th>
+					                    <th width="12%">就诊详情</th>
+					                    <th width="12%">警示信息</th>
+					                    <th width="12%">建议信息</th>
+					                    <th>操作</th>
+					                </tr>-->
+					                <tr style="height: 45px;">
+					                    <th width="10%">就诊医院</th>
+					                    <th width="10%">就诊科室</th>
+					                    <th width="10%">医生职称</th>
+					                    <th width="10%">就诊类型</th>
+					                    <th width="10%">患者年龄</th>
+					                    <th width="10%">患者性别</th>
+					                    <th width="10%">诊断结果</th>
+					                    <th width="10%">警示信息</th>
+					                    <th width="10%">建议信息</th>
+					                    <th>详情</th>
+					                </tr>
+					            </thead>
+					       </table>
+		     	  	</div>
+	            </div>    
+	     	  	<div>
+		            <div style="height:calc(100vh - 238px - 9px - 9px - 9px);width:100%;overflow-y: scroll;">
+		            	<div style="background: #fff;margin-right:0px;">
+				            <table class="table tableLayout" style="margin: 0px;">
+				                <tbody>
+				                    <!--<tr class="activedata">
+					                    <td width="10%">医嘱</td>
+					                    <td width="10%">23526</td>
+					                    <td width="10%">男</td>
+					                    <td width="10%">23</td>
+					                    <td width="10%">在职职工</td>
+					                    <td width="10%">1545</td>
+					                    <td width="10%">修改</td>
+					                     <td width="10%">1545</td>
+					                    <td width="10%">修改</td>
+					                    <td>
+					                    	<a target="_blank" style="cursor: pointer;color: blue;" routerLink = 'healthCareChargedFees/healthManagementRules/interferenceAnalysis/interferenceAnalysis'>查看</a>
+					                    	<a style="cursor: pointer;color: blue;" routerLink = '/healthCareChargedFees/healthManagementRules/doctorAdviceDetails/doctorAdviceDetails'>查看</a>
+					                    </td>
+				                    </tr>
+				                    <tr class="activedata">
+					                    <td width="10%">处方</td>
+					                    <td width="10%">23526</td>
+					                    <td width="10%">男</td>
+					                    <td width="10%">23</td>
+					                    <td width="10%">在职职工</td>
+					                    <td width="10%">1545</td>
+					                    <td width="10%">修改</td>
+					                    <td width="10%">1545</td>
+					                    <td width="10%">修改</td>
+					                    <td>
+					                    	<a target="_blank" style="cursor: pointer;color: blue;" routerLink = '/healthCareChargedFees/healthManagementRules/inHospitalPage/inHospitalPage'>查看</a>
+					                    	<a style="cursor: pointer;color: blue;" routerLink = '/healthCareChargedFees/healthManagementRules/prescriptionDetails/prescriptionDetails'>查看</a>
+					                    </td>
+				                    </tr>-->
+				                    <tr *ngFor="let item of msgList;let i = index" >
+					                    <td width="10%" class="fn-ellipsis" title="{{item.hospital}}">{{item.hospital}}</td>
+					                    <td width="10%" class="fn-ellipsis" title="{{item.dept}}">{{item.dept}}</td>
+					                    <td width="10%" title="{{item.docTitle}}">{{item.docTitle}}</td>
+					                    <!--<td width="10%">{{item.source == '1' ? '门诊' : (item.sex == '2' ? '住院' : '')}}</td>-->
+					                    <td width="10%">{{item.source == '1' ? '门诊' : '住院'}}</td>
+					                    <!--<td width="10%">{{item.source==1?'门诊':(item.source==2?'住院')}}</td>-->
+					                    <td width="10%">{{item.age}}</td>
+					                    <td width='10%'>{{item.sex == '1' ? '男' : '女'}}</td>
+					                    <!--<td width="10%">{{item.sex==1?'男':'女'}}</td>-->
+					                    <td width="10%" class="fn-ellipsis" title="{{item.disease}}">{{item.disease}}</td>
+					                    <td width="10%" class="fn-ellipsis" title="{{item.message}}">{{item.message}}</td>
+					                    <td width="10%" class="fn-ellipsis" title="{{item.opinion}}">{{item.opinion}}</td>
+					                    <td>
+					                    	<p *ngIf = "item.source==1">
+					                    		<a target="_blank" href="healthCareChargedFees/healthManagementRules/interferenceAnalysis/interferenceAnalysis/{{item.eventNo}}/{{item.hospitalNo}}" style="cursor: pointer;color: blue;">查看</a>
+					                    	</p>
+					                    	<p *ngIf = "item.source==2">
+					                    		<a target="_blank" href="healthCareChargedFees/healthManagementRules/inHospitalPage/inHospitalPage/{{item.eventNo}}/{{item.hospitalNo}}" style="cursor: pointer;color: blue;">查看</a>
+					                    	</p>
+					                    </td>
+				                    </tr>
+				                </tbody>
+				            </table>
+		        		</div>
+			        	<!--<div  *ngIf="msgList && msgList.length != 0" style="background: #fff;">
+				            <table class="table" style="margin: 0px;">
+				                <tbody>
+				                    <tr *ngFor="let item of msgList;let i = index" >
+					                    <td width="12%">{{item.visitDate}}</td>
+					                    <td width="8%">{{item.hospital}}</td>
+					                    <td width="8%">{{item.diagnosis}}</td>
+					                    <td width="8%">{{item.department}}</td>
+					                    <td width="10%">{{item.diseaseName}}</td>
+					                    <td width="10%">{{item.prescriptionCount}}</td>
+					                    <td width="12%">{{item.result}}</td>
+					                    <td width="12%">{{item.diagnosis}}</td>
+					                    <td width="12%">{{item.diagnosis}}</td>
+					                     <td>
+					                    	<a target="_blank" style="cursor: pointer;color: blue;" routerLink = '/healthCareChargedFees/healthManagementRules/prescriptionDetails/prescriptionDetails'>查看</a>
+					                    	<a style="cursor: pointer;color: blue;" routerLink = '/healthCareChargedFees/healthManagementRules/prescriptionDetails/prescriptionDetails'>查看</a>
+					                    </td>
+				                    </tr>
+				                </tbody>
+				            </table>
+		        		</div>-->
+		        		<div style="background: #fff;">
+			        		<div  *ngIf="msgList && msgList.length == 0" style="background: #fff;">	
+					            <table class="table" style="margin: 0px;">
+					                <tbody>
+					                  <tr>
+										<td>没有找到相关数据</td>
+					                  </tr>
+					                </tbody>
+					            </table>
+			        		</div>
+		               </div>
+		      	</div>
+		      	<div style="padding-right:17px;" id="tableFooter">
+	        		<pagination [pageInfo]="pageInfo" (changePage)="setPage($event)" (changePageSize)="setPageSize($event)"></pagination>
+				</div>
+		   </div>  
+		 <!--表格信息结束--> 
+	    	</div>
+    </div>
+</div>
+<my-dialog></my-dialog>
+
+

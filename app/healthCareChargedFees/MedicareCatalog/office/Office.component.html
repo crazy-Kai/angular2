@@ -1,0 +1,111 @@
+<!--科室目录模板-->
+<div class="catalogObject fn-clear" style="height: calc(100vh - 80px);">
+    <div class="catalogObject-content" style="min-width:1100px;width:calc(100vw - 190px);height: calc(100vh - 95px);">
+
+		<div class="container-left fn-left" style="height:calc(100vh - 95px)">
+
+			<div class="selected-insurance form-inline">
+					<div class="catalog-header">
+							<div class="search-panel form-inline">
+						            <div class="form-group">
+						                <label class="control-label catalog-name fn-W70">科室名称：</label>
+						                <div class="input-group fn-W244" style="margin-right: 8px;">
+						                    <div class="input-group-addon icon-BR"></div>
+						                    <input class="fn-input" style="width: 214px;" type="text" maxlength="30"  placeholder="请输入科室名称" [(ngModel)]="searchWord"/>
+						                </div>
+						            	<button type="submit" class="publicBtn fn-W40" (click)="search()">搜索</button>
+						            </div>
+	        				</div>
+	
+					</div>
+				
+			</div>
+			<div class="catalog-tree" style="min-height:calc(100vh - 154px);">
+				
+				<div id="data-catalog-list" class="catalog-list" style="height:calc(100vh - 156px);overflow: auto;padding-top:36px;position:relative;">
+						<div  class="add-button" (click)="addAll()"><span class="add-image"></span>添加</div>
+			            <Tree [nodes]="officeTreeData"  class="my-tree commonTree" [options]="options"  >
+			                <template #treeNodeTemplate let-node>
+			                     <table  style="width:100%;">
+									<tr>
+										<td style="width:25px;" valign="top">
+											<span [class.department-icon]="node.data.type == 1" [class.nodes-icon]="node.data.type != 1" ></span>
+										</td>
+										<td>
+											<span>{{node.data.name || node.data.bookName}}</span>
+			                        		<span class="fn-ML5" *ngIf="node.data.type !== 1 && node.data == curNode" (click)="add(node,$event)"><img src="../../../../app/images/add.svg" style="vertical-align: -3px;"></span>
+			                        		<span class="fn-ML5" *ngIf="node.data == curNode && node.data.type != 2" (click)="delData(node)"><img src="../../../../app/images/commonicons/delete-icon.svg" style="vertical-align: -2px;"></span>
+										</td>
+									</tr>
+			                    </table>		
+			                </template>
+			            </Tree>
+		        </div>
+
+			</div>
+		</div> 
+		<div class="fn-left fn-W20 container-center" style="height: calc(100vh - 95px);"></div>
+		<div class="container-right fn-left" style="height: calc(100vh - 95px);min-width:600px;">
+				<div *ngIf="curNode || isAdd" class="add-catalog-form fn-W580 fn-PT15" style="height: calc(100vh - 95px);overflow: auto;">
+								<div *ngIf="!curNode  && isAdd"  class="form-group">
+									<label class="col-md-2 control-label">
+										<em _ngcontent-kdt-4="">*</em>节点层级：
+									</label>
+									<div class="form-inline">
+										<div class="fn-disInBl fn-MR20" >
+										 	<label class="fn-MB0 fn-MT5">
+												<input type="radio" class="fn-VA2D"  [(ngModel)]="addlevel"  name="addlevel" value="0" (change)="addlevel=$event.target.value;isLeaf=$event.target.value;">  同级分类
+											</label>
+									    </div>
+									    <div class="fn-disInBl">
+									     	<label class="fn-MB0 fn-MT5">
+												<input type="radio" class="fn-VA2D" [(ngModel)]="addlevel" name="addlevel" value="1" (change)="addlevel=$event.target.value;isLeaf=$event.target.value;">  科室
+											</label>
+									    </div>
+									</div>
+
+								</div>
+								<div *ngIf="curNode && curNode.type != 1 && isAdd"  class="form-group">
+									<label class="col-md-2 control-label">
+										<em _ngcontent-kdt-4="">*</em>节点层级：
+									</label>
+									<div class="form-inline">
+									     <div class="fn-disInBl">
+									     	<label class="fn-MB0 fn-MT5">
+												<input type="radio" class="fn-VA2D" [(ngModel)]="addlevel" name="addlevel" value="1" (change)="addlevel=$event.target.value;isLeaf=$event.target.value;">  科室
+									     	</label>
+									    </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class=" col-md-2 control-label">
+											<em _ngcontent-kdt-4="">*</em>科室名称：
+									</label>
+									<div class="form-inline">
+										<input type="text"  (blur)="testIptItem(cateType.summary)" (input)="testName()"  class="fn-input fn-W378" 
+											 [(ngModel)]="cateType.summary"   maxlength="30" placeholder="支持数字与字母、汉字、'.'、'-'且长度不超过30个汉字"  style="height: 28px;"/>
+									</div>
+								</div>
+								<div class="form-group form-textarea" >
+									<label class=" col-md-2 control-label control-textarea-label">
+											备注说明：
+									</label>
+									<div class="form-inline">
+											<textarea placeholder="选填,支持分段，长度不超过500个汉字" class="form-control fn-W378" maxlength="500" style="font-size:13px;border-radius: 0;height:100px;max-height:100px;max-width: 378px;" [(ngModel)]="cateType.description" >{{cateType.Operation}}</textarea>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-2 control-label">
+											
+									</label>
+									<div class="form-inline">
+										<button class="publicSureBtn fn-W80"  type="submit"  (click)="save()">保存</button>
+									</div>
+								</div>		
+				</div>
+		</div>
+
+    </div>
+<div>
+<my-dialog></my-dialog>

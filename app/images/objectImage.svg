@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="15px" viewBox="0 0 12 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>项目</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="7.48265621 0.0220658419 11.2920074 3.77949483 11.2920074 5.22482241 6.35870662 5.22482241 6.35870662 0.0330805847"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-164.000000, -204.000000)">
+            <g id="项目" transform="translate(164.333526, 204.322312)">
+                <g id="Path-7">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <path stroke="#97B9ED" stroke-width="1" d="M7.27959816,0.524079827 L6.85870662,0.528204578 L6.85870662,4.72482241 L10.7920074,4.72482241 L10.7920074,3.98861424 L7.27959816,0.524079827 Z"></path>
+                </g>
+                <g id="Group-20" fill="#97B9ED">
+                    <path d="M6.40811559,0 L1.48052466,0 L1.48052466,0 C0.928239911,1.01453063e-16 0.480524661,0.44771525 0.480524661,1 L0.480524661,1 L0.480524661,13.3015965 C0.480524661,13.8538812 0.928239911,14.3015965 1.48052466,14.3015965 L1.48052466,14.3015965 L10.3069943,14.3015965 C10.8592791,14.3015965 11.3069943,13.8538812 11.3069943,13.3015965 L11.3069943,4.82021038 L7.40477477,4.82021038 C6.8543351,4.82021038 6.40811559,4.37265071 6.40811559,3.8235512 L6.40811559,-1.38777878e-16 Z" id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

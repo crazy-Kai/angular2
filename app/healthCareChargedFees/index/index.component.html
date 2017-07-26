@@ -1,0 +1,220 @@
+<!-- 首页模版 -->
+<div class="indexStyle">
+	<div class="fn-PosAbs header-title" style="width:calc(100vw - 160px - (100vw - 100%));">当前支持险种：<span class="title-name">杭州城镇医保</span></div>
+	<div class="message-container">
+		<div class="message-title">
+			<span >干预失效的错误</span>
+		</div>
+		<div class="InterventionTableBox" style="min-height: calc(100vh - 230px);padding-left: 20px;padding-right: 20px;">
+
+     	  	<div style="padding-right: 17px; background: #fff;width:100%" id="tableHead">
+			      <table class="table alert-message-details-th tableLayout" style="width:100%;">
+			            <thead>
+			                <tr style="height: 45px;">
+			                    <th width="6%">序号</th>
+			                    <th width="15%">失效的规则类别</th>
+			                    <th width="17%">问题描述</th>
+			                    <th width="42%">建议</th>
+			                    <th width="10%">医院</th>
+			                    <th>操作</th>
+			                </tr>
+			            </thead>
+			        </table>
+     	  	</div>
+	      	<div>
+	            <div style="min-height:calc(100vh - 400px);width:100%;overflow-y: scroll;">
+		        	<div style="background: #fff;margin-right:0px;" *ngIf="msgList && msgList.length != 0">
+			            <table class="table tableLayout" style="margin: 0px;width:100%;" >
+			                <tbody>
+			                    <tr *ngFor="let item of msgList;let i = index">
+			                    	<td style="width: 6%;" class="fn-ellipsis">
+			                    		<div>
+			                    			{{i+1}}
+			                    		</div>
+			                    	</td>
+			                    	<td style="width: 15%;" class="fn-ellipsis">
+			                    		<div *ngIf = "item.invalidType==1">疾病</div>
+			                    		<div *ngIf = "item.invalidType==2">药品</div>
+			                    		<div *ngIf = "item.invalidType==3 ">项目</div>
+			                    		<div *ngIf = "item.invalidType==4">材料</div>
+			                    		<div *ngIf = "item.invalidType==5">科室</div>
+			                    		<div *ngIf = "item.invalidType==6">人员类别</div>
+			                    	</td>
+			                    	<td style="width: 17%;text-align: left;padding-left: 20px;">
+			                    		<div *ngIf="item.suggestType != 5" title="缺失{{item.summary}}" style="width:100%;" class="fn-ellipsis">
+			                    			缺失{{item.summary}}
+			                    		</div>	
+			                    		<div *ngIf="item.suggestType == 5"  style="width:100%;" class="fn-ellipsis">
+											{{item.summary}}报销分类缺失
+			                    		</div>
+			                    	</td>
+			                    	<td class="fn-ellipsis" style="text-align: left;width: 42%;padding-left: 20px;" >
+			                    		<div *ngIf = "item.invalidType==1">
+			                    			<div *ngIf="item.suggestType != 5">
+												<p>1:去医保目录疾病目录下维护</p>
+			                    			</div>
+											<div *ngIf="item.suggestType == 5">
+												<p *ngIf = "item.suggestType==5">1:去医保目录<a target="_blank" href="healthCareChargedFees/medicareCatalog/disease/{{item.insuranceId}}/{{item.versionId}}/{{item.summary}}">疾病目录</a>下设置报销分类</p>
+											</div>
+										</div>
+										<div *ngIf = "item.invalidType==2">
+											<p *ngIf = "item.suggestType==1">1:去医保目录<a target="_blank" href="healthCareChargedFees/medicareCatalog/drugs/{{item.insuranceId}}/{{item.versionId}}/null/null">药品目录</a>下维护</p>
+											<p *ngIf = "item.suggestType==2">1:去合理用药目录下维护药品分类</p>
+											<p *ngIf = "item.suggestType==3">1:去合理用药目录下维护给药频率</p>
+											<p *ngIf = "item.suggestType==4">1:去合理用药目录下维护给药途径</p>
+											<p *ngIf = "item.suggestType==5">1:去医保目录<a target="_blank" href="healthCareChargedFees/medicareCatalog/drugs/{{item.insuranceId}}/{{item.versionId}}/{{item.summary}}/null">药品目录</a>下设置报销分类</p>
+										</div>
+										<div *ngIf = "item.invalidType==3">
+											<div *ngIf="item.suggestType != 5">
+												<p>1:去医保目录<a target="_blank" href="healthCareChargedFees/medicareCatalog/project/{{item.insuranceId}}/{{item.versionId}}/null">医保项目</a>下维护</p>
+												<p>2:去<a target="_blank" href="healthCareChargedFees/catalogComparison/projectCompare/projectCompare-component/{{item.hospitalNo}}/{{item.insuranceId}}/{{item.versionId}}/1">项目比对页面</a>建立项目比对关系</p>
+											</div>
+											<div  *ngIf="item.suggestType == 5">
+												<p>1:去医保目录<a target="_blank" href="healthCareChargedFees/medicareCatalog/project/{{item.insuranceId}}/{{item.versionId}}/{{item.summary}}">医保项目</a>下设置报销分类</p>
+											</div>
+										</div>
+										<div *ngIf = "item.invalidType==4">
+											<div *ngIf="item.suggestType != 5">
+												<p>1:去医保目录<a target="_blank" href="healthCareChargedFees/medicareCatalog/material/{{item.insuranceId}}/{{item.versionId}}/null">医保材料</a>下维护</p>
+												<p>2:去<a target="_blank" href="healthCareChargedFees/catalogComparison/materialCompare/materialCompare-component/{{item.hospitalNo}}/{{item.insuranceId}}/{{item.versionId}}/2">材料比对页面</a>建立材料比对关系</p>
+											</div>
+											<div *ngIf=" item.suggestType == 5">
+												<p>1:去医保目录<a target="_blank" href="healthCareChargedFees/medicareCatalog/material/{{item.insuranceId}}/{{item.versionId}}/{{item.summary}}">医保材料</a>下设置报销分类</p>
+											</div>
+										</div>
+										<div *ngIf = "item.invalidType==5">
+											<p>1:去医保目录<a target="_blank" href="healthCareChargedFees/medicareCatalog/office">医保科室</a>下维护</p>
+											<p>2:去<a target="_blank" href="healthCareChargedFees/catalogComparison/officeCompare/officeCompare-component/{{item.hospitalNo}}/3">科室比对页面</a>建立科室比对关系</p>
+										</div>
+										<div *ngIf = "item.invalidType==6">
+											<p>1:去医保目录<a target="_blank" href="healthCareChargedFees/typeOfInsuranceCatalog/typeOfInsuranceCatalog/typeOfInsuranceCatalog_changeInsurance/{{item.insuranceId}}">医保修改险种</a>下维护</p>
+											<p>2:去<a target="_blank" href="healthCareChargedFees/catalogComparison/personCompare/personCompare-component/{{item.hospitalNo}}/{{item.insuranceId}}/4">人员比对页面</a>建立人员比对关系</p>
+										</div>
+			                    	</td>
+			                    	<td style="width: 10%;" class="fn-ellipsis">
+			                    			{{item.hospitalName}}
+			                    	</td>
+			                    	<td class="fn-ellipsis">
+			                    		<div  (click)="ignoreDataById(item.id)" class="ignore">
+			                    			忽略
+			                    		</div>
+			                    	</td>
+			                    </tr>
+			                </tbody>
+			            </table>
+	        		</div>
+	        		<div  style="background: #fff;margin-right: 0px;" *ngIf="msgList && msgList.length == 0">
+			            <table class="table" style="margin: 0px;width:100%;" >
+			                <tbody>
+			                  <tr>
+								<td>没有找到相关数据</td>
+			                  </tr>
+			                </tbody>
+			            </table>
+	        		</div>
+	            </div>
+				<div style="padding-right:17px;" id="tableFooter">
+	        		<pagination [pageInfo]="pageInfo" (changePage)="setPage($event)" (changePageSize)="setPageSize($event)"></pagination>
+				</div>
+	      </div>
+	</div>
+	</div>
+	<div class="init-project-directory fn-MT30 fn-PB50" *ngIf="!isLead">
+		<div class="init-project-title">
+				<span >初始化引导</span>
+		</div>
+	    <div class="init-project-container fn-MT30">
+			<div class="init-project-list">
+				<ul style="padding: 0px;margin-right: -125px;" class="clearfix" *ngIf="controlNum ==0">
+					<li class="list-unstyled fn-CuPo">
+						<a target="_blank" href="healthCareChargedFees/medicareCatalog/disease" class="current-project"><span class="current-project-text fn-PT37 fn-PB37">完善疾病目录</span></a>
+					</li>
+					<li class="list-unstyled fn-CuPo">
+						<a target="_blank" href="healthCareChargedFees/medicareCatalog/project" class="current-project"><span class="current-project-text fn-PT37 fn-PB37">完善项目目录</span></a>
+					</li>
+					<li class="list-unstyled fn-CuPo">
+						<a target="_blank" href="healthCareChargedFees/medicareCatalog/drugs" class="current-project"><span class="current-project-text fn-PT37 fn-PB37">完善药品目录</span></a>
+					</li>
+					<li class="list-unstyled fn-CuPo">
+						<a target="_blank" href="healthCareChargedFees/medicareCatalog/druggroupdirectory" class="current-project"><span class="current-project-text fn-PT37 fn-PB37">完善药物组目录</span></a>
+					</li>
+					<li class="list-unstyled fn-CuPo">
+						<a target="_blank" href="healthCareChargedFees/medicareCatalog/material" class="current-project"><span class="current-project-text fn-PT37 fn-PB37">完善材料目录</span></a>
+					</li>
+					<li class="list-unstyled fn-CuPo">
+						<a target="_blank" href="healthCareChargedFees/healthInsurancePolicyFile" class="current-project"><span class="current-project-text fn-PT37 fn-PB37">完善医保政策文件设置</span></a>
+					</li>
+					<li class="list-unstyled fn-CuPo">
+						<a target="_blank" href="healthCareChargedFees/healthInsuranceSetting/ruleAnalyze" class="current-project"><span class="current-project-text fn-PT37 fn-PB37">完成规则分析类型设置</span></a>
+					</li>
+				</ul>
+				<ul style="padding: 0px; text-align: center;margin-right: -125px;" class="clearfix" *ngIf="controlNum==1">
+					<li class="list-unstyled fn-CuPo data">
+						<a target="_blank" href="healthCareChargedFees/catalogComparison" class="data-project"><span class="current-project-text" style="line-height: 171px;">完成数据比对</span></a>
+					</li>
+				</ul>
+				<ul style="padding: 0px; text-align: center;margin-right: -125px;" class="clearfix" *ngIf="controlNum==2">
+					<li class="list-unstyled fn-CuPo rule">
+						<a target="_blank" href="healthCareChargedFees/healthManagementRules" class="rule-project"><span class="current-project-text" style="line-height: 200px;">完善规则维护</span></a>
+					</li>
+				</ul>
+				<ul style="padding: 0px; text-align: center;margin-right: -125px;" class="clearfix" *ngIf="controlNum==3">
+					<li class="list-unstyled fn-CuPo set">
+						<a target="_blank" href="healthCareChargedFees/basicInformationOrignization" class="set-project"><span class="current-project-text" style="line-height: 150px;">完成机构基本信息设置</span></a>
+					</li>
+					<li class="list-unstyled fn-CuPo set">
+						<a target="_blank" href="healthCareChargedFees/warning-information" class="set-project"><span class="current-project-text" style="line-height: 150px;">完成警示方式设置</span></a>
+					</li>
+					<li class="list-unstyled fn-CuPo set">
+						<a target="_blank" href="healthCareChargedFees/versionEffect" class="set-project"><span class="current-project-text" style="line-height: 150px;">完成版本生效设置</span></a>
+					</li>
+					<li class="list-unstyled fn-CuPo set">
+						<a target="_blank" href="healthCareChargedFees/formula" class="set-project"><span class="current-project-text" style="line-height: 150px;">完成计算公式设置</span></a>
+					</li>
+				</ul>
+			</div>
+	    </div>
+	    <div class="next-page fn-CuPo">
+	    		<button type="button" class="btn next-button" *ngIf = "controlNum!=0" (click) = "reduceControlNum()">
+					上一步
+				</button>
+				<button type="button" class="btn next-button" *ngIf = "controlNum!=3" (click) = "addControlNum()">
+					下一步
+				</button>
+				<button type="button" class="btn next-button" *ngIf = "controlNum==3" (click)="noLead()">
+					完成
+				</button>
+	    </div>
+	</div>
+	<div class="daily-maintain fn-MT30">
+		<div class="daily-maintain-title">
+				<span>日常维护</span>
+		</div>
+		<div class="daily-maintain-object">
+				<ul style="padding:0;" class="fn-clear fn-MR150">
+					<li class="list-unstyled ">
+						<div class="list-details">
+							<div class="object"><span>干预错误</span></div>
+							<p>检查干预失效的错误</p>
+						</div>
+					</li>
+					<li class="list-unstyled ">
+						<div class="list-details">
+							<div class="object"><span>干预分析</span></div>
+							<p>进行干预效果分析，改进医保管理，汇报阶段成果</p>
+						</div>
+					</li>
+					<li class="list-unstyled ">
+						<div class="list-details">
+							<div class="object"><span>医保规则</span></div>
+							<p>完善医保规则</p>
+						</div>
+					</li>
+				</ul>
+		</div>
+	</div>
+</div>
+<my-dialog>
+	
+</my-dialog>
+

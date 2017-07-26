@@ -1,0 +1,220 @@
+/* 首页样式文件 */
+
+.indexStyle .header-title{
+	top:0px;
+	z-index: 99;
+	background: #F5F7FA;
+	font-size: 12px;
+	color:#999;
+	height:50px;
+	line-height: 50px;
+	width: 100%;
+	padding-left: 15px;
+}
+.indexStyle .header-title .title-name{
+	font-size: 18px;
+	color: #000;
+	font-weight: bold;
+}
+.indexStyle .message-container{
+	background: #fff;
+	width: 100%;
+	margin-top: 20px;
+	padding-bottom: 20px;
+}
+
+.message-container .message-title,.init-project-directory .init-project-title,.daily-maintain .daily-maintain-title{
+	line-height: 50px;
+	height: 50px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+.indexStyle .init-project-directory{
+	background: #fff;
+	position: relative;
+}
+.init-project-directory .init-right{
+	position: absolute;
+	display: block;
+	top:10px;
+	right: 0;
+	text-align: center;
+}
+.init-project-directory .init-right  .no-alert-warn{
+	font-size:13px;
+	color:#0AB2C4;
+}
+.init-project-directory .init-project-container,.indexStyle  .daily-maintain{
+	width: 100%;
+	background: #fff;
+}
+.init-project-list{
+	width: 850px;
+	margin:0 auto;
+	font-size:13px;
+	color:#000;
+}
+
+.init-project-container .init-project-list ul li {
+	float: left;
+	margin-right: 143px;
+	margin-bottom:100px;
+}
+
+.init-project-container .init-project-list ul li a{
+	color: #333333;
+}
+ .init-project-list .current-project{
+ 	cursor:pointer;
+ 	display: block;
+ 	width: 100px;
+ 	height: 100px;
+ 	text-align: center;
+ 	padding-left: 5px;
+ 	padding-right: 5px;
+ 	background: url('app/images/u178.png') no-repeat;
+ 	
+ }
+ 
+ .init-project-list .data-project{
+ 	cursor:pointer;
+ 	display: block;
+ 	width: 171px;
+ 	height: 171px;
+ 	text-align: center;
+ 	padding-left: 5px;
+ 	padding-right: 5px;
+ 	background: url('app/images/u200.png') no-repeat;
+ }
+ .init-project-list .data{
+ 	margin-left: 350px;
+ }
+ 
+ .init-project-list .rule-project{
+ 	cursor:pointer;
+ 	display: block;
+ 	width: 200px;
+ 	height: 200px;
+ 	text-align: center;
+ 	padding-left: 5px;
+ 	padding-right: 5px;
+ 	background: url('app/images/u206.png') no-repeat;
+ }
+ .init-project-list .rule{
+ 	margin-left: 330px;
+ }
+ 
+ 
+ .init-project-list .set-project{
+ 	cursor:pointer;
+ 	display: block;
+ 	width: 150px;
+ 	height: 150px;
+ 	text-align: center;
+ 	padding-left: 5px;
+ 	padding-right: 5px;
+ 	background: url('app/images/u214.png') no-repeat;
+ }
+.init-project-container .init-project-list ul .set{
+ 	margin-right: 90px;
+ }
+ 
+ .init-project-list .current-project-text{
+ 	display: inline-block;
+ }
+.init-project-directory .next-page{
+	text-align: center;
+}
+.init-project-directory .next-page .next-button{
+	width: 140px;
+	height: 40px;
+	line-height: 40px;
+	padding: 0px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #169BD5;
+    border-radius: 4px;
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+.daily-maintain .daily-maintain-object{
+	width: 672px;
+	margin: 0 auto;
+	overflow: hidden;
+	padding-bottom: 30px;
+	margin-top: 30px;
+}
+.daily-maintain .daily-maintain-object ul{
+	margin-right: -150px;
+}
+.daily-maintain .daily-maintain-object ul li{
+	float: left;
+	margin-right: 150px;
+}
+.daily-maintain .daily-maintain-object .object{
+	width: 124px;
+	height: 124px;
+	line-height:124px;
+	text-align: center;
+	color:#fff;
+	background: url('app/images/u278.png') no-repeat;
+	margin-bottom: 30px;
+}
+.daily-maintain .daily-maintain-object .list-details{
+	width: 124px;
+	text-align: center;
+}
+
+.message-container-details .table > tbody > tr > td{
+	vertical-align: middle;
+	text-align: center;
+}
+.border{
+	border-right:1px solid #ddd;
+}
+.message-container-details .table > tbody > tr > .remove-padding{
+	padding:0;
+}
+
+
+.InterventionTableBox{
+	width: 100%;
+}
+.InterventionTableBox td{
+	height: 30px;	
+}
+
+.alert-message-details-th tr {
+    border: 1px solid #F9F9F9;
+}
+
+.table{
+	margin-bottom: 0px;
+}
+
+.table a,.ignore {
+	color:blue;
+}
+.table .ignore:hover{
+	text-decoration: underline;
+}
+.table thead th{
+	vertical-align: middle;
+    border: 1px solid #dfdfdf;
+    background: #f9f9f9;
+    padding: 0 0.75rem;
+    text-align: center;
+    font-weight: normal;
+}
+
+
+.table td{
+	vertical-align: middle;
+	font-size: 13px;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+}

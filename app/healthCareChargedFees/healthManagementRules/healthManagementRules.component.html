@@ -1,0 +1,532 @@
+<!--规则版本管理首页-->
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">
+	<div class="catalogObject-content" style="min-width:1100px;min-height: calc(100vh - 95px);">
+		<!--头部开始-->
+		<div class="managementRulesHeaderBox fn-clear">
+			<div class="selects left">
+				<label class="control-label ">选择险种：</label>
+				<div class="fn-disInBl">
+					<select-comp [option]="insuranceTypeOption" (select)="chooseInsurance($event)" class="selectListcomp"></select-comp>
+				</div>
+				
+			</div>
+			<div class="selects left" style="margin-left: 15px;">
+				<label class="control-label ">选择规则版本：</label>
+				<select [(ngModel)]="activeIdx" (change)="optionClick($event)" class="fn-input fn-W280" style="width: 280px;height: 28px;">
+					<option *ngFor="let obj of selectList;let i = index;" value="{{i}}">{{obj.name}}</option>
+				</select>
+			</div>
+			<div class="selects right">
+				<div class="versionManagementBigBox">
+					<div class="versionManagementImg" routerLink='/healthCareChargedFees/healthManagementRules/rulesCheckout/rulesCheckoutHistory/rulesCheckoutHistory'>
+						<img src="../../../app/images/clock.svg" style="vertical-align: -5px;"/>
+					</div>
+					<div class="versionManagementTitle rules" routerLink='/healthCareChargedFees/healthManagementRules/rulesCheckout/rulesCheckoutHistory/rulesCheckoutHistory'>
+						<span>校验历史</span>
+					</div>
+				</div>
+			</div>
+			<div class="selects right">
+				<div class="versionManagementBigBox">
+					<div class="versionManagementImg" (click)=versionManagementTitle()>
+						<img src="../../../app/images/u7745.svg" style="vertical-align: -5px;"/>
+					</div>
+					<div class="versionManagementTitle rules">
+						<span (click)=versionManagementTitle()>版本管理</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--头部结束-->
+		<!--图片展示开始-->
+		<div class='bigBox fn-clear' style="background: #fff;">
+			<div class="search-bar " fole="form">
+				<table id="noBorders" class="fn-table fn-table-input" width="100%">
+					<tr>
+						<td width="150" *ngIf="isDiseaseDefaultTitleShow">
+							<div class="radiusdata radiusdata1 fn-clear" (click)='diseaseDefaultShow()'>
+								<img src="../../../app/images/diarse.png" />
+								<div class="HealthRulesRadiusHeaderBox">
+									<div class="radiusTitle">疾病</div>
+								</div>
+								<div class="HealthCount">{{diseaseCount}}</div>
+								<div class="HealthRules">个规则</div>
+							</div>
+						</td>
+						<td width="150" *ngIf="isDiseasesTitleShow">
+							<div class="radiusdata radiusdata1 fn-clear" (click) = "diseaseShow()">
+								<img src="../../../app/images/diarse.png" />
+								<div class="HealthRulesRadiusHeaderBox">
+									<div class="radiusTitle">疾病</div>
+								</div>
+								<div class="HealthCount">{{diseaseCount}}</div>
+								<div class="HealthRules">个规则</div>
+							</div>
+						</td>
+						<td width="150">
+							<div class="radiusdata radiusdata2 fn-clear" (click) = "drugsShow()">
+								<img src="../../../app/images/drug.png" />
+								<div class="HealthRulesRadiusHeaderBox">
+									<div class="radiusTitle">药品</div>
+								</div>
+								<div class="HealthCount">{{drugCount}}</div>
+								<div class="HealthRules">个规则</div>
+							</div>
+						</td>
+						<td width="150">
+							<div class="radiusdata radiusdata3 fn-clear" (click) = "itemsShow()">
+								<img src="../../../app/images/project.png" />
+								<div class="HealthRulesRadiusHeaderBox">
+									<div class="radiusTitle">项目</div>
+								</div>
+								<div class="HealthCount">{{itemCount}}</div>
+								<div class="HealthRules">个规则</div>
+							</div>
+						</td>
+						<td width="150">
+							<div class="radiusdata radiusdata4 fn-clear" (click) = "materialsShow()">
+								<img src="../../../app/images/material.png" />
+								<div class="HealthRulesRadiusHeaderBox">
+									<div class="radiusTitle">材料</div>
+								</div>
+								<div class="HealthCount">{{materialCount}}</div>
+								<div class="HealthRules">个规则</div>
+							</div>
+						</td>
+						<td width="150">
+							<div class="radiusdata radiusdata5 fn-clear" (click) = 'visitShow()'>
+								<img src="../../../app/images/seeDoctor.png" />
+								<div class="HealthRulesRadiusHeaderBox">
+									<div class="radiusTitle">就诊</div>
+								</div>
+								<div class="HealthCount">{{visitCount}}</div>
+								<div class="HealthRules">个规则</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--三角形开始-->
+		 	<div class="operatorBox">
+				<table id="noBorders" class="fn-table fn-table-input" width="100%">
+					<tr>
+						<td width="150">
+							<div class="operator" *ngIf="isOperatorDefaultTreeShow"><em></em></div>
+						</td>
+						<td width="150">
+							<div class="operator" *ngIf="isOperatorDrugsTreeShow"><em></em></div>
+						</td>
+						<td width="150">
+							<div class="operator" *ngIf="isOperatorItemsTreeShow"><em></em></div>
+						</td>
+						<td width="150">
+							<div class="operator" *ngIf="isOperatorMaterialsTreeShow"><em></em></div>
+						</td>
+						<td width="150">
+							<div class="operator" *ngIf="isOperatorVisitsTreeShow"><em></em></div>
+						</td>
+					</tr>
+				</table>
+		 	</div>
+		 	<!--三角形结束-->
+		</div>
+		<!--图片展示结束-->
+		 <div>
+		 	<!--五棵树开始-->
+		 	<div class="HealthBigBox clearfix" style="padding: 10px;">
+				<div class="HealthBigLeftBox" style="height: calc(100vh - 410px);"> 	
+			    	<!--<div class="catalog-list" [class.hidden]="handleType == 1||handleType == 2||handleType == 3||handleType == 4"  style="height:calc(100vh - 415px);overflow: auto;">
+			    		 <div>
+				            <Tree [nodes]="diseaseTreeData" [options]="diseaseOptions"  class="my-tree commonTree">
+				            	<template #treeNodeTemplate let-node>
+				            		<table  style="width:100%;">
+				            			<td>
+				            				<span style="max-width: 200px;" title="{{node.data.name}}">{{node.data.name}}</span>
+				            			</td>
+				            			<td>
+				            				<span>
+												<a *ngIf="node.data.orgxtType==1" (click)="openDrugs(node.data.id,node.data.name)">添加规则</a>
+												<a *ngIf="node.data.orgxtType==1" (click)="openDrugs(node.data.id,node.data.name)">未定义</a>
+												
+												<a *ngIf="node.data.orgxtType==0" (click)="open(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==0" (click)="open(node.data.id,node.data.name)">已审核</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="open(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="open(node.data.id,node.data.name)">未审核</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="open(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="open(node.data.id,node.data.name)">编辑中</a>
+												
+												<a *ngIf="node.data.orgxtType==0" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												<a *ngIf="node.data.orgxtType==2" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												
+											</span>
+				            			</td>
+				            		</table>
+				            	</template>	               
+				            </Tree>
+			        	 </div>  		
+			    	</div>   	-->
+			    	
+			    	<div class="catalog-list"  style="height:calc(100vh - 415px);overflow: auto;" *ngIf="isDiseaseDefaultTreeShow">
+			    		 <div>
+				            <Tree [nodes]="diseaseTreeData" [options]="diseaseOptions"  class="my-tree commonTree">
+				            	<template #treeNodeTemplate let-node>
+				            		<table  style="width:100%;">
+				            			<td>
+				            				<span style="max-width: 200px;" title="{{node.data.name}}">{{node.data.name}}</span>
+				            			</td>
+				            			<td>
+				            				<span>
+												<a *ngIf="node.data.orgxtType==1" (click)="open(node.data.id,node.data.name)">添加规则</a>
+												<a *ngIf="node.data.orgxtType==1" (click)="open(node.data.id,node.data.name)">未定义</a>
+												
+												<a *ngIf="node.data.orgxtType==0" (click)="open(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==0" (click)="open(node.data.id,node.data.name)">已审核</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="open(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="open(node.data.id,node.data.name)">未审核</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="open(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="open(node.data.id,node.data.name)">编辑中</a>
+												
+												<a *ngIf="node.data.orgxtType==0" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												<a *ngIf="node.data.orgxtType==2" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												
+											</span>
+				            			</td>
+				            		</table>
+				            	</template>	               
+				            </Tree>
+			        	 </div>  		
+			    	</div>   	
+			    	
+			    	<div class="catalog-list"  style="height:calc(100vh - 415px);overflow: auto;" *ngIf="isDiseasesTreeShow">
+			    		 <div>
+				            <Tree [nodes]="diseaseTreeData" [options]="diseaseOptions"  class="my-tree commonTree">
+				            	<template #treeNodeTemplate let-node>
+				            		<table  style="width:100%;">
+				            			<td>
+				            				<span style="max-width: 200px;" title="{{node.data.name}}">{{node.data.name}}</span>
+				            			</td>
+				            			<td>
+				            				<span>
+												<a *ngIf="node.data.orgxtType==1" (click)="open(node.data.id,node.data.name)">添加规则</a>
+												<a *ngIf="node.data.orgxtType==1" (click)="open(node.data.id,node.data.name)">未定义</a>
+												
+												<a *ngIf="node.data.orgxtType==0" (click)="open(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==0" (click)="open(node.data.id,node.data.name)">已审核</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="open(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="open(node.data.id,node.data.name)">未审核</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="open(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="open(node.data.id,node.data.name)">编辑中</a>
+												
+												<a *ngIf="node.data.orgxtType==0" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												<a *ngIf="node.data.orgxtType==2" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												
+											</span>
+				            			</td>
+				            		</table>
+				            	</template>	               
+				            </Tree>
+			        	 </div>  		
+			    	</div>   	
+			    	<!--药品-->
+			    	<!--<div id="data-catalog-list" class="catalog-list" [class.active]="handleType == 1" [class.hidden]="handleType == 0||handleType == 2||handleType == 3||handleType == 4" style="height:calc(100vh - 443px);overflow: auto;">
+			    		 <div>
+				            <Tree [nodes]="drugsTreeData" [options]="drugOptions" class="my-tree commonTree">
+				            	<template #treeNodeTemplate let-node>
+				            		<table  style="width:100%;">
+				            			<td>
+				            				<span style="max-width: 200px;" title="{{node.data.name}}">{{node.data.name}}</span>
+				            			</td>
+				            			<td>
+				            				<span>
+												<a *ngIf="node.data.orgxtType==1" (click)="openDrugs(node.data.id,node.data.name)">添加规则</a>
+												<a *ngIf="node.data.orgxtType==1" (click)="openDrugs(node.data.id,node.data.name)">未定义</a>
+												
+												<a *ngIf="node.data.orgxtType==0" (click)="openDrugs(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==0" (click)="openDrugs(node.data.id,node.data.name)">已审核</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openDrugs(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openDrugs(node.data.id,node.data.name)">未审核</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openDrugs(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openDrugs(node.data.id,node.data.name)">编辑中</a>
+												
+												<a *ngIf="node.data.orgxtType==0" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												<a *ngIf="node.data.orgxtType==2" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												
+											</span>
+				            			</td>
+				            		</table>
+				            	</template>	  	               
+				            </Tree>
+			        	 </div>  	
+			    	</div>  -->
+			    	<div id="data-catalog-list" class="catalog-list" style="height:calc(100vh - 443px);overflow: auto;" *ngIf="isDrugsTreeShow">
+			    		 <div>
+				            <Tree [nodes]="drugsTreeData" [options]="drugOptions" class="my-tree commonTree">
+				            	<template #treeNodeTemplate let-node>
+				            		<table  style="width:100%;">
+				            			<td>
+				            				<span style="max-width: 200px;" title="{{node.data.name}}">{{node.data.name}}</span>
+				            			</td>
+				            			<td>
+				            				<span>
+												<a *ngIf="node.data.orgxtType==1" (click)="openDrugs(node.data.id,node.data.name)">添加规则</a>
+												<a *ngIf="node.data.orgxtType==1" (click)="openDrugs(node.data.id,node.data.name)">未定义</a>
+												
+												<a *ngIf="node.data.orgxtType==0" (click)="openDrugs(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==0" (click)="openDrugs(node.data.id,node.data.name)">已审核</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openDrugs(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openDrugs(node.data.id,node.data.name)">未审核</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openDrugs(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openDrugs(node.data.id,node.data.name)">编辑中</a>
+												
+												<a *ngIf="node.data.orgxtType==0" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												<a *ngIf="node.data.orgxtType==2" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												
+											</span>
+				            			</td>
+				            		</table>
+				            	</template>	  	               
+				            </Tree>
+			        	 </div>  	
+			    	</div>  
+			    	<!--项目-->
+			    	<!--<div class="catalog-list" [class.active]="handleType == 2" [class.hidden]="handleType == 1||handleType == 0||handleType == 3||handleType == 4" style="height:calc(100vh - 443px);overflow: auto;">
+			    		<div>
+				            <Tree [nodes]="ItemsTreeData" [options]="itemOptions"  class="my-tree commonTree">
+				            	<template #treeNodeTemplate let-node>
+				            		<table  style="width:100%;">
+				            			<td>
+				            				<span style="max-width: 200px;" title="{{node.data.name}}">{{node.data.name}}</span>
+				            			</td>
+				            			<td>
+				            				<span>
+												<a *ngIf="node.data.orgxtType==1" (click)="openItems(node.data.id,node.data.name)">添加规则</a>
+												<a *ngIf="node.data.orgxtType==1" (click)="openItems(node.data.id,node.data.name)">未定义</a>
+												
+												<a *ngIf="node.data.orgxtType==0" (click)="openItems(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==0" (click)="openItems(node.data.id,node.data.name)">已审核</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openItems(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openItems(node.data.id,node.data.name)">未审核</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openItems(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openItems(node.data.id,node.data.name)">编辑中</a>
+												
+												<a *ngIf="node.data.orgxtType==0" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												<a *ngIf="node.data.orgxtType==2" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+											</span>
+				            			</td>
+				            		</table>
+				            	</template>	  	               
+				            </Tree>
+			        	 </div>  
+			    	</div> -->
+			    	<div class="catalog-list" *ngIf="isItemsTreeShow" style="height:calc(100vh - 443px);overflow: auto;">
+			    		<div>
+				            <Tree [nodes]="ItemsTreeData" [options]="itemOptions"  class="my-tree commonTree">
+				            	<template #treeNodeTemplate let-node>
+				            		<table  style="width:100%;">
+				            			<td>
+				            				<span style="max-width: 200px;" title="{{node.data.name}}">{{node.data.name}}</span>
+				            			</td>
+				            			<td>
+				            				<span>
+												<a *ngIf="node.data.orgxtType==1" (click)="openItems(node.data.id,node.data.name)">添加规则</a>
+												<a *ngIf="node.data.orgxtType==1" (click)="openItems(node.data.id,node.data.name)">未定义</a>
+												
+												<a *ngIf="node.data.orgxtType==0" (click)="openItems(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==0" (click)="openItems(node.data.id,node.data.name)">已审核</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openItems(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openItems(node.data.id,node.data.name)">未审核</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openItems(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openItems(node.data.id,node.data.name)">编辑中</a>
+												
+												<a *ngIf="node.data.orgxtType==0" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												<a *ngIf="node.data.orgxtType==2" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+											</span>
+				            			</td>
+				            		</table>
+				            	</template>	  	               
+				            </Tree>
+			        	 </div>  
+			    	</div> 
+			    	<!--材料-->
+			    	<!--<div class="catalog-list" [class.active]="handleType == 3" [class.hidden]="handleType == 1||handleType == 2||handleType == 0||handleType == 4" style="height:calc(100vh - 443px);overflow: auto;">
+			    		<div>
+				            <Tree [nodes]="MaterialTreeData" [options]="materialOptions"  class="my-tree commonTree">
+				            	<template #treeNodeTemplate let-node>
+				            		<table  style="width:100%;">
+				            			<td>
+				            				<span style="max-width: 200px;" title="{{node.data.name}}">{{node.data.name}}</span>
+				            			</td>
+				            			<td>
+				            				<span>
+												<a *ngIf="node.data.orgxtType==1" (click)="openMaterials(node.data.id,node.data.name)">添加规则</a>
+												<a *ngIf="node.data.orgxtType==1" (click)="openMaterials(node.data.id,node.data.name)">未定义</a>
+												
+												<a *ngIf="node.data.orgxtType==0" (click)="openMaterials(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==0" (click)="openMaterials(node.data.id,node.data.name)">已审核</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openMaterials(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openMaterials(node.data.id,node.data.name)">未审核</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openMaterials(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openMaterials(node.data.id,node.data.name)">编辑中</a>
+												
+												<a *ngIf="node.data.orgxtType==0" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												<a *ngIf="node.data.orgxtType==2" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+											</span>
+				            			</td>
+				            		</table>
+				            	</template>	  
+				            </Tree>
+			        	 </div>  
+			    	</div> -->
+			    	<div class="catalog-list" *ngIf="isMaterialsTreeShow" style="height:calc(100vh - 443px);overflow: auto;">
+			    		<div>
+				            <Tree [nodes]="MaterialTreeData" [options]="materialOptions"  class="my-tree commonTree">
+				            	<template #treeNodeTemplate let-node>
+				            		<table  style="width:100%;">
+				            			<td>
+				            				<span style="max-width: 200px;" title="{{node.data.name}}">{{node.data.name}}</span>
+				            			</td>
+				            			<td>
+				            				<span>
+												<a *ngIf="node.data.orgxtType==1" (click)="openMaterials(node.data.id,node.data.name)">添加规则</a>
+												<a *ngIf="node.data.orgxtType==1" (click)="openMaterials(node.data.id,node.data.name)">未定义</a>
+												
+												<a *ngIf="node.data.orgxtType==0" (click)="openMaterials(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==0" (click)="openMaterials(node.data.id,node.data.name)">已审核</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openMaterials(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==2" (click)="openMaterials(node.data.id,node.data.name)">未审核</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openMaterials(node.data.id,node.data.name)">编辑规则</a>
+												<a *ngIf="node.data.orgxtType==3" (click)="openMaterials(node.data.id,node.data.name)">编辑中</a>
+												
+												<a *ngIf="node.data.orgxtType==0" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+												<a *ngIf="node.data.orgxtType==2" title="规则校验">
+													<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(node.data.name,node.data.id,node.data.type,type) style="width: 15px;"/>
+												</a>
+											</span>
+				            			</td>
+				            		</table>
+				            	</template>	  
+				            </Tree>
+			        	 </div>  
+			    	</div> 
+			    	
+			    	<!--就诊-->
+			    	<div class="catalog-list seeDoctor" *ngIf="isVisitsTreeShow" style="height:calc(100vh - 443px);overflow: auto;">   		
+			    		<div class="addrules fn-clear" *ngIf="isAddRulesShow">
+			    			<img src="../../../app/images/u6735.png" (click)="addRules()"/>
+			    			<span (click)=addRules()>添加规则</span>
+			    		</div>
+			    		<div style="margin-top: 10px;height: calc(100vh - 519px);overflow: auto;">
+				            <ul *ngFor="let item of getVisitingDataArray;let i = index;">
+				            	<li>
+				            		<span style="max-width: 200px;" title="{{item.name}}">{{item.name}}</span>
+				            		<span class="treeBox">
+				            	    		<a *ngIf="item.isRule==1" (click)="openVisits(item.id,item.name)">添加规则</a>
+											<a *ngIf="item.isRule==1" (click)="openVisits(item.id,item.name)">未定义</a>
+											
+											<a *ngIf="item.isRule==0" (click)="openVisits(item.id,item.name)">编辑规则</a>
+											<a *ngIf="item.isRule==0" (click)="openVisits(item.id,item.name)">已审核</a>
+											<a *ngIf="item.isRule==2" (click)="openVisits(item.id,item.name)">编辑规则</a>
+											<a *ngIf="item.isRule==2" (click)="openVisits(item.id,item.name)">未审核</a>
+											<a *ngIf="item.isRule==3" (click)="openVisits(item.id,item.name)">编辑规则</a>
+											<a *ngIf="item.isRule==3" (click)="openVisits(item.id,item.name)">编辑中</a>
+											
+											<a *ngIf="item.isRule==0" title="规则校验">
+												<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(item.name,item.id,item.type,type)/>
+											</a>
+											<a *ngIf="item.isRule==2" title="规则校验">
+												<img src="../../../app/images/u15118.svg" (click)=RulesCheckTitle(item.name,item.id,item.type,type)/>
+											</a>
+											<a class="fn-ML5"><img src="../../../app/images/commonicons/delete-icon.svg" (click)="delData(item)"></a>
+				            		</span>
+				            	</li>
+				            </ul>
+			        	</div>  
+			    	</div>
+		        </div>	
+				<div class="HealthBigRightBox" style="min-height:calc(100vh - 415px);;">    		
+			    	<div *ngIf="isRulesShow">
+			    		<div class="HealthBigRightBottomBox ">
+		    				<p>规则维护流程</p>
+		    				<div style="margin-top: 10px;border: 1px solid #E0E0E0;padding: 5px;padding-top: 10px;">
+		    					<div>
+		    					    <img src="../../../app/images/rules.png" />
+		    				    </div>
+		    				    <span>含对应疾病；药品；项目；材料目录版本</span>
+		    				</div>
+		    		    </div>
+			    	</div>
+			    	<div *ngIf="isShow" style="padding-left: 20px;">
+			    		<div class="Last_content" style="padding: 120px;padding-top: 10px;padding-left: 35px;padding-bottom: 10px;">
+			    			<span style="color: #000;">新增就诊规则</span>
+			    		</div>
+			    		<div class="Last_content" style="border: 1px solid #E0E0E0;padding: 90px;padding-top: 20px;">
+			    			<div class="Last_contentTop">
+			    				<span style="display: inline-block;">规则名称  ： </span>
+			    			    <input type="text" class="fn-input" [(ngModel)]="addRulesData.name" (input)="testName()" placeholder="支持中英文，数字，字母，长度不超过2-10" title="支持中英文，数字，字母，长度不超过2-10" (blur)="testClassifyName(addRulesData.name)"/>
+			    		    </div>
+			    		    <div class="last_next">
+			    		    	<button class="publicBtn fn-H28 fn-W40 fn-ML10 nextStep" (click)="isRulesShow=true;isShow=false">取消</button>
+			    		    	<!--<button class="publicBtn fn-H28 fn-W40 fn-ML10 nextStep" (click)="addRulesDataStepy();isRulesShow=true;isShow=false">新增</button>-->
+			    		    	<button class="publicBtn fn-H28 fn-W40 fn-ML10 nextStep" (click)="addRulesDataStepy()">新增</button>
+			    		    </div>
+			    		</div>
+			    	</div>
+    	   		 </div>
+	   		</div>
+	   		<!--五棵树结束-->
+		 </div>
+
+	</div>
+</div>
+ <my-dialog class="show-dialog1" id="show-dialog1">
+ 	 <template #dialogTemplate let-dialogModel>
+ 		<div class="datatype-choosing1" *ngIf="isDialogShow">
+          <div class="title">请先在右上角添加规则版本！</div>
+          <div class="versionTrue" style="padding-left: 230px;padding-top: 25px;">
+				<!--<a class="mt10" (click)="dialogModel.customModule = false;" style="padding-right: 10px;color: #4EB7E0;">取消</a>-->
+				<a class="mt10 true" (click)=sureAddVersion() style="color: #4EB7E0;">确认</a>
+		  </div>
+        </div>
+ 	 	<div class="datatype-choosing1" *ngIf="isDeleteShow">
+			<div class="title">确认删除本条数据?</div>
+			<div class="versionTrue" style="padding-left: 190px;padding-top: 25px;">
+				<a class="mt10" (click)="dialogModel.customModule = false;" style="padding-right: 10px;color: #4EB7E0;">取消</a>
+				<a class="mt10 true" (click)=sure() style="color: #4EB7E0;">删除</a>
+			</div>
+		</div>
+     </template>
+ </my-dialog>

@@ -1,0 +1,206 @@
+<div class="container-content">		
+	<div class='bigBox fn-clear' style="background: #fff;">
+		<div class="search-bar" fole="form" >
+			<table id="noBorders" class="fn-table fn-table-input" width="100%" >
+				<tr>
+					<td width="94" align="right" class="fn-LH30">发生时间：</td>
+					<td width="20%">
+							<div style="width:193px;">
+								<time-interval [startTime]="searchParams.startTime" [endTime]="searchParams.endTime" (timeSetted)="updateTime($event)"></time-interval>
+							</div>
+
+					</td>
+					<td width="104" align="right" class="fn-LH30">发生次数：</td>
+					<td width="14%">
+							<div style="width:131px;">
+								<input  #count type="number" name="startCount" class="fn-input ipts" [(ngModel)]="dataList.startCount"  (input)="checkNumber(count.value)" />
+								-
+								<input #overCount  type="number" [(ngModel)]="dataList.overCount" (input)="checkOverCount(overCount.value)" class="fn-input ipts"/>
+							</div>
+					</td>
+					<td width="94" align="right" class="fn-LH30">警示类型：</td>
+
+					<td  width="14%">
+						<select class="fn-input" [(ngModel)]="dataList.action" style="width:130px">
+							<option value='' selected="selected" >全部</option>
+							<option value="0">忽略</option>
+							<option value="1">拦截</option>
+							<option value="2">警示</option>
+						</select>
+					</td>
+					<td width="94" align="right" class="fn-LH30" >管理依据：</td>
+					<td width="14%">
+						<select class="fn-input" [(ngModel)]="dataList.basis" style="width:130px">
+			                <option value=''>全部</option>
+							<option *ngFor ='let obj of manageArray' value="{{obj.id}}">{{obj.name}}</option>
+            			</select>
+					</td>
+					<td rowspan="3" width="80">
+						<div class="fn-ML10" style="height:118px;border-left:1px solid #ddd;">
+							<button type="submit" class="publicBtn fn-ML12 fn-MT45" (click)="search()">搜索</button>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td  align="right" class="fn-LH30">规则版本：</td>
+					<td >
+						<select class="fn-input" [(ngModel)]="dataList.versionId" style="width:193px">
+							<option value=''>全部</option>
+							<option *ngFor ='let obj of ruleArray' value="{{obj.id}}">{{obj.name}}</option>
+						</select>
+					</td>
+					<td  align="right" class="fn-LH30">警示信息等级：</td>
+					<td >
+						<select class="fn-input" [(ngModel)]="dataList.level" style="width:131px">
+							<option value=''>全部</option>
+							<option value='0'>0</option>
+							<option value='1'>1</option>
+							<option value='2'>2</option>
+							<option value='3'>3</option>
+							<option value='4'>4</option>
+							<option value='5'>5</option>
+							<option value='6'>6</option>
+							<option value='7'>7</option>
+							<option value='8'>8</option>
+							<option value="9">9</option>
+						</select>
+					</td>
+					<td  align="right" class="fn-LH30">分析类型：</td>
+					<td >
+						<select class="fn-input"  [(ngModel)]="dataList.analysisType" (ngModelChange)="selectedanalysis($event)"  style="width:130px">
+							<option value=''>全部</option>
+							<option *ngFor ='let item of analyzeArray' value="{{item.id}}" >{{item.name}}</option>	
+						</select>
+					</td>
+					<td  align="right" class="fn-LH30">提示类型：</td>
+					<td>
+						<select class="fn-input"  [(ngModel)]="dataList.promptType" style="width:130px">
+							<option value=''>全部</option>
+							<option *ngFor ='let item of tipArray' value="{{item.id}}" >{{item.name}}</option>	
+						</select>
+					</td>
+						
+				</tr>
+				<tr>
+					<td  align="right" class="fn-LH30">规则类型：</td>
+					<td >
+						<select class="fn-input" [(ngModel)]="dataList.nodeType" style="width:193px">
+							<option value=''>全部</option>
+							<option value='3'>药品</option>
+							<option value='4'>项目</option>
+							<option value='1'>就诊</option>
+							<option value='5'>材料</option>
+							<option value='2'>诊断</option>
+						</select>
+					</td>
+					<td  align="right" class="fn-LH30">医院：</td>
+					<td >
+						<select class="fn-input" [(ngModel)]="dataList.hospitalNo"  (ngModelChange)="selectedHospital($event)" style="width:131px">
+							<option value=''>全部</option>
+							<option *ngFor ="let item of hospitalArray" value="{{item.id}}">{{item.name}}</option>
+						</select>
+					</td>
+					<td  align="right" class="fn-LH30">科室：</td>
+					<td >
+						<select class="fn-input" [(ngModel)]="dataList.department"  (ngModelChange)="selectedOffice($event)"  style="width:130px">
+							<option value="">全部</option>
+							<option *ngFor = 'let item of officeArray' value="{{item.id}}">{{item.name}}</option>
+						</select>
+					</td>
+					<!-- <td  align="right" class="fn-LH30">医护人员：</td>
+					<td>
+						<select class="fn-input" [(ngModel)]="dataList.doctor" style="width:130px">
+							<option value="">全部</option>
+							<option *ngFor = 'let item of doctorArray' value="{{item.id}}">{{item.name}}</option>
+						</select>
+						
+					</td> -->
+					
+				</tr>
+				<tr >
+					<td style="display: none;">
+						<div class="form-group">
+							<label class="control-label fn-W32">险种:</label>
+							<select class="fn-input" [(ngModel)]="insuranceId"  (ngModelChange)="selectedInsuranceId($event)"  style="width:130px">
+								<option *ngFor = 'let item of insuranceArray' value="{{item.id}}">{{item.name}}</option>
+							</select>
+						</div>
+					</td>
+				</tr>
+				
+			</table>
+		</div>
+		
+	</div>
+	
+    <div class="InterventionTableBox" style="height: calc(100vh - 265px);margin-top: 20px;padding-top: 20px;">
+     	  <div>
+     	  	<div style="padding-right: 17px; background: #fff;width:100%" id="tableHead">
+			      <table class="table alert-message-details-th tableLayout"  >
+			            <thead>
+			                <tr style="height: 45px;">
+			                    <th width="12%">提示信息</th>
+			                    <th width="12%">建议信息</th>
+			                    <th width="10%">依据</th>
+			                    <th width="12%">类型</th>
+			                    <th width="10%">等级</th>
+			                    <th width="12%">警示类型</th>
+			                    <th width="12%">规则版本</th>
+			                    <th width="12%">发生次数</th>
+			                    <th>操作</th>
+			                </tr>
+			            </thead>
+			        </table>
+     	  	</div>
+     	  </div>
+	      <div>
+	            <div style="height:calc(100vh - 380px);width:100%;overflow-y: scroll;">
+		        	<div  *ngIf="msgList && msgList.length != 0" style="background: #fff;margin-right:0px;" >
+			            <table class="table tableLayout" style="margin: 0px;">
+			                <tbody>
+			                    <tr *ngFor="let item of msgList;let i = index" >
+			                      		<td style="width: 12%" class="fn-ellipsis" title="{{item.prompt}}">
+			                      		  
+			                      		    {{item.prompt}}
+			                      		</td>
+										<td style="width: 12%" class="fn-ellipsis" title="{{item.opinion}}">
+											
+			                      		    {{item.opinion}}
+										</td>
+										<td style="width: 10%" class="fn-ellipsis" title="{{item.basis}}">
+											
+			                      		    {{item.basis}}
+										</td>
+										<td style="width: 12%" class="fn-ellipsis" title="{{item.ruleType}}">{{item.ruleType}}</td>
+										<td style="width: 10%" class="fn-ellipsis" title="{{item.level}}">{{item.level}}</td>
+										<td *ngIf="item.warningAction == 0" style="width: 12%" class="fn-ellipsis" title="忽略">忽略</td>
+										<td *ngIf="item.warningAction == 1" style="width: 12%" class="fn-ellipsis" title="拦截">拦截</td>
+										<td *ngIf="item.warningAction == 2" style="width: 12%" class="fn-ellipsis" title="警示">警示</td>
+										<td style="width: 12%" class="fn-ellipsis" title="{{item.ruleVersion}}">{{item.ruleVersion}}</td>
+										<td style="width: 12%" class="fn-ellipsis" title="{{item.count}}">{{item.count}}</td>
+										<td  style="cursor: pointer;color: blue;">
+											<a (click)="goToDetail(item)">查看</a>
+										</td>	
+			                    </tr>
+			                </tbody>
+			            </table>
+	        		</div>
+	        		<div  *ngIf="msgList && msgList.length == 0" style="background: #fff;margin-right: 0px;">
+			            <table class="table" style="margin: 0px;">
+			                <tbody>
+			                  <tr>
+								<td>没有找到相关数据</td>
+			                  </tr>
+			                </tbody>
+			            </table>
+	        		</div>
+	            </div>
+				<div style="padding-right:17px;" id="tableFooter">
+	        		<pagination [pageInfo]="pageInfo" (changePage)="setPage($event)" (changePageSize)="setPageSize($event)"></pagination>
+				</div>
+	      </div>
+	</div>
+</div>
+<my-dialog></my-dialog>
+	
+

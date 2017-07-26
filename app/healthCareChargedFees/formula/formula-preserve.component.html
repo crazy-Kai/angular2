@@ -1,0 +1,79 @@
+<div class="catalogObject fn-clear" style="height: calc(100vh - 80px);">
+    <div class="catalogObject-content" style="min-width:1100px;width:calc(100vw - 190px);height: calc(100vh - 95px);">
+
+		<div class="container-left fn-left" style="height:calc(100vh - 95px)">
+
+			<div class="selected-insurance form-inline">
+				<div class="form-group">
+					<label class="control-label fn-W42">险种：</label>
+					<div class="fn-input select-top" style="padding:0">
+						<select-comp [option]="insuranceTypeOption" (select)="chooseInsurance($event)"></select-comp>
+					</div>
+				</div>
+			</div>
+			<div class="catalog-tree" style="height:calc(100vh - 154px);overflow: auto;">
+				
+				<div id="data-calculate-list" class="calculate-list">
+		            <Tree [nodes]="drugsTreeData" class="my-tree" [options]="options"  (onActivate)="chooseNode($event)">
+		                <template #treeNodeTemplate let-node>
+		                    <div>
+		                       <span [class.child-icon]="node.data.pid !='' " [class.nodes-icon]="node.data.type == ''"></span>
+		                       <span>{{node.data.name}}</span>
+		                    </div>
+		                </template>
+		            </Tree>
+	        	</div>
+
+			</div>
+		</div>
+		<div class="fn-left fn-W20 container-center" style="height: calc(100vh - 95px);"></div>
+		<div class="container-right fn-left" style="height: calc(100vh - 95px);min-width:600px;">
+				<div  class="add-calculate-form fn-W580 fn-PT15" *ngIf ="curNode && curNode.pid !=''" style="height: calc(100vh - 95px);overflow: auto;">
+					<div class="form-group">
+						<label class=" col-md-2 control-label">
+							说明：			
+						</label>
+						<div class="form-inline text">
+							{{cateType.description}}
+						</div>
+						
+					</div>
+					<div class="form-group" *ngIf = 'cateType.isConfigable'>
+						<label class=" col-md-2 control-label">
+							系统配置：			
+						</label>
+						<div class="form-inline text" id="text" *ngFor ='let item of cateType.formulaConfigList ;let i=index'>
+							<input type="radio" name="text"  [checked]='item.isDefault' (change)='saveCheckSource(cateType.formulaConfigList,i,$event.target)'/>{{item.optionName}}
+						</div>
+						
+					</div>
+					<div class="form-group">
+						<label class=" col-md-2 control-label">
+							计算公式：			
+						</label>
+						<div class="form-inline text">
+							{{cateType.summary}}
+						</div>
+					</div>
+					<div class="form-group">
+						<label class=" col-md-2 control-label">
+							备注：			
+						</label>
+						<div class="form-inline text">
+							{{cateType.remark}}
+						</div>
+					</div>
+					<div class="form-group" style="margin-top:68px;">
+						<label class=" col-md-2 control-label">
+											
+						</label>
+						<div class="form-inline" *ngIf = 'cateType.isConfigable'>
+							<!--<button class="btn btn-primary fn-W80"  type="submit"  (click)="save()">保存</button>-->
+							<button class="publicSureBtn fn-W80"  type="submit"  (click)="save()">保存</button>
+						</div>
+					</div>	
+				</div>
+		</div>
+    </div>
+<div>
+<my-dialog></my-dialog>

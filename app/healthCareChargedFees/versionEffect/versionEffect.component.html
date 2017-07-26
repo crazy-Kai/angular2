@@ -1,0 +1,183 @@
+
+<div class="catalogObject fn-clear" style="height: calc(100vh - 80px);">	
+	<div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);padding-left: 15px;padding-right: 15px;">
+	    <div class="selected-insurance form-inline" style="padding-top: 15px;">
+	        <form>
+	             <label class="control-label fn-W28">险种：</label>
+	             <div class="fn-input select-top" style="padding:0;width: 426px;border: none;">
+				   <select-comp [option]="insuranceTypeOption" (select)="chooseInsurance($event)"></select-comp>
+				</div>
+	        </form>
+	    </div>
+	    <div class="versionEffectBox">
+	    	<div *ngIf="isTitleShow">
+	    		<div class="versionEffectBoxTiitle"><p><span>当前使用版本：</span> </p></div>
+		    	<div class="versionEffectBoxTiitle"><p><span>{{ruleVersionName==''?'暂无':ruleVersionName}}</span></p></div>
+		    	<div class="versionEffectBoxTiitle modification" (click)=modification() *ngIf="isTextShow"><p><a>增加</a></p></div>
+		    	<div class="versionEffectBoxTiitle modification" (click)=modification() *ngIf="ismodificationShow"><p><a>修改</a></p></div>
+	    	</div>
+	    </div>
+    <!--定时生效-->
+	    <div class="versionEffectBox" *ngIf="isShow" style="padding-top: 0px;">
+	    	<div class="versionEffectBoxTiitle"><p><span>即将生效的版本：</span> </p></div>
+	    	<div class="versionEffectBoxTiitle"><p><span>{{rvName==''?'暂无':rvName}}</span></p></div>
+	    	<div class="versionEffectBoxTiitle" style="padding-left: 10px;padding-right: 10px;"><p><span>{{rvactiveDate==''?'暂无':rvactiveDate}}</span></p></div>
+	    	<div class="canceltitle versionEffectBoxTiitle" (click)=calceldata()><p><span>取消</span> </p></div>
+	    </div>
+		<div class="InterventionTableBox" style="min-height: calc(100vh - 246px);">
+	     	<div>
+	     	  	<div style="background: #fff;width: 100%;" id="tableHead">
+				    <table class="table alert-message-details-th tableLayout" >
+				        <thead>
+			                <tr style="height: 45px;">
+			                    <th width="15%">规则版本</th>
+						    	<th width="25%">版本说明</th>
+						    	<th width="15%">对应疾病目录</th>
+						    	<th width="15%">对应药品目录</th>
+						    	<th width="15%">对应项目目录</th>
+						    	<th width="15%">对应材料目录</th>
+			                </tr>
+				        </thead>
+				    </table>
+	     	  	</div>
+	     	</div>
+		    <div>
+	            <div style="min-height:calc(100vh - 236px - 7px - 1px - 1px);width:100%;">
+		        	<div *ngIf="tableDataContent && tableDataContent.length != 0" style="background: #fff;margin-right:0px;">
+			            <table class="table tableLayout" style="margin: 0px;">
+			                <tbody>
+								<tr class="isActive activedata" *ngIf="isActiveHide">
+							        <td width="15%" class="fn-ellipsis" title="{{firstTrList.ruleVersionName}}">{{firstTrList.ruleVersionName}}(当前在用)</td>
+					    	        <td width="25%" class="fn-ellipsis" title="{{firstTrList.ruleVersionDescription}}">{{firstTrList.ruleVersionDescription==''?'暂无':firstTrList.ruleVersionDescription}}</td>
+									<td width="15%" title="{{firstTrList.diseaseVersionName}}" class="fn-ellipsis">{{firstTrList.diseaseVersionName}}</td>
+									<td width="15%" title="{{firstTrList.drugVersionName}}" class="fn-ellipsis">{{firstTrList.drugVersionName}}</td>
+									<td width="15%" title="{{firstTrList.itemVersionName}}" class="fn-ellipsis">{{firstTrList.itemVersionName}}</td>
+									<td width="15%" title="{{firstTrList.materialVersionName}}" class="fn-ellipsis">{{firstTrList.materialVersionName}}</td>
+								</tr>
+								<tr *ngFor="let obj of tableList;let i = index;" class="activedata">
+							        <td width="15%" class="fn-ellipsis" title="{{obj.ruleVersionName}}">{{obj.ruleVersionName}}</td>
+					    	        <td width="25%" class="fn-ellipsis" title="{{obj.ruleVersionDescription}}">{{obj.ruleVersionDescription==''?'暂无':obj.ruleVersionDescription}}</td>
+									<td width="15%" title="{{obj.diseaseVersionName}}" class="fn-ellipsis">{{obj.diseaseVersionName==''?'暂无':obj.diseaseVersionName}}</td>
+									<td width="15%" title="{{obj.drugVersionName}}" class="fn-ellipsis">{{obj.drugVersionName==''?'暂无':obj.drugVersionName}}</td>
+									<td width="15%" title="{{obj.itemVersionName}}" class="fn-ellipsis">{{obj.itemVersionName==''?'暂无':obj.itemVersionName}}</td>
+									<td width="15%" title="{{obj.materialVersionName}}" class="fn-ellipsis">{{obj.materialVersionName==''?'暂无':obj.materialVersionName}}</td>
+								</tr>
+			                </tbody>
+			            </table>
+	        		</div>
+	        		<div>
+						<table class="table" style="margin: 0px;">
+							<tbody>
+							     <tr *ngIf="tableDataContent && tableDataContent.length == 0 && isActiveHide == false" style="text-align: center;">
+			                          <td width="100%" style="padding: 10px 0;text-align: center;">没有找到相关数据</td>
+			                     </tr>
+							</tbody>
+						</table>
+					</div>
+	            </div>
+		    </div>
+		</div>
+	     <!--//表格 end-->
+    </div>  
+</div> 
+ <!--弹窗浮动层  添加版本-->  
+ <my-dialog class="show-dialog">
+ 	 <template #dialogTemplate let-dialogModel>
+        <div class="datatype-choosing" *ngIf="isDialogPlugin">
+        	<div class="dialogTitle">版本设置</div>
+        	<div class="selectVersion">
+        		<span>生效版本：</span>
+        		<select [(ngModel)]="activeIdx" (change)="optionClick($event)" style="width: 200px;margin-left: 6px;" class="fn-input">
+        			<option *ngFor="let obj of selectList;let i = index;" value="{{i}}">{{obj.name}}</option>
+        		</select>
+        	</div>
+        	<!--<div class="dialogTime">
+        		<span>生效时间：</span>
+        		<input type="radio" value="true" class="immediateEffect" name="activeMode"
+        			  (change)="cateType.activeMode=$event.target.value;" [checked]="cateType.activeMode == '1'" value="1" [disabled]="isEdit"/>  立即生效
+        		<input type="radio" value="false" class="immediateEffect"
+        			    [checked]="cateType.activeMode == '2'"  value="2" name="activeMode"
+						(change)="cateType.activeMode=$event.target.value;" [disabled]="isEdit"/>  定时生效
+        	</div>-->
+        	<!--<div class="dialogTime">
+        		<span>生效时间：</span>
+        		<input type="radio" value="true" class="immediateEffect" name="activeMode"
+        			  (change)="cateType.activeMode=$event.target.value;" [checked]="cateType.activeMode == '1'" value="1" [disabled]="isEdit"/>  立即生效
+        		<input type="radio" value="false" class="immediateEffect"
+        			    [checked]="cateType.activeMode == '2'"  value="2" name="activeMode"
+						(change)="cateType.activeMode=$event.target.value;" [disabled]="isEdit"/>  定时生效
+        	</div>-->
+        	<div class="form-group">
+				<!--<label class=" col-md-2 control-label">
+						生效时间：
+				</label>-->
+				<span style="color: #666;">生效时间：</span>
+				<div class="form-inline" style="display: inline-block;">
+				    <div class="fn-disInBl fn-MR20">
+				    	<label class="fn-MT5 fn-MB0">
+							<input type="radio" class="fn-VA2D" name="activeMode"  
+							(change)="cateType.activeMode=$event.target.value;"
+						 	[checked]="cateType.activeMode == '1'" value="1"  >  立即生效
+				    	</label>
+				    </div>
+				     <div class="fn-disInBl">
+				     	<label class="fn-MT5 fn-MB0">
+							<input type="radio"   [checked]="cateType.activeMode == '2'"  value="2" 
+						 	name="activeMode" class="fn-VA2D" 	(change)="cateType.activeMode=$event.target.value;">  定时生效
+				     	</label>
+				    </div>
+				</div>
+			</div>
+        	<div class="versionTimeEffect" *ngIf="cateType.activeMode==2">
+        	<!--<div class="versionTimeEffect" *ngIf="isTimeShow">-->	
+	        	<div class="changeTime">
+	        		<span style="color: #666;">生效时间：</span>
+	        		<span (click)="$event.stopPropagation();">
+	        	    	<input class="fn-input ipttime" style="margin-left: 2px;width: 200px;" placeholder="yyyy-mm-dd" (click)="toggleEnd(endDateforSearch);" (ngModelChange)="setStrartInterval($event)"  [(ngModel)]="currentTime"  [maxDate]="maxEndDate" [minDate]="minEndDate" name="endDateforSearch"  tabIndex="-1" ngbDatepicker #endDateforSearch="ngbDatepicker">
+	        		</span>
+	        	</div>
+	        </div>
+            <div class="addcatalog-button fn-MT20" style="padding-left: 90px;">
+		        <span class="btn-cancel fn-MR10">
+					<button class="btn btn-primary fn-W80 fn-H30" (click)="dialogModel.customModule = false;">取消</button>
+		        </span>
+		        <span class="btn-save">
+					<button class="publicSureBtn fn-W80 fn-H30"  (click)="sureVersion()">确定</button>
+		        </span>
+		    </div>
+        </div>
+        <div class="datatype-choosing" *ngIf="isSuggestion">
+        	<div class="dialogTitle">生效过程中，会造成部分数据错误，是否继续生效?</div>
+        	<div class="addcatalog-button fn-MT20" style="padding-left: 90px;">
+		        <span class="btn-cancel fn-MR10">
+					<button class="btn btn-primary fn-W80 fn-H30" (click)="calcel()">取消</button>
+		        </span>
+		        <span class="btn-save">
+					<button class="publicSureBtn fn-W80 fn-H30"  (click)="sure()">确定</button>
+		        </span>
+		    </div>
+        </div>
+        <div class="datatype-choosing" *ngIf="isTiming">
+		    <div class="versionEffectBox" style="padding-top: 0px;">
+		    	<div class="versionEffectBoxTiitle"><p><span>即将生效的版本：</span> </p></div>
+		    	<div class="versionEffectBoxTiitle"><p><span>{{name==''?'暂无':name}}</span></p></div>
+		    	<div class="versionEffectBoxTiitle" style="padding-left: 10px;padding-right: 10px;"><p><span>{{info}} 02:00:00</span></p></div>
+		    </div>
+		    <div class="addcatalog-button fn-MT20" style="padding-left: 90px;">
+		        <span class="btn-cancel fn-MR10">
+					<button class="btn btn-primary fn-W80 fn-H30" (click)="calcelTime()">取消</button>
+		        </span>
+		        <span class="btn-save">
+					<button class="publicSureBtn fn-W80 fn-H30"  (click)="sureTime()">确定</button>
+		        </span>
+		    </div>
+        </div>
+        <div class="datatype-choosing" *ngIf="isDialogShow">
+	          <div style="font-size: 15px;font-weight: bold;">当前险种规则版本缺失,请添加相关规则版本信息</div>
+	          <div style="padding-left: 260px;padding-top: 25px;display: inline-block;">
+					<!--<a class="mt10" (click)="dialogModel.customModule = false;" style="padding-right: 10px;color: #4EB7E0;">取消</a>-->
+					<a (click)=sureAddVersion() style="color: #4EB7E0;">确认</a>
+			  </div>
+        </div>
+    </template>
+ </my-dialog>

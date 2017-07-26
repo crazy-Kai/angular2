@@ -1,0 +1,57 @@
+<div id="page" class="interventionDataDetial" style="min-height: calc(100vh - 80px);">
+	<div class="interventionDataDetial-content" >
+		<div class="content-header">
+			<div class="goBack"><span style="cursor: pointer;" (click)="goBack();">< 返回</span></div>
+			<div class="fn-TAC fn-FWB fn-FS15">警示信息</div>
+			<div style="width:100%;background: #F5F7FA;" class="fn-MT35">
+				<table class="fn-table fn-table-text" width="100%">
+					<tr>
+						<td align="right" width="78">归属险种：</td>
+						<td width="15%">{{information.insuranceSummary}}</td>
+						<td align="right">归属规则版本：</td>
+						<td>{{information.ruleVersion}}</td>
+						<td align="right" width="78">提示信息：</td>
+						<td width="15%" class="fn-ellipsis" title="{{information.prompt}}">
+							{{information.prompt}}
+						</td>
+					</tr>
+					<tr>
+						<td align="right" width="78">建议信息：</td>
+						<td width="15%" class="fn-ellipsis" title="{{information.opinion}}">
+                  		    {{information.opinion}}
+						</td>
+						<td align="right" >警示等级：</td>
+						<td >{{information.level}}</td>
+						<td align="right" width="78" >管理依据：</td>
+						<td width="15%"  class="fn-ellipsis" title="{{information.basis}}">
+                  		    {{information.basis}}
+						</td>
+					</tr>
+					<tr>
+						<td align="right" width="78">警示方式：</td>
+						<td *ngIf="information.warningAction == 0" style="width: 15%" class="fn-ellipsis" title="忽略">忽略</td>
+						<td *ngIf="information.warningAction == 1" style="width: 15%" class="fn-ellipsis" title="拦截">拦截</td>
+						<td *ngIf="information.warningAction == 2" style="width: 15%" class="fn-ellipsis" title="警示">警示</td>
+						<td align="right" >发生次数：</td>
+						<td>{{information.count}}</td>
+						<td align="right" width="78">分析类型：</td>
+						<td width="15%">{{information.analysisType}}</td>
+					</tr>
+					<tr>
+						<td align="right" width="78">提示类型：</td>
+						<td width="15%">{{information.promptType}}</td>
+						<td></td>
+						<td></td>
+						<td width="78"></td>
+						<td width="15%"></td>	
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div style="text-align: center;">
+			<div id="content-main" style="margin:0 auto;">
+			</div>
+		</div>
+	</div>
+</div>
+<my-dialog></my-dialog>

@@ -1,0 +1,152 @@
+<!--版本管理查看页面-->
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">	
+	<div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);padding-left: 15px;padding-right: 15px;padding-top: 15px;">
+		<div class="HealthRulesVersionHeader">
+			<span style="cursor: pointer;" (click) = return()>< 返回</span>
+		</div>
+		<div class="suggestInformation01">
+			<span style="color: red;width: 10px;">*</span>
+			<span>版本名称：</span>
+			<input type="text" [(ngModel)]="addversiondetail.name" (blur)="testInsuranceName(addversiondetail.name)" placeholder="2~10个不区分中英文的字符" class="fn-input" style="width: 260px;" (input)="testName()"/>
+		</div>
+		<div class="suggestInformation">
+			<span style="color: red;width: 10px;">*</span>
+			<span>版本说明：</span>
+			<textarea [(ngModel)]="addversiondetail.description" placeholder="必填，支持不超过1000个汉字的文本内容" class="form-control fn-W378" style="font-size:13px;border-radius: 0;height:100px;max-height:100px;max-width: 260px;"></textarea>
+		</div>
+		<div class="sicknessCatalogVersion">
+			<span style="color: red;width: 10px;">*</span>
+			<span>关联疾病目录：</span>
+			<input [(ngModel)]="summaryDisease" placeholder="必选" class="fn-input" style="width: 215px;" readonly="readonly"/>
+			<!--<div class="choose" (click)=choosedisease()>
+				选择
+			</div>-->
+			<button type="submit" class="publicBtn fn-H28 fn-W40" (click)=choosedisease()>选择</button>
+		</div>
+		<div class="sicknessCatalogVersion">
+			<span style="color: red;width: 10px;">*</span>
+			<span>关联药品目录：</span>
+			<input [(ngModel)]="summaryDrugs" placeholder="必选" class="fn-input" style="width: 215px;" readonly="readonly"/>
+			<!--<div class="choose" (click)=choosedrugs()>
+				选择
+			</div>-->
+			<button type="submit" class="publicBtn fn-H28 fn-W40" (click)=choosedrugs()>选择</button>
+		</div>
+		<div class="sicknessCatalogVersion">
+			<span style="color: red;width: 10px;">*</span>
+			<span>关联项目目录：</span>
+			<input [(ngModel)]="summaryProjects" placeholder="必选" class="fn-input" style="width: 215px;" readonly="readonly"/>
+			<!--<div class="choose" (click)=chooseProjects()>
+				选择
+			</div>-->
+			<button type="submit" class="publicBtn fn-H28 fn-W40" (click)=chooseProjects()>选择</button>
+		</div>
+		<div class="sicknessCatalogVersion">
+			<span style="color: red;width: 10px;">*</span>
+			<span>关联材料目录：</span>
+			<input [(ngModel)]="summaryMaterials" placeholder="必选" class="fn-input" style="width: 215px;" readonly="readonly"/>
+			<!--<div class="choose" (click)=chooseMaterials()>
+				选择
+			</div>-->
+			<!--<p class="choose" (click)=chooseMaterials()>选择</p>-->
+			<button type="submit" class="publicBtn fn-H28 fn-W40" (click)=chooseMaterials()>选择</button>
+			<!--<button type="submit" class="publicSureBtn  fn-H28 fn-W40"  (click)=chooseMaterials() style="width: 50px;height: 30px;margin-left: 150px;margin-top: 30px;">选择</button>-->
+		</div>
+		<button type="submit" class="publicSureBtn fn-W80 fn-H30"  (click)=addversionsave() *ngIf="isShowBtn" style="height: 30px;margin-left: 150px;margin-top: 30px;">保存</button>
+		<button type="submit" class="publicSureBtn fn-W80 fn-H30"  *ngIf="!isShowBtn" style="height: 30px;margin-left: 150px;margin-top: 30px;background: #CCCCCC;">保存</button>
+		<!--<button type="submit" class="publicSureBtn  fn-H28 fn-W40"  (click)=addversionsave() *ngIf="isShowBtn" style="width: 50px;height: 30px;margin-left: 150px;margin-top: 30px;">保存</button>
+		<button type="submit" class="publicSureBtn  fn-H28 fn-W40"  *ngIf="!isShowBtn" style="width: 50px;height: 30px;margin-left: 150px;margin-top: 30px;">保存</button>-->
+	</div>
+</div>
+<!--弹窗浮动层  添加版本-->  
+ <my-dialog class="show-dialog">
+ 	 <template #dialogTemplate let-dialogModel  *ngIf="isDrugsShow">
+        <div class="datatype-choosing">
+              <div class="chooseVersion">选择药品目录</div>
+              <div class="chooseVersionContent">
+              	<div class="versionContentBox">
+              		<div class="selectList" *ngFor="let obj of drugsSelectList;let i = index;">
+              			<div class="listdata" (click)="selectedProductList = obj" [class.selected]='obj == selectedProductList' (click)="listdataClick($event.target,obj.id,obj.summary)">{{obj.summary}}</div>
+              		</div>
+              	</div>
+              </div>
+		      <div class="addcatalog-button fn-MT20" style="padding-left: 75px;">
+			        <span class="btn-cancel fn-MR10">
+						<button class="btn btn-primary fn-W80 fn-H30" (click)="canceldrugs()">取消</button>
+			        </span>
+			        <span class="btn-save">
+						<button class="publicSureBtn fn-W80 fn-H30"  (click)="suredrugs()">确认</button>
+			        </span>
+		       </div>
+        </div>
+    </template>
+    <template #dialogTemplate let-dialogModel  *ngIf="isDiseaseShow">
+        <div class="datatype-choosing">
+              <div class="chooseVersion">选择疾病目录</div>
+              <div class="chooseVersionContent">
+              	<div class="versionContentBox">
+              		<div class="selectList" *ngFor="let obj of diseaseSelectList;let i = index;">
+              			<div class="listdata" (click)="selectedProductList = obj" [class.selected]='obj == selectedProductList' (click)="listdataClick2($event.target,obj.id,obj.summary)">{{obj.summary}}</div>
+              		</div>
+              	</div>
+              </div>
+		       <div class="addcatalog-button fn-MT20" style="padding-left: 75px;">
+			        <span class="btn-cancel fn-MR10">
+						<button class="btn btn-primary fn-W80 fn-H30" (click)="canceldisease()">取消</button>
+			        </span>
+			        <span class="btn-save">
+						<button class="publicSureBtn fn-W80 fn-H30"  (click)="suredisease()">确认</button>
+			        </span>
+		       </div>
+        </div>
+    </template>
+    <template #dialogTemplate let-dialogModel  *ngIf="isMaterialsShow">
+        <div class="datatype-choosing">
+              <div class="chooseVersion">选择材料目录</div>
+              <div class="chooseVersionContent">
+              	<div class="versionContentBox">
+              		<div class="selectList" *ngFor="let obj of materialsSelectList;let i = index;">
+              			<div class="listdata" (click)="selectedProductList = obj" [class.selected]='obj == selectedProductList' (click)="listdataClick3($event.target,obj.id,obj.summary)">{{obj.summary}}</div>
+              		</div>
+              	</div>
+              </div>
+		      <div class="addcatalog-button fn-MT20" style="padding-left: 75px;">
+		        <span class="btn-cancel fn-MR10">
+					<button class="btn btn-primary fn-W80 fn-H30" (click)="cancelMaterials()">取消</button>
+		        </span>
+		        <span class="btn-save">
+					<button class="publicSureBtn fn-W80 fn-H30"  (click)="sureMaterials()">确认</button>
+		        </span>
+		      </div>
+        </div>
+    </template>
+    <template #dialogTemplate let-dialogModel  *ngIf="isprojectsShow">
+        <div class="datatype-choosing">
+              <div class="chooseVersion">选择项目目录</div>
+              <div class="chooseVersionContent">
+              	<div class="versionContentBox">
+              		<div class="selectList" *ngFor="let obj of projectsSelectList;let i = index;">
+              			<div class="listdata" (click)="selectedProductList = obj" [class.selected]='obj == selectedProductList' (click)="listdataClick4($event.target,obj.id,obj.summary)">{{obj.summary}}</div>
+              		</div>
+              	</div>
+              </div>
+		      <div class="addcatalog-button fn-MT20" style="padding-left: 75px;">
+		        <span class="btn-cancel fn-MR10">
+					<button class="btn btn-primary fn-W80 fn-H30" (click)="cancelProjects()">取消</button>
+		        </span>
+		        <span class="btn-save">
+					<button class="publicSureBtn fn-W80 fn-H30"  (click)="sureProjects()">确认</button>
+		        </span>
+		      </div>
+        </div>
+    </template>
+    <template #dialogTemplate let-dialogModel *ngIf="isDialogShow">
+ 	 	<div class="datatype-choosing">
+	          <div style="font-size: 15px;font-weight: bold;text-align: center;">请先添加相关的目录信息！</div>
+	          <div style="padding-left: 260px;padding-top: 25px;display: inline-block;">
+					<!--<a class="mt10" (click)="dialogModel.customModule = false;" style="padding-right: 10px;color: #4EB7E0;">取消</a>-->
+					<a (click)=sureAddVersion() style="color: #4EB7E0;">确认</a>
+			  </div>
+        </div>
+ 	</template>
+ </my-dialog>

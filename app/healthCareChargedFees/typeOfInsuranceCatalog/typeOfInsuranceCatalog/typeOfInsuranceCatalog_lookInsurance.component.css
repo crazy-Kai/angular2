@@ -1,0 +1,167 @@
+/*.TypeOfInsuranceCatalogLookInsuranceBigBox{
+	padding: 20px;
+}*/
+.spaceDescript{
+	width: 50%;
+	height: 30px;
+	line-height: 30px;
+    white-space:nowrap;
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+}
+.footer{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	box-shadow: 0px 0px 1px #999;
+	border: 1px solid #ccc;
+}
+.personBox{
+	display: inline-block;
+	width: 89%;
+}
+.personnerClassesContentBox{
+	width: 7%;
+    white-space:nowrap;
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+    padding-bottom: 10px;
+}
+.personnerClassesContentBox span{
+	width: 73%;
+    white-space:nowrap;
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+    padding-bottom: 10px;
+}
+/*险种名称*/
+.insuranceNameBox{
+	width: 100%;
+	margin-top: 27px;
+	padding-left: 63px;
+	float: left;
+}
+.insuranceNameBox span{
+	display: block;
+	float: left;
+}
+/*险种简介*/
+.insuranceExplainBox{
+	width: 100%;
+	padding-left: 74px;
+	float: left;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+.insuranceExplainBox span{
+	display: block;
+	float: left;
+}
+/*报销分类*/
+.applyClassifyBox{
+	float: left;
+	width: 100%;
+	padding-left: 75px;
+	padding-bottom: 20px;
+}
+.applyClassifyBox span{
+	display: block;
+	float: left;
+	line-height: 26px;
+}
+.applyClassifyBox p{
+	display: block;
+	width: 100%;
+	line-height: 26px;
+	float: left;
+	padding-left: 66px;
+}
+.addInsuranceContentBox{
+	width: 95%;
+	height: 30px;
+	float: left;
+	display: block;
+	line-height: 30px;
+}
+.addInsuranceContentBox div{
+	display: block;
+	float: left;
+	line-height: 30px;
+	font-size: 15px;
+	color: #666666;
+	margin-right: 5px;
+}
+/*险种名称下的内容*/
+.applyClassifyContentBox{
+	padding-left: 12px;
+	float: left;
+	margin-bottom: 25px;
+	width: 80%;
+}
+.addInsuranceContent{
+	display: inline-block;
+	width: 80%;
+}
+.applyClassifyContentBox span{
+	width: 100%;
+	display: block;
+	float: left;
+	line-height: 26px;
+}
+/*投保人员类别*/
+.personnerClassesBox{
+	padding-left: 50px;
+	float: left;
+	width: 100%;
+	padding-bottom: 20px;
+}
+.personnerClassesBox p{
+	display: block;
+	float: left;
+	margin-right: 10px;
+}
+
+.personnerClassesBox span{
+	display: block;
+	float: left;
+	margin-right: 20px;
+}
+/*复方的味数*/
+.compoundCountBox{
+	padding-left: 58px;
+	float: left;
+	width: 100%;
+	line-height: 26px;
+	padding-bottom:20px;
+}
+.compoundCountBox span{
+	display: block;
+	float: left;
+}
+/*修改*/
+/*.modificationBox{
+	width: 70px;
+	height: 30px;
+	background: #61BBE2 100%;
+	border: 1px solid #61BBE2 100%;
+	float: left;
+	margin-left: 155px;
+	margin-top: 40px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.modificationBox span{
+	display: block;
+	text-align: center;
+	line-height: 30px;
+	color: white;
+	font-size: 14px;
+}*/

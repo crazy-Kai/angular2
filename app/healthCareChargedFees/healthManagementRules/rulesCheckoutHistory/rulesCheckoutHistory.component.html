@@ -1,0 +1,165 @@
+<!--模拟干预页面-->
+<div class="catalogObject fn-clear" style="min-height: calc(100vh - 80px);">
+	<div class="catalogObject-content" style="min-width:1000px;min-height: calc(100vh - 95px);padding-left: 15px;padding-right: 15px;">
+		<div>
+			<div class="RulesCheckoutHeaderBox" style="padding-top: 10px;padding-bottom: 10px;">
+		       <div class="versionManagementReturnBox fn-clear" style="width: 80%;display: inline-block;">
+		             <div class="versionManagementReturn">
+		             	<span routerLink='/healthCareChargedFees/healthManagementRules' style="cursor: pointer;">< 返回</span>
+		             </div>
+		        </div>
+		    </div> 
+		    <!--患者信息  start-->
+		    <!--<div class='bigBox fn-clear' style="background: #fff;">
+			    <div class="search-bar" fole="form" >
+			    	<div>
+			    		 <div style="width: 100%;">
+					    	<table id="noBorders" class="fn-table fn-table-input" style="width: 100%;">
+					    		<tr>
+									<td width="80" align="right" class="fn-LH30">险种名称:</td>
+									<td width="150">
+										<select [(ngModel)]="tableList.insuranceId" (ngModelChange)="insuranceClick($event)" class="fn-input fn-W280" style="width:150px;">
+											<option value="">全部</option>
+											<option *ngFor="let obj of insuranceList;let i = index;" value="{{obj.id}}">{{obj.name}}</option>
+										</select>	
+									</td>
+									<td width="80" align="right" class="fn-LH30">版本信息：</td>
+									<td width="180px">
+										<select [(ngModel)]="tableList.ruleVersion" (ngModelChange)="optionClick($event)" class="fn-input fn-W280" style="width:180px;">
+											<option value="">全部</option>
+											<option *ngFor="let obj of selectList;let i = index;" value="{{obj.id}}">{{obj.name}}</option>
+										</select>	
+									</td>
+									<td width="80" align="right" class="fn-LH30">规则名称：</td>
+									<td width="180px">
+											<div style="width:180px;">
+												<input type="text"  class="fn-input ipts" style="width:180px;" [(ngModel)]="tableList.ruleName"/>
+											</div>
+									</td>
+									<td width="80">
+										<div class="form-group fn-ML10" style="width:80px">
+											<button type="submit" class="btn btn-primary btn-sm" (click)="search()">搜索</button>
+										</div>
+									</td>
+						        </tr>
+					    	</table>
+			    	     </div>
+			    	</div>
+			    </div>
+			 </div> -->
+			 
+			 <!--头部开始-->
+		<div class="managementRulesHeaderBox">
+			<div class="selects" style="margin-right: 10px;">
+				<label class="control-label ">险种名称：</label>
+				<select [(ngModel)]="tableList.insuranceId" (ngModelChange)="insuranceClick($event)" class="fn-input fn-W280" style="width:200px;">
+					<option value="">全部</option>
+					<option *ngFor="let obj of insuranceList;let i = index;" value="{{obj.id}}">{{obj.name}}</option>
+				</select>	
+			</div>
+			<div class="selects" style="margin-right: 10px;">
+				<label class="control-label ">版本信息：</label>
+				<select [(ngModel)]="tableList.ruleVersion" (ngModelChange)="optionClick($event)" class="fn-input fn-W280" style="width:200px;">
+					<option value="">全部</option>
+					<option *ngFor="let obj of selectList;let i = index;" value="{{obj.id}}">{{obj.name}}</option>
+				</select>	
+			</div>
+			<div class="selects" style="margin-right: 10px;">
+				<label class="control-label ">规则名称：</label>
+			    <input type="text"  class="fn-input ipts" [(ngModel)]="tableList.ruleName" style="width:200px;"/>
+			</div>
+			<div class="selects right">
+				<button type="submit" class="publicBtn fn-H28 fn-W40"  (click)="search()">搜索</button>
+			</div>
+		</div>
+		<!--头部结束-->
+			 
+			 <!--患者信息  end-->
+	         <!--表格信息开始-->
+	   		<div class="InterventionTableBox" style="height: calc(100vh - 225px);">
+			   	    <div>
+			     	  	<div style="padding-right: 17px; background: #fff;" id="tableHead">
+						      <table class="table alert-message-details-th tableLayout"  >
+						            <thead>
+						                <tr style="height: 45px;">
+						                    <th width="15%">校验时间</th>
+						                    <th width="15%">规则名称</th>
+						                    <th width="15%">险种</th>
+						                    <th width="10%" class="fn-ellipsis" title="对应规则版本">对应规则版本</th>
+						                    <th width="10%" class="fn-ellipsis" title="对应疾病目录">对应疾病目录</th>
+						                    <th width="10%" class="fn-ellipsis" title="对应项目目录">对应项目目录</th>
+						                    <th width="10%" class="fn-ellipsis" title="对应药品目录">对应药品目录</th>
+						                    <th width="10%" class="fn-ellipsis" title="对应材料目录">对应材料目录</th>
+						                    <th>操作</th>
+						                </tr>
+						            </thead>
+						       </table>
+			     	  	</div>
+		            </div>    
+		     	  	<div>
+			            <div style="height:calc(100vh - 278px - 9px - 9px - 9px);width:100%;overflow-y: scroll;">
+			            	<!--<div style="background: #fff;margin-right:0px;">
+					            <table class="table tableLayout" style="margin: 0px;">
+					                <tbody>
+					                    <tr>
+						                    <td width="15%" class="fn-ellipsis">2017.05.31</td>
+						                    <td width="15%">34</td>
+						                    <td width="15%">20</td>
+						                    <td width="10%">v1.5</td>
+						                    <td width="10%" class="fn-ellipsis">v1.5</td>
+						                    <td width="10%" class="fn-ellipsis">v1.5</td>
+						                    <td width="10%" class="fn-ellipsis">v1.5</td>
+						                    <td width="10%" class="fn-ellipsis">v1.5</td>
+						                    <td routerLink = "/healthCareChargedFees/healthManagementRules/rulesCheckout/rulesCheckoutHistory/waringInformation/waringInformation">
+						                    	<a style="cursor: pointer;color: blue;">详细</a>
+						                    </td>
+					                    </tr>
+					                </tbody>
+					            </table>
+			        		</div>-->
+				        	<div  *ngIf="msgList && msgList.length != 0" style="background: #fff;margin-right: 0px;">
+					            <table class="table tableLayout" style="margin: 0px;">
+					                <tbody>
+					                    <tr *ngFor="let item of msgList;let i = index" >
+						                    <td width="15%" class="fn-ellipsis" title="{{item.optTime}}">{{item.optTime}}</td>
+						                    <td width="15%" class="fn-ellipsis" title="{{item.ruleName}}">{{item.ruleName}}</td>
+						                    <td width="15%" class="fn-ellipsis" title="{{item.insuranceName}}">{{item.insuranceName}}</td>
+						                    <!--<td width="10%" class="fn-ellipsis" title="{{item.ruleVersionName}}">{{item.ruleVersionName==''?'{{item.ruleVersionName}}':'暂无'}}</td>-->
+						                    <td width="10%" class="fn-ellipsis" title="{{item.ruleVersionName}}">{{item.ruleVersionName==''?'暂无':item.ruleVersionName}}</td>
+						                    <td width="10%" class="fn-ellipsis" title="{{item.diseaseName}}">{{item.diseaseName==''?'暂无':item.diseaseName}}</td>
+						                    <td width="10%" class="fn-ellipsis" title="{{item.itemName}}">{{item.itemName==''?'暂无':item.itemName}}</td>
+						                    <td width="10%" class="fn-ellipsis" title="{{item.drugName}}">{{item.drugName==''?'暂无':item.drugName}}</td>
+						                    <td width="10%" class="fn-ellipsis" title="{{item.materialName}}">{{item.materialName==''?'暂无':item.materialName}}</td>
+						                    <!--<td routerLink = "/healthCareChargedFees/healthManagementRules/rulesCheckout/rulesCheckoutHistory/waringInformation/waringInformation">
+						                    	<a style="cursor: pointer;color: blue;" (click)='detailChange()'>详细</a>
+						                    </td>-->
+						                    <td>
+						                    	<a target="_blank" style="cursor: pointer;color: blue;" (click)='detailChange(item.ruleName,item.id)'>详细</a>
+						                    </td>
+					                    </tr>
+					                </tbody>
+					            </table>
+			        		</div>
+			        		<div style="background: #fff;">
+			        		<div  *ngIf="msgList && msgList.length == 0" style="background: #fff;">	
+					            <table class="table" style="margin: 0px;">
+					                <tbody>
+					                  <tr>
+										<td>没有找到相关数据</td>
+					                  </tr>
+					                </tbody>
+					            </table>
+			        		</div>
+			            </div>
+			      	</div>
+			      	<div style="padding-right:17px;" id="tableFooter">
+		        		<pagination [pageInfo]="pageInfo" (changePage)="setPage($event)" (changePageSize)="setPageSize($event)"></pagination>
+					</div>
+			   </div>  
+	 <!--表格信息结束--> 
+    		</div>
+   	 </div>
+</div>
+<my-dialog></my-dialog>
+
+

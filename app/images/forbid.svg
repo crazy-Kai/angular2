@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43 (38999) - http://www.bohemiancoding.com/sketch -->
+    <title>begin copy 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="8" cy="8" r="8"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="回收站" transform="translate(-2131.000000, -819.000000)">
+            <g id="begin-copy-2" transform="translate(2131.000000, 819.000000)">
+                <g id="Group-9">
+                    <g id="Oval-Copy">
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <circle stroke="#F04134" stroke-width="1" cx="8" cy="8" r="7.5"></circle>
+                    </g>
+                    <path d="M1,8.06666667 L15.4098732,8.06666667" id="Line" stroke="#F04134"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

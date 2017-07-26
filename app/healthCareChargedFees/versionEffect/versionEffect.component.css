@@ -1,0 +1,205 @@
+/*头部*/
+.gray-underline{
+	width: 1000px;
+	height: 30px;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+.yibao{
+	width: 400px;
+	height: 28px;
+	float: left;
+	margin-left: 10px;
+}
+.title{
+	float: left;
+	line-height: 28px;
+}
+.canceltitle{
+	color: blue;
+	font-size: 13px;
+	/*float: left;*/
+	/*line-height: 30px;*/
+	cursor: pointer;
+}
+.single-margin{
+	margin-left: 50px;
+}
+.versionEffectBox{
+	/*width: 1000px;*/
+	padding-top: 15px;
+	padding-bottom: 10px;
+	/*height: 20px;*/
+}
+.versionEffectBox a{
+	float: left;
+	display: block;
+	line-height: 30px;
+	margin-left: 15px;
+	margin-right: 15px;
+	color: blue;
+}
+.versionEffectBoxTiitle{
+	display: inline-block;
+}
+.versionEffectBoxTiitle span{
+	float: left;
+	display: block;
+	line-height: 30px;
+}
+.modification{
+	color: blue;
+	cursor: pointer;
+}
+/*正在生效的*/
+.isActive{
+	color: red;
+}
+/*//添加浮动框*/
+.show-dialog{
+	width: 350px;
+}
+.datatype-choosing{
+    position: fixed;left: 50%;top: 50%;z-index: 1050;
+    width: 380px;
+    padding: 25px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+}
+.dialogTitle{
+	text-align: center;
+	font-size: 16px;
+	color: black;
+	font-weight: 800;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+.dialogTime{
+	width: 260px;
+	height: 30px;
+}
+.versionTimeEffect{
+	display: inline-block;
+}
+.dialogTime span{
+	color: #666;
+	font-size: 14px;
+	line-height: 30px;
+	float: left;
+	display: block;
+}
+.immediateEffect{
+	line-height: 30px;
+	float: left;
+	display: block;
+	margin-top: 9px;
+	margin-left: 15px;
+	padding-left: 2px;
+}
+.selectVersion{
+	width: 300PX;
+	height: 40px;
+}
+.selectVersion span{
+	color: #666;
+	font-size: 14px;
+	line-height: 28px;
+	float: left;
+	display: block;	
+}
+.selectVersion select{
+	/*float: left;
+	display: block;
+	width: 200px;
+	height: 25px;
+	margin-left: 10px;
+	margin-top: 5px;
+	padding-left: 5px;*/
+}
+.changeTime{
+	display: inline-block;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+.changeTime1{
+	/*width: 250px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 10px;
+	margin: 5px;
+	float: left;*/
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 78px;
+}
+.changeTime1 select{
+	display: inline-block;
+}
+/*.changeTime1 .changeTime1Select{
+	display: block;
+	width: 60px;
+	height: 27px;
+	margin-left: 60px;
+	float: left;
+	padding-left: 5px;
+}*/
+.versionColon{
+	display: inline-block;
+	width: 20px;
+	height: 27px;
+	text-align: center;
+	line-height: 27px;
+	margin-left: 5px;
+	font-size: 20px;
+}
+/*.changeTime1 .changeTime1Select1{
+	display: block;
+	width: 60px;
+	height: 27px;
+	margin-left: 3px;
+	float: left;
+	padding-left: 5px;
+}*/
+/*.mt10{
+	width: 70px;
+	height: 30px;
+	margin-left: 21px;
+	font-size: 12px;
+	color:black;	
+    border: 1px solid black;
+    border-radius: 4px;
+	text-align: center;
+	line-height: 30px;
+	display: block;
+	margin-top: 20px;
+	cursor: pointer;
+	float: left;
+}*/
+/*.true{
+	background: #4EB7E0;
+	border: none;
+}*/
+/*.versionTrue{
+	padding-left: 54px;
+	display: inline-block;
+}*/
+
+.table{
+	margin-bottom: 0px;
+}
+.table thead th{
+	vertical-align: middle;
+    border: 1px solid #dfdfdf;
+    background: #f9f9f9;
+    padding: 0 0.75rem;
+    text-align: center;
+    font-weight: normal;
+}
+.table td{
+	vertical-align: middle;
+	font-size: 13px;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+}

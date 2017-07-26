@@ -1,0 +1,142 @@
+.origanizationBigBox{
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+}
+/*左边表格*/
+.origanizationBigBoxLeft{
+	width: 41%;
+	float: left;
+	margin-right: 20px;
+	background: white;
+	padding-left: 11px;
+	padding-right: 11px;
+}
+.fn-disable{
+	cursor: not-allowed;
+}
+.search-panel .btn:hover{
+	background: #4EB7E0;
+}
+.search-panel .input-group-addon{
+	padding: 0px;
+	width: 30px;
+	border-radius: 0;
+   background:url('app/images/u7006.svg') center center no-repeat;
+}
+/*头部一行*/
+.origanizationBigHeader{
+	font-family: STHeitiSC-Light;
+	font-size: 14px;
+	color: #000000;
+	padding-top: 10px;
+	height: 40px;
+}
+/*机构名称,第二行*/
+.origanizationBigBoxLeftHeader{
+	width: 100%;
+    padding-top: 15px;	
+}
+/*//右边表格*/
+.origanizationBigBoxRight{
+	width: 57%;
+	float: left;
+	background: white;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.comTbody tr.selected{
+	background: #EEEEF1;
+	cursor: pointer;
+}
+/*保存*/
+.input-group-addon{
+	padding: 0px;
+	width: 30px;
+	height: 28px !important;
+    background:url('app/images/u7006.svg') center center no-repeat;
+}
+/*.table-tbody ,.table-thead {
+	width: 100%;
+	border-collapse:collapse; 
+    border-spacing:0; 
+}
+.table-thead{
+	border: solid 1px #DAD8D8;
+}
+.table-thead{
+	background: #F9F9F9;
+}
+.table-tbody td{
+	line-height: 40px;
+}
+.table-thead tr th.border-none,.table-tbody tr td.border-none{
+	border-right: none;
+}
+.comTbody{
+	height: 150px;
+	overflow: auto;
+	border-top: none;
+}
+.comTbody tr{
+	border-bottom: solid 1px #DAD8D8;
+}
+.borderRight{
+	border-right: 1px solid #DAD8D8;
+}
+.activeTitle{
+	text-align: center;
+}
+.cursor{
+	cursor: pointer;
+}
+.table td{
+	border: 1px solid #DAD8D8 !important;
+}
+.table > thead > tr > th{
+	border-bottom: none;
+}*/
+.activeTitle img{
+	vertical-align: middle;
+	width: 40px;
+	height: 20px;
+}
+/*表格内容*/
+.cursor{
+	cursor: pointer;
+}
+#noBorder {
+	border:none;
+}
+#noBorder>*>tr>td{
+	border: none;
+	vertical-align: center;
+}
+.InterventionTableBox{
+	width: 100%;
+}
+.InterventionTableBox td{
+	height: 45px;	
+}
+.alert-message-details-th tr {
+    border: 1px solid #F9F9F9;
+}
+.table{
+	margin-bottom: 0px;
+}
+.table thead th{
+	vertical-align: middle;
+    border: 1px solid #dfdfdf;
+    background: #f9f9f9;
+    padding: 0 0.75rem;
+    text-align: center;
+    font-weight: normal;
+}
+.table td{
+	vertical-align: middle;
+	font-size: 13px;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+}

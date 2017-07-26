@@ -1,0 +1,149 @@
+/*返回*/
+.insurance .header{
+	height: 30px;
+	padding-top: 10px;
+}
+.header .return{
+	cursor: pointer;
+	width: 50px;
+}
+.header .return img{
+	width: 13px;
+	vertical-align: middle;
+	margin-top: -2px;
+}
+.header .return span{
+	color: #515253 ;
+	font-size: 14px;
+}
+.main .lists {
+	margin-top: 20px;
+}
+.main .lists .list-title {
+	width: 120px;
+	height: 30px;
+	float: left;
+	text-align: right;
+} 
+.main .lists .required {
+	color: red;
+}
+.main .lists .list-right {
+	display: inline-block;
+	margin-left: 15px ;
+}
+/*报销分类下面的添加内容*/
+.main .lists .list-right .addInsuranceContent{
+	margin-bottom: 10px;
+}
+.main .lists .list-right .addInsuranceContent img{
+	width: 15px;
+	float: left;
+}
+.main .lists .list-right .addInsuranceContent .nameBox{
+	float: left;
+	display: inline-block;
+	margin-left: 15px;
+}
+.main .lists .list-right .addInsuranceContent .deleateClassify {
+	margin-top: 7px;
+	float: left;
+}
+.main .lists.add-insurance, .main .lists.add-person {
+	margin-top: 20px;
+}
+/*报销比例*/
+.main .lists .list-right .APPlyScaleBox input{
+	width: 150px;
+}
+/*分类说明*/
+.main .lists .list-right .classifyExplainBox input{
+	width: 150px;
+}
+/*完成按钮*/
+.main .lists .list-right .completeButtom{
+	/*width: 70px;
+	height: 30px;
+	background: #61BBE2;
+    border: 1px solid #61BBE2;
+    border-radius: 4px;
+    margin-left: 10px;
+	text-align: center;
+	color: white;
+	font-size: 14px;
+	cursor: pointer;*/
+}
+/*添加*/
+.lists .list-title .add, .lists .list-right .add{
+	/*width: 70px;
+	height: 30px;
+	background: #EEFBFF 100%;
+	border: 1px solid #A2DDF5 100%;
+	border-radius: 4px;
+	cursor: pointer;
+	border: 1px solid #A2DDF5;*/
+}
+.personnerClassesContentBox {
+	width: 870px;
+}
+.personnerClassesContentBox .addContentBox{
+	display: inline-block;
+	float: left;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+.personnerClassesContentBox .addContentBox .txt{
+	width: 140px;
+	height: 25px;
+	background: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    color: black;
+    font-size: 13px;
+}
+.personnerClassesContentBox .addContentBox img{
+	width: 15px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+.personnerClassesContentBox .add {
+	/*float: left;*/
+}
+/*尾部信息*/
+.footer{
+	margin-top: 50px;
+	padding-left: 135px;
+}
+.footer .btn{
+	font-size: 14px;
+	cursor: pointer;
+	width: 70px;
+	height: 30px;
+    border-radius: 4px;
+    line-height: 15px;
+}
+.footer .btn.cancelBtn{
+	background:white;
+    border: 1px solid black;
+}
+.footer .btn.saveBtn{
+	background: #61BBE2;
+    border: 1px solid #61BBE2;
+    margin-left: 20px;  
+}
+/*报销分类下的盒子*/
+.addInsuranceContentBox{
+	height: 28px;
+}
+.addInsuranceContentBox img{
+	display: block;
+	float: left;
+}
+.addInsuranceContentBox span{
+	display: block;
+	float: left;
+}
+.clearfix {
+	display: table;
+	content: "";
+	clear: both;
+}

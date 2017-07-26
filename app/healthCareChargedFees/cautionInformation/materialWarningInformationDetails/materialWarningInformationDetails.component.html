@@ -1,0 +1,153 @@
+<div id="page" class="materialWarningInformationDetails" style="min-height: calc(100vh - 80px);">
+		<div class="materialWarningInformationDetails-content" >
+			<div class="content-header">
+				<div class="goBack"><span style="cursor: pointer;" (click)="goBack();">< 返回</span></div>
+				<div class="fn-TAC fn-FWB fn-FS15">警示信息</div>
+				<div style="width:100%;" class="fn-MT35">
+					<table class="fn-table fn-table-text" width="100%">
+						<tr>
+							<td align="right" width="78">归属险种：</td>
+							<td width="15%">{{information.insuranceSummary}}</td>
+							<td align="right">归属规则版本：</td>
+							<td>{{information.ruleVersion}}</td>
+							<td align="right" width="78">提示信息：</td>
+							<td width="15%" class="fn-ellipsis" title="{{information.prompt}}">
+								{{information.prompt}}
+							</td>
+						</tr>
+						<tr>
+							<td align="right" width="78">建议信息：</td>
+							<td width="15%" class="fn-ellipsis" title="{{information.opinion}}">
+	                  		    {{information.opinion}}
+							</td>
+							<td align="right" >警示等级：</td>
+							<td >{{information.level}}</td>
+							<td align="right" width="78" >管理依据：</td>
+							<td width="15%"  class="fn-ellipsis" title="{{information.basis}}">
+	                  		    {{information.basis}}
+							</td>
+						</tr>
+						<tr>
+							<td align="right" width="78">警示方式：</td>
+							<td *ngIf="information.warningAction == 0" style="width: 15%" class="fn-ellipsis" title="忽略">忽略</td>
+							<td *ngIf="information.warningAction == 1" style="width: 15%" class="fn-ellipsis" title="拦截">拦截</td>
+							<td *ngIf="information.warningAction == 2" style="width: 15%" class="fn-ellipsis" title="警示">警示</td>
+							<td align="right" >发生次数：</td>
+							<td>{{information.count}}</td>
+							<td align="right" width="78">分析类型：</td>
+							<td width="15%">{{information.analysisType}}</td>
+						</tr>
+						<tr>
+							<td align="right" width="78">提示类型：</td>
+							<td width="15%">{{information.promptType}}</td>
+							<td></td>
+							<td></td>
+							<td width="78"></td>
+							<td width="15%"></td>	
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="search-bar" fole="form" >
+				<table id="noBorders" class="fn-table fn-table-input" width="100%">
+					<tr>
+						<td width="80" align="right" class="fn-LH30">医嘱时间：</td>
+						<td width="195">
+								<div style="width:200px;">
+									<time-interval [startTime]="searchParams.startTime" [endTime]="searchParams.endTime" (timeSetted)="updateTime($event)"></time-interval>
+								</div>
+						</td>
+						<td width="80" align="right" class="fn-LH30">医院：</td>
+						<td width="150">
+							<input type="text" readonly="readonly" [(ngModel)]="hospitalNo" class="fn-input fn-W130"/>
+						</td>
+						<td width="80" align="right" class="fn-LH30">科室：</td>
+						<td width="150">
+							<select class="fn-input fn-W130" [(ngModel)] = "dataList.department" (ngModelChange)="selectedOffice($event)">
+								<option value="">全部</option>
+								<option *ngFor = "let obj of officeArray" value="{{obj.id}}">{{obj.name}}</option>
+							</select>
+						</td>
+						
+						<td width="80" align="right" class="fn-LH30">材料ID：</td>
+						<td width="150">
+							<input type="text"  [(ngModel)] ="dataList.materialId" class="fn-input fn-W130"  />
+						</td>
+						<td rowspan="2" width="100">
+							<div class="fn-ML10" style="height:74px;border-left:1px solid #ddd;">
+								<button type="submit" class="publicBtn fn-ML20 fn-MT23" (click)="search()">搜索</button>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td width="80" align="right" class="fn-LH30">材料名称：</td>
+						<td width="195">
+							<input type="text" [(ngModel)] ="dataList.name"  class="fn-input fn-W192"/>
+						</td>
+						<td width="80" align="right" class="fn-LH30">患者ID：</td>
+						<td width="150">
+							<input type="text"  [(ngModel)] ="dataList.patientNumber" class="fn-input fn-W130"/>
+						</td>
+						<td width="80" align="right" class="fn-LH30">行为：</td>
+						<td width="150">
+							<select class="fn-input fn-W130"  [(ngModel)] ="dataList.echo">
+								<option value=''>全部</option>
+								<option value="1">修改</option>
+								<option value="0">忽略</option>	
+							</select>
+						</td>			
+					</tr>
+					
+				</table>
+			</div>
+		</div>
+		<div class="InterventionTableBox" style="margin-top: 20px;">
+			      <table class="table table-head alert-message-details-th" >
+			            <thead>
+			                <tr style="height: 45px;">
+			                    <th width="14%">发生时间</th>
+			                    <th width="12%">材料ID</th>
+			                    <th width="12%">材料名称</th>
+			                    <th width="12%">项目数量</th>
+			                    <th width="12%">患者ID</th>
+			                    <th width="14%">就诊医院</th>
+			                    <th width="12%">医护人员行为</th>
+			                 	<th width="12%">操作</th>
+			                </tr>
+			            </thead>
+			        </table>   
+			        <div style="min-height:calc(100vh - 566px);">
+			        	<div  *ngIf="msgList && msgList.length !=0">
+				            <table class="table tableLayout" style="margin: 0px;background: #fff;">
+				                <tbody>
+				                    <tr *ngFor="let item of msgList;let i = index" >
+				                      		<td style="width:14%" class="fn-ellipsis" title="{{item.optTime}}">{{item.optTime}}</td>
+											<td style="width: 12%" class="fn-ellipsis" title="{{item.materialId}}">{{item.materialId}}</td>
+											<td style="width: 12%" class="fn-ellipsis" title="{{item.name}}">
+												{{item.name}}
+											</td>
+											<td style="width: 12%">{{item.quantity}}</td>
+											<td style="width: 12%">{{item.patientNumber}}</td>
+											<td style="width: 14%"  class="fn-ellipsis" title="{{item.hospital}}">{{item.hospital}}</td>
+											<td style="width: 12%">{{item.echo == 1 ?'修改':'忽略'}}</td>
+											<td style="width: 12%">
+												<a (click)="goToDetail(item)">查看</a>
+											</td>	
+				                    </tr>
+				                </tbody>
+				            </table>
+		        		</div>
+		        		<div  *ngIf="msgList && msgList.length == 0">
+				            <table class="table" style="margin: 0px;">
+				                <tbody>
+				                  <tr>
+									<td>没有找到相关数据</td>
+				                  </tr>
+				                </tbody>
+				            </table>
+		        		</div>
+			        </div>    
+	        		<pagination [pageInfo]="pageInfo" (changePage)="setPage($event)" (changePageSize)="setPageSize($event)"></pagination>
+		</div>
+</div>
+<my-dialog></my-dialog>

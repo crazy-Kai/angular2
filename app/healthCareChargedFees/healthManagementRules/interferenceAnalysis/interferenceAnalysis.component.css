@@ -1,0 +1,214 @@
+.proceduresDetial{
+	width:100%;
+	height: 100%;
+	padding:0 15px 15px 15px;
+}
+
+.proceduresDetial-content{
+	width:100%;
+	padding: 15px;
+	background: #fff;
+	height: 100%;
+}
+.proceduresDetial-content .content-header{
+	padding:10px;
+	padding-right: 0px;
+	font-size:13px;
+}
+.proceduresDetial-content .content-header .goBack{
+	font-size: 12px;
+}
+#content-main{
+    width:100%;
+	height:500px;
+}
+.proceduresDetial .chooseProcedures{
+	width:224px;
+	height:40px;
+	line-height: 40px;
+	font-size: 13px;
+	border: 1px solid #ddd;
+}
+.proceduresDetial .clinicType{
+	width:111px;
+	text-align: center;
+	color: #212223;
+	height: 38px;
+	cursor: pointer;
+}
+
+.proceduresDetial .procedures-content-main{
+	width: 100%;
+	margin-top:10px;
+}
+.proceduresDetial .obejct-kind{
+	/*width:462px;*/
+	position: relative;
+	height:40px;
+	border-left:1px solid #ddd;
+}
+.proceduresDetial .obejct-kind .intervene{
+	position: absolute;
+	bottom: 5px;
+	right: 2px;
+	background: #4EB7E0;
+}
+.proceduresDetial .fn-object-style{
+	width:115px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 13px;
+	color: #4C4E51;
+	background: #fff;
+	border:1px solid #ddd;
+	border-left: none;
+	border-bottom: none;
+	cursor: pointer;
+}
+.proceduresDetial .active{
+	background: #4EB7E0;
+	color: #fff;
+}
+.recipeDetails{
+	position:relative;
+}
+.switchFlag{
+	width:14px;
+	height: 14px;
+	background: #20BC56;
+	border-radius: 14px;
+	position:absolute;
+	top:8px;
+	left:-7px;
+}
+.switcTime{
+	margin-left:20px;
+	font-size: 15px;
+	color:#000;
+}
+.close{
+	position: absolute;
+	font-size:25px;
+	right:10px;
+	top:5px;
+	color: #333;
+}
+.close:hover{color:rgb(255,0,0);}
+.level{
+	height: 40px;
+	line-height: 40px;
+}
+.level span{
+	display: inline-block;
+	height: 24px;
+	width: 80px;
+	font-size: 13px;
+	text-align: center;
+	line-height: 24px;
+	border: 1px solid #CCCCCC;
+	margin: 0 10px;
+	background: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.level span:hover{
+	background: #8f949a;
+	color: #fff;
+}
+.level .active{
+	background: #000000;
+	color: #fff;
+}
+.level .active:hover{
+	background: #000000;
+	color: #fff;
+}
+.content-child{
+	width: 100%;
+}
+.child{
+	background: #F2F2F2;
+	height: 40px;
+	line-height: 40px;
+	font-size: 13px;
+	padding-left: 10px;
+	border-bottom: 1px solid #ccc;
+}
+.content-child ul{
+	margin-top: 15px;
+}
+.content-child ul li{
+	padding-left: 10px;
+	height: 30px;
+	line-height: 30px;
+}
+.content-child ul>li>img{
+	width: 24px;
+	height: 24px;
+	margin: 0 5px;
+	/*vertical-align: middle;*/
+}
+.content-child .suggest{
+	margin-top: 10px;
+	
+}
+.content-child .suggest li{
+	padding-left: 22px;
+	height: 30px;
+	line-height: 30px;
+}
+.content-child .classify{
+	padding-left: 10px;
+	margin-top: 5px;
+}
+.main{
+	border:1px solid #ddd;
+	width: 765px;
+	height: 319px;
+	background: #fff;"
+	background: #fff;
+	padding: 0 9px;
+}
+.main-bottom {
+	padding: 10px;
+}
+.main-bottom img{
+	width: 24px;
+	height: 24px;
+	margin: 0 5px;
+	/*vertical-align: middle;*/
+}
+.table th label{
+	margin-top: 5px;
+	font-weight: 100;
+}
+.settingMessage-hander table{
+	width: 507px;
+	height: 20px;
+	margin: 0 auto;
+	font-weight: 100;
+	font-family: 'ArialMT', 'Arial';"
+}
+/*表格内容*/
+.table{
+	margin-bottom: 0px;
+}
+
+.table thead th{
+	vertical-align: middle;
+    border: 1px solid #dfdfdf;
+    background: #f9f9f9;
+    padding: 0 0.75rem;
+    text-align: center;
+    font-weight: normal;
+}
+
+.table td{
+	vertical-align: middle;
+	font-size: 13px;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+}

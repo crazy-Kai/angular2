@@ -1,0 +1,17 @@
+
+/*.add-catalog-form  .form-group .form-reimbursement{
+	width:100px;float: left;
+}
+*/
+.addcatalog-content .search-panel .group{
+	padding-left: 10px;
+}
+.addcatalog-content .search-panel .input-group-addon{
+	padding: 0px;
+	width: 30px;
+   background:url('../app/images/u7006.svg') center center no-repeat;
+}
+
+.addcatalog-content .search-panel .btn:hover{
+	background: #4EB7E0;
+}

@@ -1,0 +1,55 @@
+.rulesname{
+	padding-bottom: 10px;
+	text-align: center;
+}
+.rulesname .title{
+	display: inline-block;
+	font-size: 18px;
+	font-weight: bold;
+}
+.rulesname .detail{
+	display: inline-block;
+	margin-left: 10px;
+}
+.rulesname .detail a{
+	color: blue;
+}
+/*表格内容*/
+#noBorder {
+	border:none;
+}
+#noBorder>*>tr>td{
+	border: none;
+	vertical-align: center;
+}
+.InterventionTableBox{
+	width: 100%;
+}
+.InterventionTableBox td{
+	height: 30px;	
+}
+.alert-message-details-th tr {
+    border: 1px solid #F9F9F9;
+}
+.table{
+	margin-bottom: 0px;
+}
+.table thead th{
+	vertical-align: middle;
+    border: 1px solid #dfdfdf;
+    background: #f9f9f9;
+    padding: 0 0.75rem;
+    text-align: center;
+    font-weight: normal;
+}
+.table td{
+	vertical-align: middle;
+	font-size: 13px;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+}
+
+
+
